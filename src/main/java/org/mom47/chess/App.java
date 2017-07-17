@@ -79,14 +79,6 @@ public class App {
         print(x + 32, y + 1, WHITE_ROOK);
         print(x + 24, y + 1, WHITE_BISHOP);
         print(x + 28, y + 1, WHITE_KNIGHT);
-        //print(x + 4, y + 3, WHITE_PAWN);
-        //print(x + 8, y + 3, WHITE_PAWN);
-        //print(x + 12, y + 3, WHITE_PAWN);
-        //print(x + 16, y + 3, WHITE_PAWN);
-        //print(x + 20, y + 3, WHITE_PAWN);
-        //print(x + 24, y + 3, WHITE_PAWN);
-        //print(x + 28, y + 3, WHITE_PAWN);
-        //print(x + 32, y + 3, WHITE_PAWN);
         print(x + 20, y + 15, BLACK_KING);
         print(x + 16, y + 15, BLACK_QUEEN);
         print(x + 12, y + 15, BLACK_BISHOP);
@@ -95,14 +87,6 @@ public class App {
         print(x + 32, y + 15, BLACK_ROOK);
         print(x + 24, y + 15, BLACK_BISHOP);
         print(x + 28, y + 15, BLACK_KNIGHT);
-        //print(x + 4, y + 13, BLACK_PAWN);
-        //print(x + 8, y + 13, BLACK_PAWN);
-        //print(x + 12, y + 13, BLACK_PAWN);
-        //print(x + 16, y + 13, BLACK_PAWN);
-        //print(x + 20, y + 13, BLACK_PAWN);
-        //print(x + 24, y + 13, BLACK_PAWN);
-        //print(x + 28, y + 13, BLACK_PAWN);
-        //print(x + 32, y + 13, BLACK_PAWN);
         for (int i = 1; i <= 8; i++) {
             print(x + (4 * i), y + 3, WHITE_PAWN);
         }
