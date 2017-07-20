@@ -70,4 +70,5 @@ public class ChessPiece {
 class Point{
     private int rank;
     private int file;
+
 }

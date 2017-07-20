@@ -70,7 +70,6 @@ public class App {
         System.out.println(ansi);
     }
 
-
     private static void printFigures(int x, int y) {
         print(x + 20, y + 1, WHITE_KING);
         print(x + 16, y + 1, WHITE_QUEEN);
