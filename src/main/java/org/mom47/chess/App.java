@@ -2,6 +2,7 @@ package org.mom47.chess;
 
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
+import org.mom47.chess.model.PieceType;
 
 public class App {
     private static final String WHITE_KING = "♔";
@@ -19,12 +20,8 @@ public class App {
 
 
     public static void main(String[] args) {
-        AnsiConsole.systemInstall();
-        Ansi ansi = Ansi.ansi().eraseScreen();
-        System.out.println(ansi);
-        printChessDesk(5, 5);
-        printFigures(5, 5);
-        AnsiConsole.systemUninstall();
+
+        PieceType figure = PieceType.KING;
     }
 
 
