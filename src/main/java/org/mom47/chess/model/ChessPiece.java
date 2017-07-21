@@ -2,15 +2,15 @@ package org.mom47.chess.model;
 
 
 public class ChessPiece {
-    private int color = 0;
+    private PieceColour color = PieceColour.BLACK;
     private int positionX = 01;
     private int positionY = 02 ;
     private Boolean taken = true;
-    private String figure = "King";
+    private PieceType figure = PieceType.KING;
     private String coordinatesboard = "A1";
+    Point p = new Point(1, 4);
 
-
-    public void setColor(int color) {
+    public void setColor(PieceColour color) {
         this.color = color;
     }
 
@@ -26,8 +26,8 @@ public class ChessPiece {
         this.taken = b1;
     }
 
-    public void setFigure(String namefigure) {
-        this.figure = namefigure;
+    public void setFigure(PieceType f1) {
+        this.figure = f1;
     }
 
     public void setCoordinatesboard(String coordinate) {
@@ -46,7 +46,7 @@ public class ChessPiece {
         return taken;
     }
 
-    public String getFigure() {
+    public PieceType getFigure() {
         return figure;
     }
 
@@ -54,7 +54,7 @@ public class ChessPiece {
         return coordinatesboard;
     }
 
-    public int getColur() {
+    public PieceColour getColor() {
         return color;
     }
 
@@ -66,9 +66,4 @@ public class ChessPiece {
     }
     void dontMove() {
     }
-}
-class Point{
-    private int rank;
-    private int file;
-
 }
