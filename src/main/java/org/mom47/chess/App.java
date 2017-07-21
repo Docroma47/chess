@@ -20,22 +20,27 @@ public class App {
 
 
     public static void main(String[] args) {
-
-        PieceType figure = PieceType.KING;
+        App app = new App();
+        AnsiConsole.systemInstall();
+        Ansi ansi = Ansi.ansi().eraseScreen();
+        System.out.println(ansi);
+        printChessDesk(5, 5);
+        printFigures(5, 5);
+        AnsiConsole.systemUninstall();
     }
 
 
     public static void drawVerticalLine(int x, int y, int length) {
         Ansi ansi = Ansi.ansi();
         for (; x <= length; x++)
-            ansi.cursor(x, y).fg(Ansi.Color.WHITE).a("#");
+        ansi.cursor(x, y).fg(Ansi.Color.WHITE).a("#");
         System.out.println(ansi);
     }
 
     public static void drawHorizontalLine(int x, int y, int length) {
         Ansi ansi = Ansi.ansi();
         for (; y <= length; y++)
-            ansi.cursor(x, y).fg(Ansi.Color.WHITE).a("#");
+        ansi.cursor(x, y).fg(Ansi.Color.WHITE).a("#");
         System.out.println(ansi);
     }
 
