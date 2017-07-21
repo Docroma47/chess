@@ -3,7 +3,7 @@ package org.mom47.chess.model;
 
 public class Point {
         private int rank;
-        private int file;
+        private int file;// PROBLEM!!!
 
         Point (int x, int y) {
                 this.rank = x;
