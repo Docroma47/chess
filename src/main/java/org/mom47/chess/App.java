@@ -29,7 +29,7 @@ public class App {
         King king = new King();
         king.setPosition( new Point(1, 5));
 
-        System.out.println(queen);
+        System.out.println(queen.toString());
         System.out.println(king);
     }
 
