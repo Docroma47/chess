@@ -2,12 +2,13 @@ package org.mom47.chess.model;
 
 
 public class Point {
+
     private int rank;
     private int file;
 
-    Point(int x, int y) {
-        this.rank = x;
-        this.file = y;
+    public Point(int file, int rank) {
+        this.file = file;
+        this.rank = rank;
     }
 
     public int getRank() {

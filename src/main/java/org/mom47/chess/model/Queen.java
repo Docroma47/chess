@@ -48,4 +48,10 @@ public class Queen {
     public void setInitialPositionY(int initialPositionY) {
         this.initialPositionY = initialPositionY;
     }
+
+    @Override
+    public String toString() {
+        return "Queen [" + positionX + ", " + positionY + "]";
+    }
+
 }

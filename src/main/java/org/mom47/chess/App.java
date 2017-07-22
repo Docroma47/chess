@@ -2,7 +2,9 @@ package org.mom47.chess;
 
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
-import org.mom47.chess.model.PieceType;
+import org.mom47.chess.model.King;
+import org.mom47.chess.model.Point;
+import org.mom47.chess.model.Queen;
 
 public class App {
     private static final String WHITE_KING = "♔";
@@ -20,7 +22,18 @@ public class App {
 
 
     public static void main(String[] args) {
-        App app = new App();
+        Queen queen = new Queen();
+        queen.setPositionX(1);
+        queen.setPositionY(4);
+
+        King king = new King();
+        king.setPosition( new Point(1, 5));
+
+        System.out.println(queen);
+        System.out.println(king);
+    }
+
+    private static void printChess() {
         AnsiConsole.systemInstall();
         Ansi ansi = Ansi.ansi().eraseScreen();
         System.out.println(ansi);
@@ -28,7 +41,6 @@ public class App {
         printFigures(5, 5);
         AnsiConsole.systemUninstall();
     }
-
 
     public static void drawVerticalLine(int x, int y, int length) {
         Ansi ansi = Ansi.ansi();

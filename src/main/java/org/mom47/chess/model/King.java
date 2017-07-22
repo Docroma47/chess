@@ -30,4 +30,9 @@ public class King {
     public void setInitialPosition(Point initialPosition) {
         this.initialPosition = initialPosition;
     }
+
+    @Override
+    public String toString() {
+        return "King [" + position.getFile() + ", " + position.getRank() + "]";
+    }
 }
