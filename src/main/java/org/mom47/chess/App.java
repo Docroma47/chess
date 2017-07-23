@@ -27,11 +27,11 @@ public class App {
         printChessDesk(1, 1);
 
         Point point = new Point(5, 1);
-        King king = new King();
-        king.setPosition(point);
-        king.setColor(PieceColour.WHITE);
-        king.setSymbol(WHITE_KING);
-        printKing(king);
+        King whiteKing = new King();
+        whiteKing.setPosition(point);
+        whiteKing.setColor(PieceColour.WHITE);
+        whiteKing.setSymbol(WHITE_KING);
+        printKing(whiteKing);
 
         Queen queen = new Queen();
         queen.setPosition(new Point(4, 1));
