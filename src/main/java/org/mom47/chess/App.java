@@ -26,11 +26,13 @@ public class App {
         Queen queen = new Queen();
         queen.setPositionX(1);
         queen.setPositionY(4);
+        queen.setSymbol(WHITE_QUEEN);
 
         Point point = new Point(1, 5);
         King king = new King();
         king.setPosition(point);
         king.setColor(PieceColour.WHITE);
+        king.setSymbol(WHITE_KING);
 
         System.out.println(queen.toString());
         System.out.println(king);

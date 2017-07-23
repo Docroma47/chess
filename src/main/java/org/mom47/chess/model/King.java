@@ -4,6 +4,7 @@ public class King {
 
     private PieceColour color;
     private Point position;
+    private String symbol;
 
     private Point initialPosition;
 
@@ -31,8 +32,16 @@ public class King {
         this.initialPosition = initialPosition;
     }
 
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
     @Override
     public String toString() {
-        return "King [" + color + ", (" + position.getFile() + ", " + position.getRank() + ")]";
+        return "King [" + symbol + " " + color + ", (" + position.getFile() + ", " + position.getRank() + ")]";
     }
 }

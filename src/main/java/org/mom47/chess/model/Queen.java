@@ -5,6 +5,7 @@ public class Queen {
     private boolean color;
     private int positionX;
     private int positionY;
+    private String symbol;
 
     private int initialPositionX;
     private int initialPositionY;
@@ -49,9 +50,17 @@ public class Queen {
         this.initialPositionY = initialPositionY;
     }
 
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
     @Override
     public String toString() {
-        return "Queen [" + positionX + ", " + positionY + "]";
+        return "Queen [" + symbol + " " + positionX + ", " + positionY + "]";
     }
 
 }
