@@ -2,16 +2,16 @@ package org.mom47.chess.model;
 
 public class King {
 
-    private boolean color;
+    private PieceColour color;
     private Point position;
 
     private Point initialPosition;
 
-    public boolean isColor() {
+    public PieceColour isColor() {
         return color;
     }
 
-    public void setColor(boolean color) {
+    public void setColor(PieceColour color) {
         this.color = color;
     }
 
@@ -33,6 +33,6 @@ public class King {
 
     @Override
     public String toString() {
-        return "King [" + position.getFile() + ", " + position.getRank() + "]";
+        return "King [" + color + ", (" + position.getFile() + ", " + position.getRank() + ")]";
     }
 }

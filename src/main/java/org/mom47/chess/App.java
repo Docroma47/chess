@@ -3,6 +3,7 @@ package org.mom47.chess;
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
 import org.mom47.chess.model.King;
+import org.mom47.chess.model.PieceColour;
 import org.mom47.chess.model.Point;
 import org.mom47.chess.model.Queen;
 
@@ -29,6 +30,7 @@ public class App {
         Point point = new Point(1, 5);
         King king = new King();
         king.setPosition(point);
+        king.setColor(PieceColour.WHITE);
 
         System.out.println(queen.toString());
         System.out.println(king);
