@@ -23,19 +23,57 @@ public class App {
 
 
     public static void main(String[] args) {
-        Queen queen = new Queen();
-        queen.setPositionX(1);
-        queen.setPositionY(4);
-        queen.setSymbol(WHITE_QUEEN);
+        AnsiConsole.systemInstall();
+        printChessDesk(1, 1);
 
-        Point point = new Point(1, 5);
+        Point point = new Point(5, 1);
         King king = new King();
         king.setPosition(point);
         king.setColor(PieceColour.WHITE);
         king.setSymbol(WHITE_KING);
+        printKing(king);
 
-        System.out.println(queen.toString());
-        System.out.println(king);
+        Queen queen = new Queen();
+        queen.setPosition(new Point(4, 1));
+        queen.setSymbol(WHITE_QUEEN);
+        printQueen(queen);
+
+        AnsiConsole.systemUninstall();
+    }
+
+    private static void printKing(King king) {
+        int horizontalNumberOfSymbolsPerCell = 4;
+        int verticalNumberOfSymbolsPerCell = 2;
+        int boardInitialPointX = 1;
+        int bardInitialPointY = 0;
+        int boardHeight = 18;
+
+        Point position = king.getPosition();
+
+        // translate king coordinates to the console coordinates
+
+
+        int x = boardInitialPointX + (position.getFile() * horizontalNumberOfSymbolsPerCell);
+        int y = bardInitialPointY + (boardHeight - (position.getRank() * verticalNumberOfSymbolsPerCell));
+
+        print(x, y, king.getSymbol());
+    }
+
+    private static void printQueen(Queen queen) {
+        int horizontalNumberOfSymbolsPerCell = 4;
+        int verticalNumberOfSymbolsPerCell = 2;
+        int boardInitialPointX = 1;
+        int bardInitialPointY = 0;
+        int boardHeight = 18;
+
+        Point position = queen.getPosition();
+
+        // translate king coordinates to the console coordinates
+
+        int x = boardInitialPointX + (position.getFile() * horizontalNumberOfSymbolsPerCell);
+        int y = bardInitialPointY + (boardHeight - (position.getRank() * verticalNumberOfSymbolsPerCell));
+
+        print(x, y, queen.getSymbol());
     }
 
     private static void printChess() {

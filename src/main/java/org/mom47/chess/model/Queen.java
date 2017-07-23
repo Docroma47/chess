@@ -3,8 +3,7 @@ package org.mom47.chess.model;
 public class Queen {
 
     private boolean color;
-    private int positionX;
-    private int positionY;
+    private Point position;
     private String symbol;
 
     private int initialPositionX;
@@ -18,20 +17,12 @@ public class Queen {
         this.color = color;
     }
 
-    public int getPositionX() {
-        return positionX;
+    public Point getPosition() {
+        return position;
     }
 
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
-    }
-
-    public int getPositionY() {
-        return positionY;
-    }
-
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
+    public void setPosition(Point position) {
+        this.position = position;
     }
 
     public int getInitialPositionX() {
@@ -60,7 +51,7 @@ public class Queen {
 
     @Override
     public String toString() {
-        return "Queen [" + symbol + " " + positionX + ", " + positionY + "]";
+        return "Queen [" + symbol + " " + position.getFile() + ", " + position.getRank() + "]";
     }
 
 }
