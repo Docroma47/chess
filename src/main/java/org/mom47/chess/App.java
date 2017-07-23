@@ -26,8 +26,9 @@ public class App {
         queen.setPositionX(1);
         queen.setPositionY(4);
 
+        Point point = new Point(1, 5);
         King king = new King();
-        king.setPosition( new Point(1, 5));
+        king.setPosition(point);
 
         System.out.println(queen.toString());
         System.out.println(king);
