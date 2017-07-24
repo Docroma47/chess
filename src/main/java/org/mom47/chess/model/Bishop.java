@@ -6,4 +6,8 @@ public class Bishop extends ChessPiece {
     public String toString() {
         return "Bishop [" + this.getSymbol() + ", " + this.getColor() + ", (" + this.getPosition().getFile() + ", " + this.getPosition().getRank() + ")]";
     }
+
+    public Bishop(PieceColour color, String symbol, Point position) {
+        super(color, symbol, position);
+    }
 }

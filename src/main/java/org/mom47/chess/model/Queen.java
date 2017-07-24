@@ -7,4 +7,7 @@ public class Queen extends ChessPiece {
         return "Queen [" + this.getSymbol() + ", " + this.getPosition() + ", (" + this.getPosition().getFile() + ", " + this.getPosition().getRank() + ")]";
     }
 
+    public Queen(PieceColour color, String symbol, Point position) {
+        super(color, symbol, position);
+    }
 }

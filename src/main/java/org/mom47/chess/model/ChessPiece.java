@@ -29,4 +29,9 @@ public class ChessPiece {
     public PieceColour getColor() {
         return color;
     }
+    public ChessPiece(PieceColour color, String symbol, Point position) {
+        setColor(color);
+        setSymbol(symbol);
+        setPosition(position);
+    }
 }

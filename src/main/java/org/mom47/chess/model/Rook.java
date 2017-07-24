@@ -6,4 +6,8 @@ public class Rook extends ChessPiece {
     public String toString() {
         return "Rook [" + this.getSymbol() + ", " + this.getColor() + ", (" + this.getPosition().getFile() + ", " + this.getPosition().getRank() + ")]";
     }
+
+    public Rook(PieceColour color, String symbol, Point position) {
+        super(color, symbol, position);
+    }
 }
