@@ -151,7 +151,6 @@ public class App {
         Pawn blackpawn = new Pawn(PieceColour.BLACK, BLACK_PAWN, point31);
         print(blackpawn);
 
-
         AnsiConsole.systemUninstall();
     }
 
@@ -164,36 +163,10 @@ public class App {
 
         Point position = chessPiece.getPosition();
 
-        // translate king coordinates to the console coordinates
-
-
         int x = boardInitialPointX + (position.getFile() * horizontalNumberOfSymbolsPerCell);
         int y = bardInitialPointY + (boardHeight - (position.getRank() * verticalNumberOfSymbolsPerCell));
 
         print(x, y, chessPiece.getSymbol());
-    }
-
-    private static void printChess() {
-        AnsiConsole.systemInstall();
-        Ansi ansi = Ansi.ansi().eraseScreen();
-        System.out.println(ansi);
-        printChessDesk(5, 5);
-        printFigures(5, 5);
-        AnsiConsole.systemUninstall();
-    }
-
-    public static void drawVerticalLine(int x, int y, int length) {
-        Ansi ansi = Ansi.ansi();
-        for (; x <= length; x++)
-        ansi.cursor(x, y).fg(Ansi.Color.WHITE).a("#");
-        System.out.println(ansi);
-    }
-
-    public static void drawHorizontalLine(int x, int y, int length) {
-        Ansi ansi = Ansi.ansi();
-        for (; y <= length; y++)
-        ansi.cursor(x, y).fg(Ansi.Color.WHITE).a("#");
-        System.out.println(ansi);
     }
 
     private static void printChessDesk(int x, int y) {
@@ -222,30 +195,5 @@ public class App {
         Ansi ansi = Ansi.ansi();
         ansi.cursor(y, x).fg(Ansi.Color.WHITE).a(text);
         System.out.println(ansi);
-    }
-
-    private static void printFigures(int x, int y) {
-        print(x + 20, y + 1, WHITE_KING);
-        print(x + 16, y + 1, WHITE_QUEEN);
-        print(x + 12, y + 1, WHITE_BISHOP);
-        print(x + 8, y + 1, WHITE_KNIGHT);
-        print(x + 4, y + 1, WHITE_ROOK);
-        print(x + 32, y + 1, WHITE_ROOK);
-        print(x + 24, y + 1, WHITE_BISHOP);
-        print(x + 28, y + 1, WHITE_KNIGHT);
-        print(x + 20, y + 15, BLACK_KING);
-        print(x + 16, y + 15, BLACK_QUEEN);
-        print(x + 12, y + 15, BLACK_BISHOP);
-        print(x + 8, y + 15, BLACK_KNIGHT);
-        print(x + 4, y + 15, BLACK_ROOK);
-        print(x + 32, y + 15, BLACK_ROOK);
-        print(x + 24, y + 15, BLACK_BISHOP);
-        print(x + 28, y + 15, BLACK_KNIGHT);
-        for (int i = 1; i <= 8; i++) {
-            print(x + (4 * i), y + 3, WHITE_PAWN);
-        }
-        for (int i = 1; i <= 8; i++){
-            print(x + (4 * i), y + 13, BLACK_PAWN);
-        }
     }
 }
