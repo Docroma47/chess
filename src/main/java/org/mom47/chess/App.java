@@ -43,8 +43,12 @@ public class App {
         figures[31] = new Rook(PieceColour.BLACK, 1);
 
         for (int i = 0; i <= 7; i++) {
-            print(figures[i] = new Pawn(PieceColour.WHITE, 1 + i));
-            print(figures[i + 7] = new Pawn(PieceColour.BLACK, 1 + i));
+            figures[i] = new Pawn(PieceColour.WHITE, 1 + i);
+            figures[i + 8] = new Pawn(PieceColour.BLACK, 1 + i);
+        }
+
+        for (int i = 0; i <= 31; i++) {
+            print(figures[i]);
         }
 
         AnsiConsole.systemUninstall();
