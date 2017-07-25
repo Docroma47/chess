@@ -7,104 +7,76 @@ import org.mom47.chess.model.*;
 public class App {
 
     public static void main(String[] args) {
+        ChessPiece[] figures = new ChessPiece[32];
         AnsiConsole.systemInstall();
         printChessDesk(1, 1);
 
-        King whiteking = new King(PieceColour.WHITE, 5);
-        print(whiteking);
+        figures[0] = new King(PieceColour.WHITE, 5);
 
-        Queen whitequeen = new Queen(PieceColour.WHITE, 4);
-        print(whitequeen);
+        figures[1] = new Queen(PieceColour.WHITE, 4);
 
-        Bishop whitebishop = new Bishop(PieceColour.WHITE, 6);
-        print(whitebishop);
+        figures[2] = new Bishop(PieceColour.WHITE, 6);
 
-        Bishop whitebishop1 = new Bishop(PieceColour.WHITE, 3);
-        print(whitebishop1);
+        figures[3] = new Bishop(PieceColour.WHITE, 3);
 
-        Knight whiteknight = new Knight(PieceColour.WHITE, 7);
-        print(whiteknight);
+        figures[4] = new Knight(PieceColour.WHITE, 7);
 
-        Knight whiteknight1 = new Knight(PieceColour.WHITE, 2);
-        print(whiteknight1);
+        figures[5] = new Knight(PieceColour.WHITE, 2);
 
-        Rook whiterook = new Rook(PieceColour.WHITE, 8);
-        print(whiterook);
+        figures[6] = new Rook(PieceColour.WHITE, 8);
 
-        Rook whiterook1 = new Rook(PieceColour.WHITE, 1);
-        print(whiterook1);
+        figures[7] = new Rook(PieceColour.WHITE, 1);
 
-        Pawn whitepawn = new Pawn(PieceColour.WHITE, 1);
-        print(whitepawn);
+        figures[8] = new Pawn(PieceColour.WHITE, 1);
 
-        Pawn whitepawn1 = new Pawn(PieceColour.WHITE,2);
-        print(whitepawn1);
+        figures[9] = new Pawn(PieceColour.WHITE,2);
 
-        Pawn whitepawn2 = new Pawn(PieceColour.WHITE, 3);
-        print(whitepawn2);
+        figures[10] = new Pawn(PieceColour.WHITE, 3);
 
-        Pawn whitepawn3 = new Pawn(PieceColour.WHITE, 4);
-        print(whitepawn3);
+        figures[11] = new Pawn(PieceColour.WHITE, 4);
 
-        Pawn whitepawn4 = new Pawn(PieceColour.WHITE, 5);
-        print(whitepawn4);
+        figures[12] = new Pawn(PieceColour.WHITE, 5);
 
-        Pawn whitepawn5 = new Pawn(PieceColour.WHITE, 6);
-        print(whitepawn5);
+        figures[13] = new Pawn(PieceColour.WHITE, 6);
 
-        Pawn whitepawn6 = new Pawn(PieceColour.WHITE, 7);
-        print(whitepawn6);
+        figures[14] = new Pawn(PieceColour.WHITE, 7);
 
-        Pawn whitepawn7 = new Pawn(PieceColour.WHITE, 8);
-        print(whitepawn7);
+        figures[15] = new Pawn(PieceColour.WHITE, 8);
 
-        King blackking = new King(PieceColour.BLACK, 5);
-        print(blackking);
+        figures[16] = new King(PieceColour.BLACK, 5);
 
-        Queen balckqueen = new Queen(PieceColour.BLACK, 4);
-        print(balckqueen);
+        figures[17] = new Queen(PieceColour.BLACK, 4);
 
-        Bishop blackbishop = new Bishop(PieceColour.BLACK, 6);
-        print(blackbishop);
+        figures[18] = new Bishop(PieceColour.BLACK, 6);
 
-        Bishop blackbishop1 = new Bishop(PieceColour.BLACK, 3);
-        print(blackbishop1);
+        figures[19] = new Bishop(PieceColour.BLACK, 3);
 
-        Knight blackknight1 = new Knight(PieceColour.BLACK, 7);
-        print(blackknight1);
+        figures[20] = new Knight(PieceColour.BLACK, 7);
 
-        Knight blackknight = new Knight(PieceColour.BLACK, 2);
-        print(blackknight);
+        figures[21] = new Knight(PieceColour.BLACK, 2);
 
-        Rook blackrook = new Rook(PieceColour.BLACK, 8);
-        print(blackrook);
+        figures[22] = new Rook(PieceColour.BLACK, 8);
 
-        Rook blackrook1 = new Rook(PieceColour.BLACK, 1);
-        print(blackrook1);
+        figures[23] = new Rook(PieceColour.BLACK, 1);
 
-        Pawn blackpawn7 = new Pawn(PieceColour.BLACK, 1);
-        print(blackpawn7);
+        figures[24] = new Pawn(PieceColour.BLACK, 1);
 
-        Pawn blackpawn6 = new Pawn(PieceColour.BLACK, 2);
-        print(blackpawn6);
+        figures[25] = new Pawn(PieceColour.BLACK, 2);
 
-        Pawn blackpawn5 = new Pawn(PieceColour.BLACK, 3);
-        print(blackpawn5);
+        figures[26] = new Pawn(PieceColour.BLACK, 3);
 
-        Pawn blackpawn4 = new Pawn(PieceColour.BLACK, 4);
-        print(blackpawn4);
+        figures[27] = new Pawn(PieceColour.BLACK, 4);
 
-        Pawn blackpawn3 = new Pawn(PieceColour.BLACK, 5);
-        print(blackpawn3);
+        figures[28] = new Pawn(PieceColour.BLACK, 5);
 
-        Pawn blackpawn2 = new Pawn(PieceColour.BLACK, 6);
-        print(blackpawn2);
+        figures[29] = new Pawn(PieceColour.BLACK, 6);
 
-        Pawn blackpawn1 = new Pawn(PieceColour.BLACK, 7);
-        print(blackpawn1);
+        figures[30] = new Pawn(PieceColour.BLACK, 7);
 
-        Pawn blackpawn = new Pawn(PieceColour.BLACK, 8);
-        print(blackpawn);
+        figures[31] = new Pawn(PieceColour.BLACK, 8);
+        for (int i = 0; i <= 31; i++) {
+            print(figures[i]);
+        }
 
         AnsiConsole.systemUninstall();
     }
