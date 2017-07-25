@@ -2,9 +2,20 @@ package org.mom47.chess.model;
 
 
 public class King extends ChessPiece {
-    public King(PieceColour color, String symbol, Point position) {
-        super(color, symbol, position);
+    private static final String WHITE_KING = "♔";
+    private static final String BLACK_KING = "♚";
+
+    public King(PieceColour color, int file) {
+        super(color);
+        if (color==PieceColour.WHITE) {
+            setSymbol(WHITE_KING);
+            setPosition(new Point(file, 1));
+        } else {
+            setSymbol(BLACK_KING);;
+            setPosition(new Point(file, 8));
+        }
     }
+
     @Override
     public String toString() {
         return "King [" + this.getSymbol() + ", " + this.getColor() + ", (" + this.getPosition().getFile() + ", " + this.getPosition().getRank() + ")]";

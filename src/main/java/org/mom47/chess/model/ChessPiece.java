@@ -29,9 +29,7 @@ public class ChessPiece {
     public PieceColour getColor() {
         return color;
     }
-    public ChessPiece(PieceColour color, String symbol, Point position) {
+    public ChessPiece(PieceColour color) {
         setColor(color);
-        setSymbol(symbol);
-        setPosition(position);
     }
 }
