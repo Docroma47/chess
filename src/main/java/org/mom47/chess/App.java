@@ -8,42 +8,26 @@ public class App {
     public static void main(String[] args) {
         ChessPiece[] figures = new ChessPiece[32];
         AnsiConsole.systemInstall();
+        Ansi ansi = Ansi.ansi();
+        System.out.println(ansi.reset().eraseScreen());
+
         printChessDesk(1, 1);
 
-        figures[16] = new King(PieceColour.WHITE, 5);
-
-        figures[17] = new Queen(PieceColour.WHITE, 4);
-
-        figures[18] = new Bishop(PieceColour.WHITE, 6);
-
-        figures[19] = new Bishop(PieceColour.WHITE, 3);
-
-        figures[20] = new Knight(PieceColour.WHITE, 7);
-
-        figures[21] = new Knight(PieceColour.WHITE, 2);
-
-        figures[22] = new Rook(PieceColour.WHITE, 8);
-
-        figures[23] = new Rook(PieceColour.WHITE, 1);
-
-        figures[24] = new King(PieceColour.BLACK, 5);
-
-        figures[25] = new Queen(PieceColour.BLACK, 4);
-
-        figures[26] = new Bishop(PieceColour.BLACK, 6);
-
-        figures[27] = new Bishop(PieceColour.BLACK, 3);
-
-        figures[28] = new Knight(PieceColour.BLACK, 7);
-
-        figures[29] = new Knight(PieceColour.BLACK, 2);
-
-        figures[30] = new Rook(PieceColour.BLACK, 8);
-
-        figures[31] = new Rook(PieceColour.BLACK, 1);
+        int j = 0;
+        for (PieceColour color : PieceColour.values()) {
+            figures[16 + j * 8] = new King(color, 5);
+            figures[17 + j * 8] = new Queen(color, 4);
+            figures[18 + j * 8] = new Bishop(color, 6);
+            figures[19 + j * 8] = new Bishop(color, 3);
+            figures[20 + j * 8] = new Knight(color, 7);
+            figures[21 + j * 8] = new Knight(color, 2);
+            figures[22 + j * 8] = new Rook(color, 8);
+            figures[23 + j * 8] = new Rook(color, 1);
+            j++;
+        }
 
         for (int i = 0; i <= 7; i++) {
-            figures[i] = new Pawn(PieceColour.WHITE, 1 + i);
+            figures[i] = new     Pawn(PieceColour.WHITE, 1 + i);
             figures[i + 8] = new Pawn(PieceColour.BLACK, 1 + i);
         }
 
