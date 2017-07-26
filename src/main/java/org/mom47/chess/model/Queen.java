@@ -7,17 +7,17 @@ public class Queen extends ChessPiece {
 
     public Queen(PieceColour color, int file) {
         super(color);
-        if (color==PieceColour.WHITE) {
+        if (color == PieceColour.WHITE) {
             setSymbol(WHITE_QUEEN);
-            setPosition(new Point(file, 1));
+            setPosition(new Point(file, 8));
         } else {
             setSymbol(BLACK_QUEEN);
-            setPosition(new Point(file, 8));
+            setPosition(new Point(file, 1));
         }
     }
 
     @Override
     public String toString() {
-        return "Queen [" + this.getSymbol() + ", " + this.getPosition() + ", (" + this.getPosition().getFile() + ", " + this.getPosition().getRank() + ")]";
+        return "Queen [" + this.getSymbol() + ", " + this.getColor() + ", (" + this.getPosition().getFile() + ", " + this.getPosition().getRank() + ")]";
     }
 }

@@ -8,10 +8,10 @@ public class Pawn extends ChessPiece {
     public Pawn(PieceColour color,int file) {
         super(color);
         if (color == PieceColour.WHITE) {
-            setPosition(new Point(file, 2));
+            setPosition(new Point(file, 7));
             setSymbol(WHITE_PAWN);
         } else {
-            setPosition(new Point(file, 7));
+            setPosition(new Point(file, 2));
             setSymbol(BLACK_PAWN);
         }
     }

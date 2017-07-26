@@ -36,6 +36,10 @@ public class App {
         }
 
         AnsiConsole.systemUninstall();
+        for (int i = 0; i <= 31; i++) {
+            print(0, i+19, "");
+            System.out.println(figures[i]);
+        }
     }
 
     private static void print(ChessPiece chessPiece) {

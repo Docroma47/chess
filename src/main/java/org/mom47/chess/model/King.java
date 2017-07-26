@@ -7,12 +7,12 @@ public class King extends ChessPiece {
 
     public King(PieceColour color, int file) {
         super(color);
-        if (color==PieceColour.WHITE) {
+        if (color == PieceColour.WHITE) {
             setSymbol(WHITE_KING);
-            setPosition(new Point(file, 1));
+            setPosition(new Point(file, 8));
         } else {
             setSymbol(BLACK_KING);;
-            setPosition(new Point(file, 8));
+            setPosition(new Point(file, 1));
         }
     }
 
