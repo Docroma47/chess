@@ -27,9 +27,15 @@ public class App {
         }
 
         for (int i = 0; i <= 7; i++) {
-            figures[i] = new     Pawn(PieceColour.WHITE, 1 + i);
+            figures[i] = new Pawn(PieceColour.WHITE, 1 + i);
             figures[i + 8] = new Pawn(PieceColour.BLACK, 1 + i);
         }
+
+        for (int i = 0; i <= 31; i++) {
+            figures[i].setIsCaptured(true);
+        }
+
+        figures[17].setIsCaptured(false);
 
         for (int i = 0; i <= 31; i++) {
             print(figures[i]);
@@ -37,24 +43,27 @@ public class App {
 
         AnsiConsole.systemUninstall();
         for (int i = 0; i <= 31; i++) {
-            print(0, i+19, "");
-            System.out.println(figures[i]);
+            print(0, i+19, figures[i].toString());
         }
     }
 
     private static void print(ChessPiece chessPiece) {
-        int horizontalNumberOfSymbolsPerCell = 4;
-        int verticalNumberOfSymbolsPerCell = 2;
-        int boardInitialPointX = 1;
-        int bardInitialPointY = 0;
-        int boardHeight = 18;
+        if (chessPiece.getIsCaptured() == false) {
+            int horizontalNumberOfSymbolsPerCell = 4;
+            int verticalNumberOfSymbolsPerCell = 2;
+            int boardInitialPointX = 1;
+            int bardInitialPointY = 0;
+            int boardHeight = 18;
 
-        Point position = chessPiece.getPosition();
+            Point position = chessPiece.getPosition();
 
-        int x = boardInitialPointX + (position.getFile() * horizontalNumberOfSymbolsPerCell);
-        int y = bardInitialPointY + (boardHeight - (position.getRank() * verticalNumberOfSymbolsPerCell));
+            int x = boardInitialPointX + (position.getFile() * horizontalNumberOfSymbolsPerCell);
+            int y = bardInitialPointY + (boardHeight - (position.getRank() * verticalNumberOfSymbolsPerCell));
 
-        print(x, y, chessPiece.getSymbol());
+            print(x, y, chessPiece.getSymbol());
+        } else {
+
+        }
     }
 
     private static void printChessDesk(int x, int y) {

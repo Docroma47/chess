@@ -5,6 +5,7 @@ public class ChessPiece {
     private PieceColour color;
     private String symbol;
     private Point position;
+    private Boolean isCaptured = false;
 
     public Point getPosition() {
         return position;
@@ -29,7 +30,16 @@ public class ChessPiece {
     public PieceColour getColor() {
         return color;
     }
+
     public ChessPiece(PieceColour color) {
         setColor(color);
+    }
+
+    public void setIsCaptured(Boolean isCaptured) {
+        this.isCaptured = isCaptured;
+    }
+
+    public Boolean getIsCaptured() {
+        return isCaptured;
     }
 }
