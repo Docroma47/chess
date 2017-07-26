@@ -42,8 +42,9 @@ public class App {
         }
 
         AnsiConsole.systemUninstall();
+
         for (int i = 0; i <= 31; i++) {
-            print(0, i+19, figures[i].toString());
+            print(0, i + 19, figures[i].toString());
         }
     }
 
@@ -61,8 +62,6 @@ public class App {
             int y = bardInitialPointY + (boardHeight - (position.getRank() * verticalNumberOfSymbolsPerCell));
 
             print(x, y, chessPiece.getSymbol());
-        } else {
-
         }
     }
 
