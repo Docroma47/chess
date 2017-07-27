@@ -18,6 +18,25 @@ public class Knight extends ChessPiece {
 
     @Override
     public String toString() {
-        return "Knight [" + this.getSymbol() + ", " + this.getColor() + ", (" + this.getPosition().getFile() + ", " + this.getPosition().getRank() + ")]";
+        if(getIsCaptured() == true) {
+            state = " - captured";
+        } else if(getPosition().getFile() == 1) {
+            state = " - A" + getPosition().getRank();
+        } else if(getPosition().getFile() == 2) {
+            state = " - B" + getPosition().getRank();
+        } else if(getPosition().getFile() == 3) {
+            state = " - C" + getPosition().getRank();
+        } else if(getPosition().getFile() == 4) {
+            state = " - D" + getPosition().getRank();
+        } else if(getPosition().getFile() == 5) {
+            state = " - E" + getPosition().getRank();
+        } else if(getPosition().getFile() == 6) {
+            state = " - F" + getPosition().getRank();
+        } else if(getPosition().getFile() == 7) {
+            state = " - G" + getPosition().getRank();
+        } else if(getPosition().getFile() == 8) {
+            state = " - H" + getPosition().getRank();
+        }
+        return this.getSymbol() + state;
     }
 }

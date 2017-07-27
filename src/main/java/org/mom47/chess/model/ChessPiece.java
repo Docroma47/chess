@@ -3,6 +3,7 @@ package org.mom47.chess.model;
 
 public class ChessPiece {
     private PieceColour color;
+    public String state;
     private String symbol;
     private Point position;
     private Boolean isCaptured = false;

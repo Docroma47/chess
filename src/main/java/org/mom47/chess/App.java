@@ -4,6 +4,8 @@ import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
 import org.mom47.chess.model.*;
 
+import java.io.File;
+
 public class App {
     public static void main(String[] args) {
         ChessPiece[] figures = new ChessPiece[32];
@@ -36,15 +38,20 @@ public class App {
         }
 
         figures[17].setIsCaptured(false);
+        figures[18].setIsCaptured(false);
 
         for (int i = 0; i <= 31; i++) {
             print(figures[i]);
         }
 
         AnsiConsole.systemUninstall();
-
         for (int i = 0; i <= 31; i++) {
-            print(0, i + 19, figures[i].toString());
+            if (figures[i].getIsCaptured() == true) {
+                print(0, i + 19, figures[i].toString());
+
+            } else {
+                print(0, i + 19, figures[i].toString());
+            }
         }
     }
 
