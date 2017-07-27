@@ -43,4 +43,40 @@ public class ChessPiece {
     public Boolean getIsCaptured() {
         return isCaptured;
     }
+
+    @Override
+    public String toString() {
+        switch (getPosition().getFile()) {
+            case 1:
+                state = " - A" + getPosition().getRank();
+                break;
+            case 2:
+                state = " - B" + getPosition().getRank();
+                break;
+            case 3:
+                state = " - C" + getPosition().getRank();
+                break;
+            case 4:
+                state = " - D" + getPosition().getRank();
+                break;
+            case 5:
+                state = " - E" + getPosition().getRank();
+                break;
+            case 6:
+                state = " - F" + getPosition().getRank();
+                break;
+            case 7:
+                state = " - G" + getPosition().getRank();
+                break;
+            case 8:
+                state = " - H" + getPosition().getRank();
+                break;
+        }
+
+        if(getIsCaptured() == true) {
+            state = " - captured";
+        }
+
+        return this.getSymbol() + state;
+    }
 }

@@ -13,9 +13,11 @@ public class App {
         Ansi ansi = Ansi.ansi();
         System.out.println(ansi.reset().eraseScreen());
 
-        printChessDesk(1, 1);
+        printChessDesk(15, 1);
 
         int j = 0;
+        int b = 0;
+        int w = 0;
         for (PieceColour color : PieceColour.values()) {
             figures[16 + j * 8] = new King(color, 5);
             figures[17 + j * 8] = new Queen(color, 4);
@@ -36,21 +38,35 @@ public class App {
         for (int i = 0; i <= 31; i++) {
             figures[i].setIsCaptured(true);
         }
-
-        figures[17].setIsCaptured(false);
-        figures[18].setIsCaptured(false);
+        figures[16].setIsCaptured(false);
+        figures[15].setIsCaptured(false);
+        figures[28].setIsCaptured(false);
 
         for (int i = 0; i <= 31; i++) {
             print(figures[i]);
         }
 
         AnsiConsole.systemUninstall();
+
         for (int i = 0; i <= 31; i++) {
             if (figures[i].getIsCaptured() == true) {
-                print(0, i + 19, figures[i].toString());
+                switch (figures[i].getColor()) {
+                    case WHITE:
+                        print(51, w, figures[i].toString());
+                        w++;
+                        break;
+                    case BLACK:
+                        print(0, b, figures[i].toString());
+                        b++;
+                        break;
+                }
+            }
+        }
 
-            } else {
-                print(0, i + 19, figures[i].toString());
+        for (int i = 0; i <= 31; i++) {
+            if(figures[i].getIsCaptured() == false) {
+                print(0, j + 19, figures[i].toString());
+                j++;
             }
         }
     }
@@ -59,7 +75,7 @@ public class App {
         if (chessPiece.getIsCaptured() == false) {
             int horizontalNumberOfSymbolsPerCell = 4;
             int verticalNumberOfSymbolsPerCell = 2;
-            int boardInitialPointX = 1;
+            int boardInitialPointX = 15;
             int bardInitialPointY = 0;
             int boardHeight = 18;
 
