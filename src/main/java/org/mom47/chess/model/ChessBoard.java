@@ -6,15 +6,12 @@ public class ChessBoard {
 
 
     public void setPiece(ChessPiece chessPiece) {
-            int rank = chessPiece.getPosition().getRank();
-            int file = chessPiece.getPosition().getFile();
-            squires[file][rank] = chessPiece;
+        int rank = chessPiece.getPosition().getRank();
+        int file = chessPiece.getPosition().getFile();
+        squires[file][rank] = chessPiece;
     }
 
     public ChessPiece getPiece(Point point) {
         return squires[point.getFile()][point.getRank()];
-    }
-
-    public ChessPiece[] getPieces(Point[] points) {
     }
 }
