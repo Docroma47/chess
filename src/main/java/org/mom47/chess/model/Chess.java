@@ -2,9 +2,6 @@ package org.mom47.chess.model;
 
 
 public class Chess {
-    Chess ChessBoard = new Chess();
-    Chess ChessPiece = new Chess();
-
     private ChessBoard chessBoard;
     private ChessPiece[] chessPieces;
 
