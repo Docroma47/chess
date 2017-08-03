@@ -5,7 +5,12 @@ public class Chess {
     private ChessBoard chessBoard;
     private ChessPiece[] chessPieces;
 
-    private ChessPiece createChessPieces() {
+    public Chess() {
+        chessPieces = createChessPieces();
+        setChessPiecesToChessBoard();
+    }
+
+    private ChessPiece[] createChessPieces() {
         ChessPiece[] figures = new ChessPiece[32];
         int j = 0;
         for (PieceColour color : PieceColour.values()) {
@@ -24,7 +29,8 @@ public class Chess {
             figures[i] = new Pawn(PieceColour.WHITE, 1 + i);
             figures[i + 8] = new Pawn(PieceColour.BLACK, 1 + i);
         }
-        return figures[32];
+
+        return figures;
     }
 
     private void setChessPiecesToChessBoard() {
@@ -33,8 +39,11 @@ public class Chess {
         }
     }
 
-    public Chess() {
-        chessPieces[32] = createChessPieces();
-        setChessPiecesToChessBoard();
+    public ChessPiece[] getChessPieces() {
+        return chessPieces;
+    }
+
+    public ChessBoard getChessBoard() {
+        return chessBoard;
     }
 }
