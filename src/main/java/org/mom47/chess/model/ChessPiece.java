@@ -46,29 +46,29 @@ public class ChessPiece {
 
     @Override
     public String toString() {
-        switch (getPosition().getFile()) {
-            case 1:
+        switch(getPosition().getFile()) {
+            case 0:
                 state = " - A" + getPosition().getRank();
                 break;
-            case 2:
+            case 1:
                 state = " - B" + getPosition().getRank();
                 break;
-            case 3:
+            case 2:
                 state = " - C" + getPosition().getRank();
                 break;
-            case 4:
+            case 3:
                 state = " - D" + getPosition().getRank();
                 break;
-            case 5:
+            case 4:
                 state = " - E" + getPosition().getRank();
                 break;
-            case 6:
+            case 5:
                 state = " - F" + getPosition().getRank();
                 break;
-            case 7:
+            case 6:
                 state = " - G" + getPosition().getRank();
                 break;
-            case 8:
+            case 7:
                 state = " - H" + getPosition().getRank();
                 break;
         }
