@@ -8,14 +8,17 @@ public class ChessBashView {
     private Chess chess = new Chess();
 
     public ChessBashView(Chess chess) {
+        chess = this.chess;
     }
 
-    public void prints() {
-        printChessBoard(1, 1);
+    public void print() {
+        printChessBoard();
         printChessPieces();
     }
 
-    private void printChessBoard(int x, int y) {
+    private void printChessBoard() {
+        int x = 1;
+        int y = 1;
         print(x, y,      "  ╔═══╤═══╤═══╤═══╤═══╤═══╤═══╤═══╗");
         print(x, y + 1,  "8 ║   │   │   │   │   │   │   │   ║");
         print(x, y + 2,  "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
