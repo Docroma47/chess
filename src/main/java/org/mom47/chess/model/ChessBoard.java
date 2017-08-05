@@ -2,7 +2,7 @@ package org.mom47.chess.model;
 
 
 public class ChessBoard {
-    private ChessPiece[][] squires = new ChessPiece[9][9];
+    private ChessPiece[][] squires = new ChessPiece[8][8];
 
 
     public void setPiece(ChessPiece chessPiece) {

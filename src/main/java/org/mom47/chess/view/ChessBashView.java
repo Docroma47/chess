@@ -1,9 +1,8 @@
-package org.mom47.chess.model.view;
+package org.mom47.chess.view;
 
 
 import org.fusesource.jansi.Ansi;
 import org.mom47.chess.model.*;
-
 public class ChessBashView {
     private Chess chess;
 
@@ -14,6 +13,27 @@ public class ChessBashView {
     public void print() {
         printChessBoard();
         printChessPieces();
+    }
+
+    private void printChessPieces() {
+        for (int i = 0; i <= 31; i++) {
+            print(chess.getChessPieces()[i]);
+        }
+    }
+
+    private static void print(ChessPiece chessPiece) {
+        int horizontalNumberOfSymbolsPerCell = 4;
+        int verticalNumberOfSymbolsPerCell = 2;
+        int boardInitialPointX = 5;
+        int bardInitialPointY = 0;
+        int boardHeight = 16;
+
+        Point position = chessPiece.getPosition();
+
+        int x = boardInitialPointX + (position.getFile() * horizontalNumberOfSymbolsPerCell);
+        int y = bardInitialPointY + (boardHeight - (position.getRank() * verticalNumberOfSymbolsPerCell));
+
+        print(x, y, chessPiece.getSymbol());
     }
 
     private void printChessBoard() {
@@ -37,27 +57,6 @@ public class ChessBashView {
         print(x, y + 15, "1 ║   │   │   │   │   │   │   │   ║");
         print(x, y + 16, "  ╚═══╧═══╧═══╧═══╧═══╧═══╧═══╧═══╝");
         print(x, y + 17, "    A   B   C   D   E   F   G   H");
-    }
-
-    private void printChessPieces() {
-        for (int i = 0; i <= 31; i++) {
-            print(chess.getChessPieces()[i]);
-        }
-    }
-
-    private static void print(ChessPiece chessPiece) {
-            int horizontalNumberOfSymbolsPerCell = 4;
-            int verticalNumberOfSymbolsPerCell = 2;
-            int boardInitialPointX = 1;
-            int bardInitialPointY = 0;
-            int boardHeight = 18;
-
-            Point position = chessPiece.getPosition();
-
-            int x = boardInitialPointX + (position.getFile() * horizontalNumberOfSymbolsPerCell);
-            int y = bardInitialPointY + (boardHeight - (position.getRank() * verticalNumberOfSymbolsPerCell));
-
-            print(x, y, chessPiece.getSymbol());
     }
 
     private static void print(int x, int y, String text) {
