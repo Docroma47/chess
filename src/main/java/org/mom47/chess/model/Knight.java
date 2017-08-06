@@ -9,10 +9,10 @@ public class Knight extends ChessPiece {
         super(color);
         if (color == PieceColour.WHITE) {
             setSymbol(WHITE_KNIGHT);
-            setPosition(new Point(file, 8));
+            setPosition(new Point(file, 0));
         } else {
             setSymbol(BLACK_KNIGHT);
-            setPosition(new Point(file, 8));
+            setPosition(new Point(file, 7));
         }
     }
 }
