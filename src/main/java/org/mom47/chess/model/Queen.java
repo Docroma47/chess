@@ -9,10 +9,10 @@ public class Queen extends ChessPiece {
         super(color);
         if (color == PieceColour.WHITE) {
             setSymbol(WHITE_QUEEN);
-            setPosition(new Point(file, 0));
+            setPosition(new Point(file, 8));
         } else {
             setSymbol(BLACK_QUEEN);
-            setPosition(new Point(file, 7));
+            setPosition(new Point(file, 8));
         }
     }
 }

@@ -9,10 +9,10 @@ public class Bishop extends ChessPiece {
         super(color);
         if(color == PieceColour.WHITE) {
             setSymbol(WHITE_BISHOP);;
-            setPosition(new Point(file, 0));
+            setPosition(new Point(file, 8));
         } else {
             setSymbol(BLACK_BISHOP);
-            setPosition(new Point(file, 7));
+            setPosition(new Point(file, 8));
         }
     }
 }

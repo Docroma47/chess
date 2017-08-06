@@ -9,10 +9,10 @@ public class King extends ChessPiece {
         super(color);
         if (color == PieceColour.WHITE) {
             setSymbol(WHITE_KING);
-            setPosition(new Point(file, 0));
+            setPosition(new Point(file, 8));
         } else {
             setSymbol(BLACK_KING);;
-            setPosition(new Point(file, 7));
+            setPosition(new Point(file, 8));
         }
     }
 }
