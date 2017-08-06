@@ -9,7 +9,8 @@ public class Point {
 
     public Point(int file, int rank) {
         Random random = new Random();
-
+        file = 8;
+        rank = 8;
         this.file = random.nextInt(file);
         this.rank = random.nextInt(rank);
     }
