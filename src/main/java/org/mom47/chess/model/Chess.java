@@ -4,7 +4,6 @@ package org.mom47.chess.model;
 public class Chess {
     private ChessBoard chessBoard = new ChessBoard();
     private ChessPiece[] chessPieces;
-    public Point point;
 
     public Chess() {
         chessPieces = createChessPieces();
