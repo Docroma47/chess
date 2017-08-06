@@ -2,7 +2,10 @@ package org.mom47.chess.view;
 
 
 import org.fusesource.jansi.Ansi;
-import org.mom47.chess.model.*;
+import org.fusesource.jansi.AnsiConsole;
+import org.mom47.chess.model.Chess;
+import org.mom47.chess.model.ChessPiece;
+import org.mom47.chess.model.Point;
 public class ChessBashView {
     private Chess chess;
 
@@ -11,8 +14,17 @@ public class ChessBashView {
     }
 
     public void print() {
+        // do not remove this lines:
+        AnsiConsole.systemInstall();
+        System.out.println(Ansi.ansi().reset().eraseScreen().toString());
+
+        // feel free to do anything:
         printChessBoard();
         printChessPieces();
+
+        // do not remove this lines:
+        System.out.println(Ansi.ansi().cursor(30, 0).a("").reset().toString());
+        AnsiConsole.systemUninstall();
     }
 
     private void printChessPieces() {

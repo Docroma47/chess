@@ -17,6 +17,9 @@ public class App {
     }
     public static void main(String[] args) {
         App app = new App();
+        if (args.length > 0 && args[0].equals("random")) {
+            // Printing chess pieces in random order
+        } // if not, print in normal order
         app.run();
     }
 }
