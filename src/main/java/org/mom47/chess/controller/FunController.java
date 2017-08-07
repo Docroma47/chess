@@ -40,7 +40,7 @@ public class FunController {
             direction = random.nextInt(4);
 
             Point newPosition = getNewPosition(chessPiece.getPosition(), direction);
-            
+
             chessPiece.setPosition(newPosition);
 
             chessBashView.print();

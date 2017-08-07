@@ -11,6 +11,15 @@ public class ChessBoard {
         squires[file][rank] = chessPiece;
     }
 
+    public void move(Point initial, Point destination) {
+        ChessPiece chessPiece = squires[initial.getFile()][initial.getRank()];
+
+        this.squires[initial.getFile()][initial.getRank()] = null;
+        this.squires[destination.getFile()][destination.getRank()] = chessPiece;
+
+        chessPiece.setPosition(destination);
+    }
+
     public ChessPiece getPiece(Point point) {
         return squires[point.getFile()][point.getRank()];
     }
