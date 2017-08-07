@@ -27,6 +27,9 @@ public class FunController {
 
     public void move(int file, int rank) {
         // 1. hide (setIsCaptured(true)) all figures except
+        for (int i = 0; i <= 31; i++) {
+            chess.getChessPieces()[i].setIsCaptured(true);
+        }
         //TODO implement me
 
         // 2. show figure (setIsCaptured(false)) by the "file" and "rank" parameters
@@ -45,7 +48,8 @@ public class FunController {
             // 2 would mean direction to the "left"
             // 3 would mean direction to the "right"
             //TODO implement me
-            int direction = 0; // generate random value from 0 to 3
+            int direction; // generate random value from 0 to 3
+            direction = random.nextInt(4);
 
             // get a new position
             Point newPosition = getNewPosition(chessPiece.getPosition(), direction);
@@ -89,28 +93,52 @@ public class FunController {
         //TODO implement me
         // move position to up, e.g. increment rank by 1
         // if the rank becomes greater than 7 (out of the board), then return initial position
-        return position;
+        if (position.getRank() < 7) {
+            int newFileValue = position.getFile();
+            int newRankValue = position.getRank() + 1;
+            return new Point(newFileValue, newRankValue);
+        } else {
+            return position;
+        }
     }
 
     private Point moveDown(Point position) {
         //TODO implement me
         // move position to down, e.g. decrement rank by 1
         // if the rank becomes less than 0 (out of the board), then return initial position
-        return position;
+        if (position.getRank() > 0) {
+            int newFileValue = position.getFile();
+            int newRankValue = position.getRank() - 1;
+            return new Point(newFileValue, newRankValue);
+        } else {
+            return position;
+        }
     }
 
     private Point moveLeft(Point position) {
         //TODO implement me
         // move position to left, e.g. decrement file by 1
         // if the file becomes less than 0 (out of the board), then return initial position
-        return position;
+        if (position.getFile() > 0) {
+            int newFileValue = position.getFile() - 1;
+            int newRankValue = position.getRank();
+            return new Point(newFileValue, newRankValue);
+        } else {
+            return position;
+        }
     }
 
     private Point moveRight(Point position) {
         //TODO implement me
         // move position to right, e.g. increment file by 1
         // if the file becomes more than 7 (out of the board), then return initial position
-        return position;
+        if (position.getFile() < 7) {
+            int newFileValue = position.getFile() + 1;
+            int newRankValue = position.getRank();
+            return new Point(newFileValue, newRankValue);
+        } else {
+            return position;
+        }
     }
 
     private void sleep() {
