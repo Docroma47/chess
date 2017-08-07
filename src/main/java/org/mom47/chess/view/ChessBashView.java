@@ -31,18 +31,20 @@ public class ChessBashView {
     }
 
     private static void print(ChessPiece chessPiece) {
-        int horizontalNumberOfSymbolsPerCell = 4;
-        int verticalNumberOfSymbolsPerCell = 2;
-        int boardInitialPointX = 5;
-        int bardInitialPointY = 0;
-        int boardHeight = 16;
+        if (chessPiece.getIsCaptured() == false) {
+            int horizontalNumberOfSymbolsPerCell = 4;
+            int verticalNumberOfSymbolsPerCell = 2;
+            int boardInitialPointX = 5;
+            int bardInitialPointY = 0;
+            int boardHeight = 16;
 
-        Point position = chessPiece.getPosition();
+            Point position = chessPiece.getPosition();
 
-        int x = boardInitialPointX + (position.getFile() * horizontalNumberOfSymbolsPerCell);
-        int y = bardInitialPointY + (boardHeight - (position.getRank() * verticalNumberOfSymbolsPerCell));
+            int x = boardInitialPointX + (position.getFile() * horizontalNumberOfSymbolsPerCell);
+            int y = bardInitialPointY + (boardHeight - (position.getRank() * verticalNumberOfSymbolsPerCell));
 
-        print(x, y, chessPiece.getSymbol());
+            print(x, y, chessPiece.getSymbol());
+        }
     }
 
     private void printChessBoard() {

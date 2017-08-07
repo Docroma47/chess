@@ -34,7 +34,7 @@ public class Chess {
     }
 
     private void setChessPiecesToChessBoard() {
-        for (int i = 0; i <= 7; i++) {
+        for (int i = 0; i <= 31; i++) {
             chessBoard.setPiece(chessPieces[i]);
         }
     }

@@ -1,18 +1,19 @@
 package org.mom47.chess;
 
 
-import org.mom47.chess.model.*;
+import org.mom47.chess.controller.FunController;
+import org.mom47.chess.model.Chess;
 import org.mom47.chess.view.ChessBashView;
-
-import java.util.Random;
 
 public class App {
     private Chess chess;
     private ChessBashView chessBashView;
+    private FunController funController;
 
     public App() {
         chess = new Chess();
         chessBashView = new ChessBashView(chess);
+        funController = new FunController(chess, chessBashView);
     }
 
     public void run() {
@@ -20,11 +21,13 @@ public class App {
     }
     public static void main(String[] args) {
         App app = new App();
-        if (args.length > 0 && args[0].equals("random")) {
-            for (int i = 0; i <= 31; i++) {
-                Random random = new Random();
-                ChessPiece chessPiece = app.chess.getChessPieces()[i];
-                chessPiece.setPosition(new Point(random.nextInt(8), random.nextInt(8)));
+        if (args.length > 0) {
+            if (args[0].equals("random")) {
+                app.funController.mixRandomlyChessPieces();
+            } else if (args[0].equals("move")) {
+                int file = Integer.valueOf(args[1]);
+                int rank = Integer.valueOf(args[2]);
+                app.funController.move(file, rank);
             }
         }
         app.run();
