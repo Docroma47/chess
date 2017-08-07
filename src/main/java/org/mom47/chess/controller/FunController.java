@@ -26,73 +26,44 @@ public class FunController {
     }
 
     public void move(int file, int rank) {
-        // 1. hide (setIsCaptured(true)) all figures except
         for (int i = 0; i <= 31; i++) {
             chess.getChessPieces()[i].setIsCaptured(true);
         }
-        //TODO implement me
 
-        // 2. show figure (setIsCaptured(false)) by the "file" and "rank" parameters
         ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
         chessPiece.setIsCaptured(false);
 
         Random random = new Random();
 
-        // this a loop to emulate chess piece steps, there will 100 steps in total
         for (int i = 0; i < 100; i++) {
-
-            // 2. chose a direction randomly
-            // Let say the "direction" variable below can take only 4 values:
-            // 0 would mean direction to the "top"
-            // 1 would mean direction to the "bottom"
-            // 2 would mean direction to the "left"
-            // 3 would mean direction to the "right"
-            //TODO implement me
-            int direction; // generate random value from 0 to 3
+            int direction;
             direction = random.nextInt(4);
 
-            // get a new position
             Point newPosition = getNewPosition(chessPiece.getPosition(), direction);
-
-            // make a step
+            
             chessPiece.setPosition(newPosition);
 
-            // re-print the chess
             chessBashView.print();
 
-            // this method just make you program to sleep for 1 second
             sleep();
         }
     }
 
-    /**
-     * This method "moves" position by a direction
-     * @param position initial position
-     * @param direction direction to move
-     * @return new position
-     */
     private Point getNewPosition(Point position, int direction) {
         Point newPosition = position;
         if (direction == 0) {
-            // move up
             newPosition = moveUp(position);
         } else if (direction == 1) {
-            // move down
             newPosition = moveDown(position);
         } else if (direction == 2) {
-            // move left
             newPosition = moveLeft(position);
         } else if (direction == 3) {
-            // move right
             newPosition = moveRight(position);
         }
         return newPosition;
     }
 
     private Point moveUp(Point position) {
-        //TODO implement me
-        // move position to up, e.g. increment rank by 1
-        // if the rank becomes greater than 7 (out of the board), then return initial position
         if (position.getRank() < 7) {
             int newFileValue = position.getFile();
             int newRankValue = position.getRank() + 1;
@@ -103,9 +74,6 @@ public class FunController {
     }
 
     private Point moveDown(Point position) {
-        //TODO implement me
-        // move position to down, e.g. decrement rank by 1
-        // if the rank becomes less than 0 (out of the board), then return initial position
         if (position.getRank() > 0) {
             int newFileValue = position.getFile();
             int newRankValue = position.getRank() - 1;
@@ -116,9 +84,6 @@ public class FunController {
     }
 
     private Point moveLeft(Point position) {
-        //TODO implement me
-        // move position to left, e.g. decrement file by 1
-        // if the file becomes less than 0 (out of the board), then return initial position
         if (position.getFile() > 0) {
             int newFileValue = position.getFile() - 1;
             int newRankValue = position.getRank();
@@ -129,9 +94,6 @@ public class FunController {
     }
 
     private Point moveRight(Point position) {
-        //TODO implement me
-        // move position to right, e.g. increment file by 1
-        // if the file becomes more than 7 (out of the board), then return initial position
         if (position.getFile() < 7) {
             int newFileValue = position.getFile() + 1;
             int newRankValue = position.getRank();
