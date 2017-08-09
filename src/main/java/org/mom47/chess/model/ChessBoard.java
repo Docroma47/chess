@@ -19,6 +19,14 @@ public class ChessBoard {
 
         chessPiece.setPosition(destination);
     }
+//1. Убрать с доски фигуру по координатам
+//2. Засетить статус captured этой фигуре
+    public void remove(Point position) {
+        ChessPiece chessPiece = squires[position.getFile()][position.getRank()];
+        chessPiece.setIsCaptured(true);
+        squires[position.getFile()][position.getRank()] = null;
+
+    }
 
     public ChessPiece getPiece(Point point) {
         return squires[point.getFile()][point.getRank()];

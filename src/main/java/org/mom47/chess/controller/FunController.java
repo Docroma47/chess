@@ -8,7 +8,6 @@ import org.mom47.chess.view.ChessBashView;
 import java.util.Random;
 
 public class FunController {
-
     private Chess chess;
     private ChessBashView chessBashView;
 
@@ -21,17 +20,19 @@ public class FunController {
         for (int i = 0; i <= 31; i++) {
             Random random = new Random();
             ChessPiece chessPiece = chess.getChessPieces()[i];
-            chessPiece.setPosition(new Point(random.nextInt(8), random.nextInt(8)));
+            chess.getChessBoard().move(chessPiece.getPosition(), new Point(random.nextInt(8), random.nextInt(8)));
         }
     }
 
     public void move(int file, int rank) {
+        ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
         for (int i = 0; i <= 31; i++) {
-            chess.getChessPieces()[i].setIsCaptured(true);
+            if(chess.getChessPieces()[i] == chess.getChessBoard().getPiece(new Point(file, rank))) {
+            } else {
+                chess.getChessBoard().remove(chess.getChessPieces()[i].getPosition());
+            }
         }
 
-        ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
-        chessPiece.setIsCaptured(false);
 
         Random random = new Random();
 
@@ -41,7 +42,7 @@ public class FunController {
 
             Point newPosition = getNewPosition(chessPiece.getPosition(), direction);
 
-            chessPiece.setPosition(newPosition);
+            chess.getChessBoard().move(chessPiece.getPosition(), newPosition);
 
             chessBashView.print();
 
