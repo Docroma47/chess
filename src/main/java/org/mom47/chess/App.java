@@ -28,6 +28,10 @@ public class App {
                 int file = Integer.valueOf(args[1]);
                 int rank = Integer.valueOf(args[2]);
                 app.funController.move(file, rank);
+            } else if (args[0].equals("snake")) {
+                int file = Integer.valueOf(args[1]);
+                int rank = Integer.valueOf(args[2]);
+                app.funController.moveSnake(file, rank);
             }
         }
         app.run();

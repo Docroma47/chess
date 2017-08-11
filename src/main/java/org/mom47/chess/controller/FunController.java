@@ -24,6 +24,38 @@ public class FunController {
         }
     }
 
+    public void moveSnake(int file, int rank) {
+        ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
+        for (int i = 0; i <= 31; i++) {
+            if(chess.getChessPieces()[i] == chess.getChessBoard().getPiece(new Point(file, rank))) {
+            } else {
+                chess.getChessBoard().remove(chess.getChessPieces()[i].getPosition());
+            }
+        }
+
+
+        Random random = new Random();
+
+        int direction;
+        direction = random.nextInt(4);
+        for (int i = 0; i < 100; i++) {
+            if (chessPiece.getPosition().getRank() == 7 && direction == 0) {
+                direction = random.nextInt(4);
+            } else if (chessPiece.getPosition().getRank() == 0 && direction == 1) {
+                direction = random.nextInt(4);
+            } else if (chessPiece.getPosition().getFile() == 0 && direction == 2) {
+                direction = random.nextInt(4);
+            } else if (chessPiece.getPosition().getFile() == 7 && direction == 3) {
+                direction = random.nextInt(4);
+            }
+            Point newPosition = getNewPosition(chessPiece.getPosition(), direction);
+            chess.getChessBoard().move(chessPiece.getPosition(), newPosition);
+            chessBashView.print();
+            sleep();
+        }
+
+    }
+
     public void move(int file, int rank) {
         ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
         for (int i = 0; i <= 31; i++) {
