@@ -47,13 +47,13 @@ public class FunController {
                 direction = random.nextInt(8);
             } else if (chessPiece.getPosition().getFile() == 7 && direction == 3) {
                 direction = random.nextInt(8);// вот все следующие if добавил.. есть баг при котором фигура спускается по диагонали на 1 клетку и меняет направление. Как встану постораюсь исправить.
-            } else if (chessPiece.getPosition().getRank() == 0 && chessPiece.getPosition().getFile() == 0 || direction == 4) {
+            } else if (chessPiece.getPosition().getRank() == 0 || chessPiece.getPosition().getFile() == 0 && direction == 4) {
                 direction = random.nextInt(8);
-            } else if (chessPiece.getPosition().getRank() == 7 && chessPiece.getPosition().getFile() == 7 || direction == 5) {
+            } else if (chessPiece.getPosition().getRank() == 7 || chessPiece.getPosition().getFile() == 7 && direction == 5) {
                 direction = random.nextInt(8);
-            } else if (chessPiece.getPosition().getRank() == 0 && chessPiece.getPosition().getFile() == 7 || direction == 6) {
+            } else if (chessPiece.getPosition().getRank() == 0 || chessPiece.getPosition().getFile() == 7 && direction == 6) {
                 direction = random.nextInt(8);
-            } else if (chessPiece.getPosition().getRank() == 7 && chessPiece.getPosition().getFile() == 0 || direction == 7) {
+            } else if (chessPiece.getPosition().getRank() == 7 || chessPiece.getPosition().getFile() == 0 && direction == 7) {
                 direction = random.nextInt(8);
             }
             Point newPosition = getNewPosition(chessPiece.getPosition(), direction);
