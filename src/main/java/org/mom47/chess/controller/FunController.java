@@ -39,21 +39,13 @@ public class FunController {
         int direction;
         direction = random.nextInt(4);
         for (int i = 0; i < 100; i++) {
-            if (chessPiece.getPosition().getRank() == 7 && direction == 0) {
+            if (chessPiece.getPosition().getRank() == 7 && direction == 0 || direction == 4 || direction == 6) {
                 direction = random.nextInt(8);
-            } else if (chessPiece.getPosition().getRank() == 0 && direction == 1) {
+            } else if (chessPiece.getPosition().getRank() == 0 && direction == 1 || direction == 5 || direction == 7) {
                 direction = random.nextInt(8);
-            } else if (chessPiece.getPosition().getFile() == 0 && direction == 2) {
+            } else if (chessPiece.getPosition().getFile() == 0 && direction == 2 || direction == 5 || direction == 6) {
                 direction = random.nextInt(8);
-            } else if (chessPiece.getPosition().getFile() == 7 && direction == 3) {
-                direction = random.nextInt(8);// вот все следующие if добавил.. есть баг при котором фигура спускается по диагонали на 1 клетку и меняет направление. Как встану постораюсь исправить.
-            } else if (chessPiece.getPosition().getRank() == 0 || chessPiece.getPosition().getFile() == 0 && direction == 4) {
-                direction = random.nextInt(8);
-            } else if (chessPiece.getPosition().getRank() == 7 || chessPiece.getPosition().getFile() == 7 && direction == 5) {
-                direction = random.nextInt(8);
-            } else if (chessPiece.getPosition().getRank() == 0 || chessPiece.getPosition().getFile() == 7 && direction == 6) {
-                direction = random.nextInt(8);
-            } else if (chessPiece.getPosition().getRank() == 7 || chessPiece.getPosition().getFile() == 0 && direction == 7) {
+            } else if (chessPiece.getPosition().getFile() == 7 && direction == 3 || direction == 4 || direction == 7) {
                 direction = random.nextInt(8);
             }
             Point newPosition = getNewPosition(chessPiece.getPosition(), direction);
@@ -99,15 +91,15 @@ public class FunController {
         } else if (direction == 2) {
             newPosition = moveLeft(position);
         } else if (direction == 3) {
-            newPosition = moveRight(position);// ну ес-но тут if 4,5,6,7. P.s названия диагоналей на картинке в интеренете нашел.
+            newPosition = moveRight(position);// UpRight, UpLeft, DownRight, DownLeft
         } else if (direction == 4) {
-            newPosition = slowDiagonalUp(position);
+            newPosition = UpRight(position);
         } else if (direction == 5) {
-            newPosition = slowDiagonalDown(position);
+            newPosition = DownLeft(position);
         } else if (direction == 6) {
-            newPosition = fastDiagonalUp(position);
+            newPosition = UpLeft(position);
         } else if (direction == 7) {
-            newPosition = fastDiagonalDown(position);
+            newPosition = DownRight(position);
         }
         return newPosition;
     }
@@ -152,7 +144,7 @@ public class FunController {
         }
     }
     // И вот это последнее чо добавил.
-    private Point slowDiagonalUp(Point position) {
+    private Point UpRight(Point position) {
         if (position.getFile() < 7 && position.getRank() < 7) {
             int newFileValue = position.getFile() + 1;
             int newRankValue = position.getRank() + 1;
@@ -162,7 +154,7 @@ public class FunController {
         }
     }
 
-    private Point slowDiagonalDown(Point position) {
+    private Point DownLeft(Point position) {
         if (position.getFile() > 0 && position.getRank() > 0) {
             int newFileValue = position.getFile() - 1;
             int newRankValue = position.getRank() - 1;
@@ -172,7 +164,7 @@ public class FunController {
         }
     }
 
-    private Point fastDiagonalDown(Point position) {
+    private Point DownRight(Point position) {
         if (position.getRank() > 0 && position.getFile() < 7) {
             int newFileValue = position.getFile() + 1;
             int newRankValue = position.getRank() - 1;
@@ -182,7 +174,7 @@ public class FunController {
         }
     }
 
-    private Point fastDiagonalUp(Point position) {
+    private Point UpLeft(Point position) {
         if (position.getFile() > 0 && position.getRank() < 7) {
             int newFileValue = position.getFile() - 1;
             int newRankValue = position.getRank() + 1;
