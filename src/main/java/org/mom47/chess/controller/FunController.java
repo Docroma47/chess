@@ -27,7 +27,7 @@ public class FunController {
     public void moveSnake(int file, int rank) {
         ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
         for (int i = 0; i <= 31; i++) {
-            if(chess.getChessPieces()[i] == chess.getChessBoard().getPiece(new Point(file, rank))) {
+            if (chess.getChessPieces()[i] == chess.getChessBoard().getPiece(new Point(file, rank))) {
             } else {
                 chess.getChessBoard().remove(chess.getChessPieces()[i].getPosition());
             }
@@ -37,17 +37,19 @@ public class FunController {
         Random random = new Random();
 
         int direction;
-        direction = random.nextInt(4);
+        direction = random.nextInt(8);
+
         for (int i = 0; i < 100; i++) {
-            if (chessPiece.getPosition().getRank() == 7 && direction == 0 || direction == 4 || direction == 6) {
+            if (chessPiece.getPosition().getRank() == 7 && (direction == 0 || direction == 4 || direction == 6)) {
                 direction = random.nextInt(8);
-            } else if (chessPiece.getPosition().getRank() == 0 && direction == 1 || direction == 5 || direction == 7) {
+            } else if (chessPiece.getPosition().getRank() == 0 && (direction == 1 || direction == 5 || direction == 7)) {
                 direction = random.nextInt(8);
-            } else if (chessPiece.getPosition().getFile() == 0 && direction == 2 || direction == 5 || direction == 6) {
+            } else if (chessPiece.getPosition().getFile() == 0 && (direction == 2 || direction == 5 || direction == 6)) {
                 direction = random.nextInt(8);
-            } else if (chessPiece.getPosition().getFile() == 7 && direction == 3 || direction == 4 || direction == 7) {
+            } else if (chessPiece.getPosition().getFile() == 7 && (direction == 3 || direction == 4 || direction == 7)) {
                 direction = random.nextInt(8);
             }
+
             Point newPosition = getNewPosition(chessPiece.getPosition(), direction);
             chess.getChessBoard().move(chessPiece.getPosition(), newPosition);
             chessBashView.print();
@@ -59,25 +61,20 @@ public class FunController {
     public void move(int file, int rank) {
         ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
         for (int i = 0; i <= 31; i++) {
-            if(chess.getChessPieces()[i] == chess.getChessBoard().getPiece(new Point(file, rank))) {
+            if (chess.getChessPieces()[i] == chess.getChessBoard().getPiece(new Point(file, rank))) {
             } else {
                 chess.getChessBoard().remove(chess.getChessPieces()[i].getPosition());
             }
         }
-
 
         Random random = new Random();
 
         for (int i = 0; i < 100; i++) {
             int direction;
             direction = random.nextInt(4);
-
             Point newPosition = getNewPosition(chessPiece.getPosition(), direction);
-
             chess.getChessBoard().move(chessPiece.getPosition(), newPosition);
-
             chessBashView.print();
-
             sleep();
         }
     }
@@ -91,15 +88,15 @@ public class FunController {
         } else if (direction == 2) {
             newPosition = moveLeft(position);
         } else if (direction == 3) {
-            newPosition = moveRight(position);// UpRight, UpLeft, DownRight, DownLeft
+            newPosition = moveRight(position);
         } else if (direction == 4) {
-            newPosition = UpRight(position);
+            newPosition = moveUpRight(position);
         } else if (direction == 5) {
-            newPosition = DownLeft(position);
+            newPosition = moveDownLeft(position);
         } else if (direction == 6) {
-            newPosition = UpLeft(position);
+            newPosition = moveUpLeft(position);
         } else if (direction == 7) {
-            newPosition = DownRight(position);
+            newPosition = moveDownRight(position);
         }
         return newPosition;
     }
@@ -143,8 +140,8 @@ public class FunController {
             return position;
         }
     }
-    // И вот это последнее чо добавил.
-    private Point UpRight(Point position) {
+
+    private Point moveUpRight(Point position) {
         if (position.getFile() < 7 && position.getRank() < 7) {
             int newFileValue = position.getFile() + 1;
             int newRankValue = position.getRank() + 1;
@@ -154,7 +151,7 @@ public class FunController {
         }
     }
 
-    private Point DownLeft(Point position) {
+    private Point moveDownLeft(Point position) {
         if (position.getFile() > 0 && position.getRank() > 0) {
             int newFileValue = position.getFile() - 1;
             int newRankValue = position.getRank() - 1;
@@ -164,7 +161,7 @@ public class FunController {
         }
     }
 
-    private Point DownRight(Point position) {
+    private Point moveDownRight(Point position) {
         if (position.getRank() > 0 && position.getFile() < 7) {
             int newFileValue = position.getFile() + 1;
             int newRankValue = position.getRank() - 1;
@@ -174,7 +171,7 @@ public class FunController {
         }
     }
 
-    private Point UpLeft(Point position) {
+    private Point moveUpLeft(Point position) {
         if (position.getFile() > 0 && position.getRank() < 7) {
             int newFileValue = position.getFile() - 1;
             int newRankValue = position.getRank() + 1;
