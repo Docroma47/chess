@@ -23,19 +23,23 @@ public class FunController {
             chess.getChessBoard().move(chessPiece.getPosition(), new Point(random.nextInt(8), random.nextInt(8)));
         }
     }
-
-    public void moveSnake(int file, int rank) {
+    public void moveSnake(int file, int rank, int mix) {
         ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
-        for (int i = 0; i <= 31; i++) {
+
+        for (int j = 0; j <= mix; j++) {
+            Random random = new Random();
+            ChessPiece piece = chess.getChessPieces()[j];
+            chess.getChessBoard().move(piece.getPosition(), new Point(random.nextInt(8), random.nextInt(8)));
+        }
+
+        for (int i = mix; i <= 31; i++) {
             if (chess.getChessPieces()[i] == chess.getChessBoard().getPiece(new Point(file, rank))) {
             } else {
                 chess.getChessBoard().remove(chess.getChessPieces()[i].getPosition());
             }
         }
 
-
         Random random = new Random();
-
         int direction;
         direction = random.nextInt(8);
 
@@ -188,3 +192,4 @@ public class FunController {
     }
 
 }
+
