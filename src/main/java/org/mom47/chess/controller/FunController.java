@@ -23,6 +23,7 @@ public class FunController {
             chess.getChessBoard().move(chessPiece.getPosition(), new Point(random.nextInt(8), random.nextInt(8)));
         }
     }
+
     public void moveSnake(int file, int rank, int mix) {
         ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
 

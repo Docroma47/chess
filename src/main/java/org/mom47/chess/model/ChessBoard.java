@@ -27,6 +27,16 @@ public class ChessBoard {
 
     }
 
+    public int getFreeSquires() {
+        for (int i = 0; i <= 31; i++) {
+            squires[i][i].getPosition();
+        }
+        if (squires[8][8] == null) {
+            // тут не знаю..(пока ещё не спросил)
+        }
+        return 0;
+    }
+
     public ChessPiece getPiece(Point point) {
         return squires[point.getFile()][point.getRank()];
     }
