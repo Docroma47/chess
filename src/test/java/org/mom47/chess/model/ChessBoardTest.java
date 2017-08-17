@@ -10,7 +10,7 @@ public class ChessBoardTest {
     public void testGetFreeSquires() throws Exception {
         ChessBoard chessBoard = new ChessBoard();
 
-        assertEquals(63, chessBoard.getFreeSquires());
+        assertEquals(64, chessBoard.getFreeSquires());
 
         King king = new King(PieceColour.BLACK, 0);
         chessBoard.setPiece(king);
