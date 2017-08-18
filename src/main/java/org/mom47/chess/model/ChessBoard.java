@@ -24,7 +24,6 @@ public class ChessBoard {
         ChessPiece chessPiece = squires[position.getFile()][position.getRank()];
         chessPiece.setIsCaptured(true);
         squires[position.getFile()][position.getRank()] = null;
-
     }
 
     public int getFreeSquiresNumber() {
@@ -39,8 +38,15 @@ public class ChessBoard {
         }
         return x;
     }
-    // нужен новый метод, который возвращает массив ПУСТЫХ клеток
-    
+
+    public int getFreeNumber() {
+        Point[] free = new Point[getFreeSquiresNumber()];
+        return 0;
+    }
+
+    public Point[] getFreeSquires() {
+        return null;
+    }
 
     public ChessPiece getPiece(Point point) {
         return squires[point.getFile()][point.getRank()];
