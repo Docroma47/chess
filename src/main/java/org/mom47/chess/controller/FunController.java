@@ -25,6 +25,7 @@ public class FunController {
     }
 
     public void moveSnake(int file, int rank, int mix) {
+        chess.getChessBoard().getFreeSquires();
         ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
 
         for (int j = 0; j <= mix; j++) {
