@@ -27,7 +27,7 @@ public class ChessBoard {
 
     }
 
-    public int getFreeSquires() {
+    public int getFreeSquiresNumber() {
         int x = 64;
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {
@@ -39,6 +39,8 @@ public class ChessBoard {
         }
         return x;
     }
+    // нужен новый метод, который возвращает массив ПУСТЫХ клеток
+    
 
     public ChessPiece getPiece(Point point) {
         return squires[point.getFile()][point.getRank()];

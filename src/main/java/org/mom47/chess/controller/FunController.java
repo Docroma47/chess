@@ -25,10 +25,10 @@ public class FunController {
     }
 
     public void moveSnake(int file, int rank, int mix) {
-        chess.getChessBoard().getFreeSquires();
         ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
 
         for (int j = 0; j <= mix; j++) {
+            chess.getChessBoard().getFreeSquiresNumber();
             Random random = new Random();
             ChessPiece piece = chess.getChessPieces()[j];
             chess.getChessBoard().move(piece.getPosition(), new Point(random.nextInt(8), random.nextInt(8)));
