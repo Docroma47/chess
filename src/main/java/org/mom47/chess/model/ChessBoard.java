@@ -28,13 +28,16 @@ public class ChessBoard {
     }
 
     public int getFreeSquires() {
-        for (int i = 0; i <= 31; i++) {
-            squires[i][i].getPosition();
+        int x = 64;
+        for (int i = 0; i <= 7; i++) {
+            for (int j = 0; j <= 7; j++) {
+                if (squires[j][i] != null) {
+                    x--;
+
+                }
+            }
         }
-        if (squires[8][8] == null) {
-            // тут не знаю..(пока ещё не спросил)
-        }
-        return 0;
+        return x;
     }
 
     public ChessPiece getPiece(Point point) {
