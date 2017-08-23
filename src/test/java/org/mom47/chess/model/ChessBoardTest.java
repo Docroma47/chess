@@ -3,6 +3,9 @@ package org.mom47.chess.model;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 public class ChessBoardTest {
 
     @Test
@@ -95,14 +98,13 @@ public class ChessBoardTest {
         Point[] squires = chessBoard.getFreeSquires();
 
         // expectations:
-        // not null array, length is 1
+        // not null array, length is 63
         Assert.assertNotNull(squires);
-        Assert.assertEquals(1, squires.length);
-        // array contains a Point which has coordinates - 4,4
-        Point point = squires[0];
-        Assert.assertNotNull(point);
-        Assert.assertEquals(file, point.getFile());
-        Assert.assertEquals(rank, point.getRank());
+        Assert.assertEquals(63, squires.length);
+        // array contains 63 Points, there should NOT be the pouint by 4,4 coordinate
+        for (int i = 0; i < squires.length; i++) {
+            assertFalse(squires[i].getFile() == 4 && squires[i].getRank() == 4);
+        }
     }
 
     /**
