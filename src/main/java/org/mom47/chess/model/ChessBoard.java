@@ -39,13 +39,16 @@ public class ChessBoard {
         return x;
     }
 
-    public int getFreeNumber() {
-        Point[] free = new Point[getFreeSquiresNumber()];
-        return 0;
-    }
-
     public Point[] getFreeSquires() {
-        return null;
+        Point[] free = new Point[getFreeSquiresNumber()];
+        for (int i = 0; i <= 7; i++) {
+            for (int j = 0; j <= 7; j++) {
+                if (squires[j][i] == null) {
+                    free[getFreeSquiresNumber()] = new Point(j, i);
+                }
+            }
+        }
+        return free;
     }
 
     public ChessPiece getPiece(Point point) {
