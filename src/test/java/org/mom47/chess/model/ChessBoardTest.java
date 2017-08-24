@@ -7,7 +7,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class ChessBoardTest {
-
     @Test
     public void testGetFreeSquiresNumber() throws Exception {
         ChessBoard chessBoard = new ChessBoard();
@@ -124,4 +123,23 @@ public class ChessBoardTest {
         return null;
     }
 
+    @Test
+    public void testGetSetPiece() {
+        ChessBoard chessBoard = new ChessBoard();
+
+        int figureOnefile = 6;
+        int figureOnerank = 6;
+        ChessPiece chessPiece = new ChessPiece(PieceColour.BLACK);
+        chessPiece.setPosition(new Point(figureOnefile, figureOnerank));
+        chessBoard.setPiece(chessPiece);
+
+        int figureTwofile = 5;
+        int figureTwoRank = 5;
+        ChessPiece piece = new ChessPiece(PieceColour.WHITE);
+        piece.setPosition(new Point(figureTwofile, figureTwoRank));
+        chessBoard.setPiece(piece);
+
+        Assert.assertEquals(chessBoard.getPiece(new Point(5, 5)), piece);
+        Assert.assertEquals(chessBoard.getPiece(new Point(6, 6)), chessPiece);
+    }
 }

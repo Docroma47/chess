@@ -41,10 +41,12 @@ public class ChessBoard {
 
     public Point[] getFreeSquires() {
         Point[] free = new Point[getFreeSquiresNumber()];
+        int x = 0;
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {
                 if (squires[j][i] == null) {
-                    free[getFreeSquiresNumber()] = new Point(j, i);
+                    free[x] = new Point(j, i);
+                    x++;
                 }
             }
         }
