@@ -163,4 +163,27 @@ public class ChessBoardTest {
             assertTrue(true);
         }
     }
+
+    @Test
+    public void testMoveAlreadyOccupiedSquire() {
+        int file = 2;
+        int rank = 6;
+        ChessBoard chessBoard = new ChessBoard();
+
+
+        ChessPiece first = new ChessPiece(PieceColour.BLACK);
+        first.setPosition(new Point(file, rank));
+        chessBoard.setPiece(first);
+
+        int fileTwo = 5;
+        int rankTwo = 6;
+        try {
+            ChessPiece second = new ChessPiece(PieceColour.WHITE);
+            second.setPosition(new Point(fileTwo, rankTwo));
+            chessBoard.move(second.getPosition(), first.getPosition());
+            assertTrue(false);
+        } catch (Exception ex) {
+            assertTrue(true);
+        }
+    }
 }

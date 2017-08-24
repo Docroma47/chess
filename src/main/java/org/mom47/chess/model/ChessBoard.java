@@ -16,6 +16,11 @@ public class ChessBoard {
     }
 
     public void move(Point initial, Point destination) {
+        if (this.squires[destination.getFile()][destination.getRank()] != null) {
+            throw new IllegalArgumentException("Could not set piece because the squire is already " +
+                    "occupied by another piece");
+        }
+
         ChessPiece chessPiece = squires[initial.getFile()][initial.getRank()];
 
         this.squires[initial.getFile()][initial.getRank()] = null;
