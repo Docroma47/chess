@@ -8,6 +8,10 @@ public class ChessBoard {
     public void setPiece(ChessPiece chessPiece) {
         int rank = chessPiece.getPosition().getRank();
         int file = chessPiece.getPosition().getFile();
+        if (squires[file][rank] != null) {
+            throw new IllegalArgumentException("Could not set piece because the squire is already " +
+                    "occupied by another piece");
+        }
         squires[file][rank] = chessPiece;
     }
 

@@ -142,4 +142,25 @@ public class ChessBoardTest {
         Assert.assertEquals(chessBoard.getPiece(new Point(5, 5)), piece);
         Assert.assertEquals(chessBoard.getPiece(new Point(6, 6)), chessPiece);
     }
+
+    @Test
+    public void testSetPieceAlreadyOccupied() {
+        int file = 2;
+        int rank = 6;
+        ChessBoard chessBoard = new ChessBoard();
+
+
+        ChessPiece first = new ChessPiece(PieceColour.BLACK);
+        first.setPosition(new Point(file, rank));
+        chessBoard.setPiece(first);
+
+        try {
+            ChessPiece second = new ChessPiece(PieceColour.WHITE);
+            second.setPosition(new Point(file, rank));
+            chessBoard.setPiece(second);
+            assertTrue(false);
+        } catch (Exception ex) {
+            assertTrue(true);
+        }
+    }
 }
