@@ -1,6 +1,7 @@
 package org.mom47.chess.controller;
 
 import org.mom47.chess.model.Chess;
+import org.mom47.chess.model.ChessBoard;
 import org.mom47.chess.model.ChessPiece;
 import org.mom47.chess.model.Point;
 import org.mom47.chess.view.ChessBashView;
@@ -24,13 +25,20 @@ public class FunController {
         }
     }
 
+    private Point getRandomFreeSquire() {
+        Random random = new Random();
+        Point[] freeSquires = chess.getChessBoard().getFreeSquires();
+        int x = random.nextInt(freeSquires.length);
+        return chess.getChessBoard().getFreeSquires()[x];
+    }
+
     public void moveSnake(int file, int rank, int mix) {
         ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
 
         for (int j = 0; j <= mix; j++) {
-            Random random = new Random();
             ChessPiece piece = chess.getChessPieces()[j];
-            chess.getChessBoard().move(piece.getPosition(), new Point(random.nextInt(8), random.nextInt(8)));
+            Point randomSquire = getRandomFreeSquire();
+            chess.getChessBoard().move(piece.getPosition(), new Point(randomSquire.getFile(), randomSquire.getRank()));
         }
 
         for (int i = mix; i <= 31; i++) {
