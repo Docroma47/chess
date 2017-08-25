@@ -52,7 +52,7 @@ public class FunController {
         int direction;
         direction = random.nextInt(8);
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 500; i++) {
             if (chessPiece.getPosition().getRank() == 7 && (direction == 0 || direction == 4 || direction == 6)) {
                 direction = random.nextInt(8);
             } else if (chessPiece.getPosition().getRank() == 0 && (direction == 1 || direction == 5 || direction == 7)) {
@@ -200,7 +200,7 @@ public class FunController {
 
     private void sleep() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(200);
         } catch (InterruptedException e) { }
     }
 
