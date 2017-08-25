@@ -64,7 +64,11 @@ public class FunController {
             }
 
             Point newPosition = getNewPosition(chessPiece.getPosition(), direction);
-            chess.getChessBoard().move(chessPiece.getPosition(), newPosition);
+            if (chess.getChessBoard().getPiece(newPosition) == null) {
+                direction = random.nextInt(8);
+            } else {
+                chess.getChessBoard().move(chessPiece.getPosition(), newPosition);
+            }
             chessBashView.print();
             sleep();
         }
