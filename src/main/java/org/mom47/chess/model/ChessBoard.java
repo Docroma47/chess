@@ -4,7 +4,6 @@ package org.mom47.chess.model;
 public class ChessBoard {
     private ChessPiece[][] squires = new ChessPiece[8][8];
 
-
     public void setPiece(ChessPiece chessPiece) {
         int rank = chessPiece.getPosition().getRank();
         int file = chessPiece.getPosition().getFile();
@@ -41,7 +40,6 @@ public class ChessBoard {
             for (int j = 0; j <= 7; j++) {
                 if (squires[j][i] != null) {
                     x--;
-
                 }
             }
         }
@@ -60,6 +58,32 @@ public class ChessBoard {
             }
         }
         return free;
+    }
+
+    public int getChessPiecesNumber() {
+        int x = 64;
+        for (int i = 0; i <= 7; i++) {
+            for (int j = 0; j <= 7; j++) {
+                if (squires[j][i] == null) {
+                    x--;
+                }
+            }
+        }
+        return x;
+    }
+
+    public ChessPiece[] getChessPieces() {
+        ChessPiece[] figuresBoard = new ChessPiece[getChessPiecesNumber()];
+        int x = 0;
+        for (int i = 0; i <= 7; i++) {
+            for (int j = 0; j <= 7; j++) {
+                if (squires[j][i] != null) {
+                    figuresBoard[x] = getPiece(new Point(j, i));
+                    x++;
+                }
+            }
+        }
+        return figuresBoard;
     }
 
     public ChessPiece getPiece(Point point) {

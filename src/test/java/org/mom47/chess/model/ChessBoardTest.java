@@ -2,6 +2,7 @@ package org.mom47.chess.model;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mom47.chess.controller.FunController;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -185,5 +186,44 @@ public class ChessBoardTest {
         } catch (Exception ex) {
             assertTrue(true);
         }
+    }
+
+    @Test
+    public void testGetChessPieces() {
+        ChessBoard chessBoard = new ChessBoard();
+        int figureOnefile = 6;
+        int figureOnerank = 6;
+        ChessPiece chessPiece = new ChessPiece(PieceColour.BLACK);
+        chessPiece.setPosition(new Point(figureOnefile, figureOnerank));
+        chessBoard.setPiece(chessPiece);
+
+        int figureTwofile = 5;
+        int figureTwoRank = 5;
+        ChessPiece piece = new ChessPiece(PieceColour.WHITE);
+        piece.setPosition(new Point(figureTwofile, figureTwoRank));
+        chessBoard.setPiece(piece);
+
+        ChessPiece[] squires = chessBoard.getChessPieces();
+
+        Assert.assertEquals(squires.length, chessBoard.getChessPiecesNumber());
+        Assert.assertEquals(squires[1].getColor(), PieceColour.BLACK);
+        Assert.assertEquals(squires[0].getColor(), PieceColour.WHITE);
+        Assert.assertEquals(squires[1].getPosition(), chessPiece.getPosition());
+        Assert.assertEquals(squires[0].getPosition(), piece.getPosition());
+    }
+
+    @Test
+    public void testGetChessPiecesNumber() {
+        ChessBoard chessBoard = new ChessBoard();
+
+        Assert.assertEquals(0, chessBoard.getChessPiecesNumber());
+
+        King king = new King(PieceColour.BLACK, 0);
+        chessBoard.setPiece(king);
+        Assert.assertEquals(1, chessBoard.getChessPiecesNumber());
+
+        Queen queen = new Queen(PieceColour.WHITE, 7);
+        chessBoard.setPiece(queen);
+        Assert.assertEquals(2, chessBoard.getChessPiecesNumber());
     }
 }
