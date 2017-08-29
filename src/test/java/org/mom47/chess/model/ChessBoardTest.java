@@ -2,7 +2,6 @@ package org.mom47.chess.model;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.mom47.chess.controller.FunController;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -205,11 +204,22 @@ public class ChessBoardTest {
 
         ChessPiece[] squires = chessBoard.getChessPieces();
 
-        Assert.assertEquals(squires.length, chessBoard.getChessPiecesNumber());
-        Assert.assertEquals(squires[1].getColor(), PieceColour.BLACK);
-        Assert.assertEquals(squires[0].getColor(), PieceColour.WHITE);
-        Assert.assertEquals(squires[1].getPosition(), chessPiece.getPosition());
-        Assert.assertEquals(squires[0].getPosition(), piece.getPosition());
+
+        Assert.assertEquals(2, chessBoard.getChessPiecesNumber());
+        Assert.assertEquals(PieceColour.BLACK, squires[1].getColor());
+        Assert.assertEquals(PieceColour.WHITE, squires[0].getColor());
+        Assert.assertEquals(chessPiece.getPosition().getRank(), squires[1].getPosition().getRank());
+        Assert.assertEquals(chessPiece.getPosition().getFile(), squires[1].getPosition().getFile());
+        Assert.assertEquals(piece.getPosition().getRank(), squires[0].getPosition().getRank());
+        Assert.assertEquals(piece.getPosition().getFile(), squires[0].getPosition().getFile());
+
+        chessBoard.remove(chessPiece.getPosition());
+
+        Assert.assertEquals(1, chessBoard.getChessPiecesNumber());
+        Assert.assertEquals(PieceColour.WHITE, squires[0].getColor());
+        Assert.assertEquals(piece.getPosition().getRank(), squires[0].getPosition().getRank());
+        Assert.assertEquals(piece.getPosition().getFile(), squires[0].getPosition().getFile());
+
     }
 
     @Test

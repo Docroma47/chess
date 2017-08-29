@@ -32,6 +32,55 @@ public class FunController {
         return chess.getChessBoard().getFreeSquires()[x];
     }
 
+    public void massacre(int mix) {
+        Random random = new Random();
+        for (int j = 0; j <= mix; j++) {
+            ChessPiece piece = chess.getChessPieces()[j];
+            Point randomSquire = getRandomFreeSquire();
+            chess.getChessBoard().move(piece.getPosition(), new Point(randomSquire.getFile(), randomSquire.getRank()));
+        }
+
+        for (int i = mix; i <= 31; i++) {
+            chess.getChessBoard().remove(chess.getChessPieces()[i].getPosition());
+        }
+
+        ChessPiece chessPiece = chess.getChessBoard().getChessPieces()[random.nextInt(chess.getChessBoard().getChessPiecesNumber())];
+
+
+
+
+
+        int direction;
+        direction = random.nextInt(8);
+        for (int i = 0; i < 500; i++) {
+            if (chessPiece.getPosition().getRank() == 7 && (direction == 0 || direction == 4 || direction == 6)) {
+                direction = random.nextInt(8);
+            } else if (chessPiece.getPosition().getRank() == 0 && (direction == 1 || direction == 5 || direction == 7)) {
+                direction = random.nextInt(8);
+            } else if (chessPiece.getPosition().getFile() == 0 && (direction == 2 || direction == 5 || direction == 6)) {
+                direction = random.nextInt(8);
+            } else if (chessPiece.getPosition().getFile() == 7 && (direction == 3 || direction == 4 || direction == 7)) {
+                direction = random.nextInt(8);
+            }
+
+            Point newPosition = getNewPosition(chessPiece.getPosition(), direction);
+
+            if (chess.getChessBoard().getPiece(newPosition) != null && chess.getChessBoard().getPiece(newPosition).getColor() != chessPiece.getColor()) {
+                chess.getChessBoard().remove(newPosition);
+                chess.getChessBoard().move(chessPiece.getPosition(), newPosition);
+            } else if (chess.getChessBoard().getPiece(newPosition) != null && chess.getChessBoard().getPiece(newPosition).getColor() == chessPiece.getColor()) {
+                direction = random.nextInt(8);
+            } else {
+                chess.getChessBoard().move(chessPiece.getPosition(), newPosition);
+            }
+            chessBashView.print();
+            sleep();
+        }
+    }
+
+
+
+
     public void moveSnake(int file, int rank, int mix) {
         ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
 

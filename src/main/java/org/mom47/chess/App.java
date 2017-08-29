@@ -33,6 +33,9 @@ public class App {
                 int rank = Integer.valueOf(args[2]);
                 int mix = Integer.valueOf(args[3]);
                 app.funController.moveSnake(file, rank, mix);
+            } else if (args[0].equals("massacre")) {
+                int mix = Integer.valueOf(args[1]);
+                app.funController.massacre(mix);
             }
         }
         app.run();
