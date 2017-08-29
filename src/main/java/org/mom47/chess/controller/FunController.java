@@ -35,7 +35,7 @@ public class FunController {
     public void massacre(int mix) {
         Random random = new Random();
         for (int j = 0; j <= mix; j++) {
-            ChessPiece piece = chess.getChessPieces()[j];
+            ChessPiece piece = chess.getChessPieces()[random.nextInt(31)];
             Point randomSquire = getRandomFreeSquire();
             chess.getChessBoard().move(piece.getPosition(), new Point(randomSquire.getFile(), randomSquire.getRank()));
         }
@@ -45,9 +45,6 @@ public class FunController {
         }
 
         ChessPiece chessPiece = chess.getChessBoard().getChessPieces()[random.nextInt(chess.getChessBoard().getChessPiecesNumber())];
-
-
-
 
 
         int direction;
@@ -78,6 +75,50 @@ public class FunController {
         }
     }
 
+    public void tag(int mix) {
+        Random random = new Random();
+        for (int j = 0; j <= mix; j++) {
+            ChessPiece piece = chess.getChessPieces()[random.nextInt(31)];
+            Point randomSquire = getRandomFreeSquire();
+            chess.getChessBoard().move(piece.getPosition(), new Point(randomSquire.getFile(), randomSquire.getRank()));
+        }
+
+        for (int i = mix; i <= 31; i++) {
+            if (chess.getChessPieces()[i] == chess.getChessBoard().getPiece(new Point())) {
+            } else {
+                chess.getChessBoard().remove(chess.getChessPieces()[i].getPosition());
+            }
+        }
+
+        ChessPiece chessPiece = chess.getChessBoard().getChessPieces()[random.nextInt(chess.getChessBoard().getChessPiecesNumber())];
+
+
+        int direction;
+        direction = random.nextInt(8);
+        for (int i = 0; i < 500; i++) {
+            if (chessPiece.getPosition().getRank() == 7 && (direction == 0 || direction == 4 || direction == 6)) {
+                direction = random.nextInt(8);
+            } else if (chessPiece.getPosition().getRank() == 0 && (direction == 1 || direction == 5 || direction == 7)) {
+                direction = random.nextInt(8);
+            } else if (chessPiece.getPosition().getFile() == 0 && (direction == 2 || direction == 5 || direction == 6)) {
+                direction = random.nextInt(8);
+            } else if (chessPiece.getPosition().getFile() == 7 && (direction == 3 || direction == 4 || direction == 7)) {
+                direction = random.nextInt(8);
+            }
+
+            Point newPosition = getNewPosition(chessPiece.getPosition(), direction);
+
+            if (chess.getChessBoard().getPiece(newPosition) != null && chess.getChessBoard().getPiece(newPosition).getColor() != chessPiece.getColor()) {
+                chessPiece = chess.getChessBoard().getPiece(newPosition);
+            } else if (chess.getChessBoard().getPiece(newPosition) != null && chess.getChessBoard().getPiece(newPosition).getColor() == chessPiece.getColor()) {
+                direction = random.nextInt(8);
+            } else {
+                chess.getChessBoard().move(chessPiece.getPosition(), newPosition);
+            }
+            chessBashView.print();
+            sleep();
+        }
+    }
 
 
 
