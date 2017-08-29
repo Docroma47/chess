@@ -84,10 +84,7 @@ public class FunController {
         }
 
         for (int i = mix; i <= 31; i++) {
-            if (chess.getChessPieces()[i] == chess.getChessBoard().getPiece(new Point())) {
-            } else {
-                chess.getChessBoard().remove(chess.getChessPieces()[i].getPosition());
-            }
+            chess.getChessBoard().remove(chess.getChessPieces()[i].getPosition());
         }
 
         ChessPiece chessPiece = chess.getChessBoard().getChessPieces()[random.nextInt(chess.getChessBoard().getChessPiecesNumber())];
