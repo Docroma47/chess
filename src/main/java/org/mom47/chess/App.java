@@ -36,6 +36,9 @@ public class App {
             } else if (args[0].equals("massacre")) {
                 int mix = Integer.valueOf(args[1]);
                 app.funController.massacre(mix);
+            } else if (args[0].equals("tag")) {
+                int mix = Integer.valueOf(args[1]);
+                app.funController.tag(mix);
             }
         }
         app.run();
