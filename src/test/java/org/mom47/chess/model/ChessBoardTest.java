@@ -87,10 +87,10 @@ public class ChessBoardTest {
         // conditions:
         // chess board has only one chess piece by (4,4) (file, rank)
 
-        int file = 4;
-        int rank = 4;
+        Point point = new Point(4, 4);
+
         ChessPiece chessPiece = new ChessPiece(PieceColour.WHITE);
-        chessPiece.setPosition(new Point(file, rank));
+        chessPiece.setPosition(new Point(point.getFile(), point.getRank()));
         chessBoard.setPiece(chessPiece);
 
         // execution
@@ -101,8 +101,9 @@ public class ChessBoardTest {
         Assert.assertNotNull(squires);
         Assert.assertEquals(63, squires.length);
         // array contains 63 Points, there should NOT be the pouint by 4,4 coordinate
+        Point first = new Point(4, 4);
         for (int i = 0; i < squires.length; i++) {
-            assertFalse(squires[i].getFile() == 4 && squires[i].getRank() == 4);
+            Assert.assertNotEquals(point, squires[i]);
         }
     }
 
@@ -169,7 +170,6 @@ public class ChessBoardTest {
         int file = 2;
         int rank = 6;
         ChessBoard chessBoard = new ChessBoard();
-
 
         ChessPiece first = new ChessPiece(PieceColour.BLACK);
         first.setPosition(new Point(file, rank));

@@ -8,7 +8,7 @@ public class Bishop extends ChessPiece {
     public Bishop(PieceColour color, int file) {
         super(color);
         if(color == PieceColour.WHITE) {
-            setSymbol(WHITE_BISHOP);;
+            setSymbol(WHITE_BISHOP);
             setPosition(new Point(file, 0));
         } else {
             setSymbol(BLACK_BISHOP);

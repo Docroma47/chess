@@ -9,8 +9,7 @@ public class PointTest {
     public void testEquals() {
         Point first = new Point(1, 1);
         Point second = new Point(1, 1);
-
-        Assert.assertFalse(first == second);
+        
         Assert.assertEquals(first, second);
     }
 

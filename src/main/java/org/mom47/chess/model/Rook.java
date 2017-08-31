@@ -14,5 +14,6 @@ public class Rook extends ChessPiece {
             setSymbol(BLACK_ROOK);
             setPosition(new Point(file, 7));
         }
+        setPieceType(PieceType.ROOK);
     }
 }

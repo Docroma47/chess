@@ -14,5 +14,6 @@ public class King extends ChessPiece {
             setSymbol(BLACK_KING);;
             setPosition(new Point(file, 7));
         }
+        setPieceType(PieceType.KING);
     }
 }

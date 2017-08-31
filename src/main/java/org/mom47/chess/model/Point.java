@@ -17,4 +17,15 @@ public class Point {
     public int getFile() {
         return file;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Point point = (Point) o;
+
+        if (rank != point.rank) return false;
+        return file == point.file;
+    }
 }

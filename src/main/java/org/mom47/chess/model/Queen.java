@@ -14,5 +14,6 @@ public class Queen extends ChessPiece {
             setSymbol(BLACK_QUEEN);
             setPosition(new Point(file, 7));
         }
+        setPieceType(PieceType.QUEEN);
     }
 }

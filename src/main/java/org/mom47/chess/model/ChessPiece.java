@@ -2,11 +2,20 @@ package org.mom47.chess.model;
 
 
 public class ChessPiece {
+    private PieceType pieceType;
     private PieceColour color;
     public String state;
     private String symbol;
     private Point position;
     private Boolean isCaptured = false;
+
+    public PieceType getPieceType() {
+        return pieceType;
+    }
+
+    public void setPieceType(PieceType pieceType) {
+        this.pieceType = pieceType;
+    }
 
     public Point getPosition() {
         return position;

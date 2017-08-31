@@ -14,5 +14,6 @@ public class Knight extends ChessPiece {
             setSymbol(BLACK_KNIGHT);
             setPosition(new Point(file, 7));
         }
+        setPieceType(PieceType.KNIGHT);
     }
 }
