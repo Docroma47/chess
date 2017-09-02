@@ -1,9 +1,6 @@
 package org.mom47.chess.controller;
 
-import org.mom47.chess.model.Chess;
-import org.mom47.chess.model.ChessPiece;
-import org.mom47.chess.model.PieceType;
-import org.mom47.chess.model.Point;
+import org.mom47.chess.model.*;
 import org.mom47.chess.view.ChessBashView;
 
 import java.util.Random;
@@ -30,9 +27,7 @@ public class FunController {
 
         int direction;
 
-        if (chessPiece.getPieceType().equals(PieceType.PAWN)) {
-            direction = 0;
-        } else if (chessPiece.getPieceType().equals(PieceType.QUEEN)) {
+        if (chessPiece.getPieceType().equals(PieceType.QUEEN)) {
             direction = random.nextInt(8);
         } else if (chessPiece.getPieceType().equals(PieceType.BISHOP)) {
             direction = 4 + random.nextInt(4 + 1);
@@ -40,14 +35,21 @@ public class FunController {
             direction = random.nextInt(8);
         } else if (chessPiece.getPieceType().equals(PieceType.ROOK)) {
             direction = random.nextInt(4);
-        } else {
+        } else if (chessPiece.getPieceType().equals(PieceType.KNIGHT)) {
             direction = 8 + random.nextInt(4 + 1);
+        } if (chessPiece.getPieceType().equals(PieceType.PAWN) && chessPiece.getColor().equals(PieceColour.WHITE)) {
+            direction = 0;
+        } else {
+            direction = 1;
         }
 
         for (int i = 0; i < 500; i++) {
             //PawnLogic
-            if (chessPiece.getPieceType().equals(PieceType.PAWN) && chessPiece.getPosition().getRank() == 7) {
+            if (chessPiece.getPieceType().equals(PieceType.PAWN) && chessPiece.getPosition().getRank() == 7 && chessPiece.getColor().equals(PieceColour.WHITE)) {
                 direction = 0;
+            }
+            if (chessPiece.getPieceType().equals(PieceType.PAWN) && chessPiece.getPosition().getRank() == 7 && chessPiece.getColor().equals(PieceColour.BLACK)) {
+                direction = 1;
             }
             //QueenLogic
             if (chessPiece.getPieceType().equals(PieceType.QUEEN) && chessPiece.getPosition().getRank() == 7 && (direction == 0 || direction == 4 || direction == 6)) {
