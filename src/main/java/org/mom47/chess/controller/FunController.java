@@ -17,7 +17,7 @@ public class FunController {
         this.chessBashView = chessBashView;
     }
 
-    public void figuresMovementLogic(int file, int rank) {
+    public void crazyWander(int file, int rank) {
         Random random = new Random();
         ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
 
@@ -35,21 +35,18 @@ public class FunController {
         } else if (chessPiece.getPieceType().equals(PieceType.QUEEN)) {
             direction = random.nextInt(8);
         } else if (chessPiece.getPieceType().equals(PieceType.BISHOP)) {
-            direction = random.nextInt(8) + 4;
+            direction = 4 + random.nextInt(4 + 1);
         } else if (chessPiece.getPieceType().equals(PieceType.KING)) {
             direction = random.nextInt(8);
         } else if (chessPiece.getPieceType().equals(PieceType.ROOK)) {
             direction = random.nextInt(4);
-        } else if (chessPiece.getPieceType().equals(PieceType.KNIGHT)) {
-            direction = random.nextInt(12) + 8;
         } else {
-            direction = 0;
+            direction = 8 + random.nextInt(4 + 1);
         }
 
         for (int i = 0; i < 500; i++) {
             //PawnLogic
             if (chessPiece.getPieceType().equals(PieceType.PAWN) && chessPiece.getPosition().getRank() == 7) {
-            } else {
                 direction = 0;
             }
             //QueenLogic
@@ -74,13 +71,13 @@ public class FunController {
             }
             //BishopLogic
             if (chessPiece.getPieceType().equals(PieceType.BISHOP) && chessPiece.getPosition().getRank() == 7 && (direction == 0 || direction == 4 || direction == 6)) {
-                direction = random.nextInt(8) + 4;
+                direction = 4 + random.nextInt(4 + 1);
             } else if (chessPiece.getPieceType().equals(PieceType.BISHOP) && chessPiece.getPosition().getRank() == 0 && (direction == 1 || direction == 5 || direction == 7)) {
-                direction = random.nextInt(8) + 4;
+                direction = 4 + random.nextInt(4 + 1);
             } else if (chessPiece.getPieceType().equals(PieceType.BISHOP) && chessPiece.getPosition().getFile() == 0 && (direction == 2 || direction == 5 || direction == 6)) {
-                direction = random.nextInt(8) + 4;
+                direction = 4 + random.nextInt(4 + 1);
             } else if (chessPiece.getPieceType().equals(PieceType.BISHOP) && chessPiece.getPosition().getFile() == 7 && (direction == 3 || direction == 4 || direction == 7)) {
-                direction = random.nextInt(8) + 4;
+                direction = 4 + random.nextInt(4 + 1);
             }
             //RookLogic
             if (chessPiece.getPieceType().equals(PieceType.ROOK) && chessPiece.getPosition().getRank() == 7 && (direction == 0 || direction == 4 || direction == 6)) {
@@ -93,28 +90,32 @@ public class FunController {
                 direction = random.nextInt(4);
             }
             //KnightLogic
-            if (chessPiece.getPieceType().equals(PieceType.KNIGHT) && chessPiece.getPosition().getRank() == 7) {
-                direction = random.nextInt(12) + 8;
-            } else if (chessPiece.getPieceType().equals(PieceType.KNIGHT) && chessPiece.getPosition().getRank() == 0) {
-                direction = random.nextInt(12) + 8;
-            } else if (chessPiece.getPieceType().equals(PieceType.KNIGHT) && chessPiece.getPosition().getFile() == 0) {
-                direction = random.nextInt(12) + 8;
-            } else if (chessPiece.getPieceType().equals(PieceType.KNIGHT) && chessPiece.getPosition().getFile() == 7) {
-                direction = random.nextInt(12) + 8;
+            if (chessPiece.getPieceType().equals(PieceType.KNIGHT) && chessPiece.getPosition().getRank() == 7 && (direction == 8 || direction == 9 || direction == 10 || direction == 11)) {
+                direction = 8 + random.nextInt(4 + 1);
+            } else if (chessPiece.getPieceType().equals(PieceType.KNIGHT) && chessPiece.getPosition().getRank() == 0 && (direction == 8 || direction == 9 || direction == 10 || direction == 11)) {
+                direction = 8 + random.nextInt(4 + 1);
+            } else if (chessPiece.getPieceType().equals(PieceType.KNIGHT) && chessPiece.getPosition().getFile() == 0 && (direction == 8 || direction == 9 || direction == 10 || direction == 11)) {
+                direction = 8 + random.nextInt(4 + 1);
+            } else if (chessPiece.getPieceType().equals(PieceType.KNIGHT) && chessPiece.getPosition().getFile() == 7 && (direction == 8 || direction == 9 || direction == 10 || direction == 11)) {
+                direction = 8 + random.nextInt(4 + 1);
             }
 
-                //if (chessPiece.getPosition().getRank() == 7 && (direction == 0 || direction == 4 || direction == 6)) {
-             //   direction = random.nextInt(8);
-            //} else if (chessPiece.getPosition().getRank() == 0 && (direction == 1 || direction == 5 || direction == 7)) {
-             //   direction = random.nextInt(8);
-            //} else if (chessPiece.getPosition().getFile() == 0 && (direction == 2 || direction == 5 || direction == 6)) {
-             //   direction = random.nextInt(8);
-            //} else if (chessPiece.getPosition().getFile() == 7 && (direction == 3 || direction == 4 || direction == 7)) {
-            //    direction = random.nextInt(8);
-            //}
-
             Point newPosition = getNewPosition(chessPiece.getPosition(), direction);
-            chess.getChessBoard().move(chessPiece.getPosition(), newPosition);
+            if (chess.getChessBoard().getPiece(newPosition) != null && chessPiece.getPieceType().equals(PieceType.PAWN)) {
+                break;
+            } else if (chess.getChessBoard().getPiece(newPosition) != null && chessPiece.getPieceType().equals(PieceType.QUEEN)) {
+                direction = random.nextInt(8);
+            } else if (chess.getChessBoard().getPiece(newPosition) != null && chessPiece.getPieceType().equals(PieceType.KING)) {
+                direction = random.nextInt(8);
+            } else if (chess.getChessBoard().getPiece(newPosition) != null && chessPiece.getPieceType().equals(PieceType.BISHOP)) {
+                direction = 4 + random.nextInt(4 + 1);
+            } else if (chess.getChessBoard().getPiece(newPosition) != null && chessPiece.getPieceType().equals(PieceType.ROOK)) {
+                direction = random.nextInt(4);
+            } else if (chess.getChessBoard().getPiece(newPosition) != null && chessPiece.getPieceType().equals(PieceType.KNIGHT)) {
+                direction = 8 + random.nextInt(4 + 1);
+            } else {
+                chess.getChessBoard().move(chessPiece.getPosition(), newPosition);
+            }
             chessBashView.print();
             sleep();
         }
@@ -400,7 +401,11 @@ public class FunController {
         if (position.getFile() < 7 && position.getRank() < 7) {
             int newFileValue = position.getFile() + 1;
             int newRankValue = position.getRank() + 2;
-            return new Point(newFileValue, newRankValue);
+            if (newFileValue > 7 || newRankValue > 7) {
+                return position;
+            } else {
+                return new Point(newFileValue, newRankValue);
+            }
         } else {
             return position;
         }
@@ -410,7 +415,11 @@ public class FunController {
         if (position.getFile() > 0 && position.getRank() > 0) {
             int newFileValue = position.getFile() - 1;
             int newRankValue = position.getRank() - 2;
-            return new Point(newFileValue, newRankValue);
+            if (newFileValue < 0 || newRankValue < 0) {
+                return position;
+            } else {
+                return new Point(newFileValue, newRankValue);
+            }
         } else {
             return position;
         }
@@ -420,17 +429,25 @@ public class FunController {
         if (position.getFile() > 0 && position.getRank() < 7) {
             int newFileValue = position.getFile() - 1;
             int newRankValue = position.getRank() + 2;
-            return new Point(newFileValue, newRankValue);
+            if (newFileValue < 0 || newRankValue > 7) {
+                return position;
+            } else {
+                return new Point(newFileValue, newRankValue);
+            }
         } else {
             return position;
         }
     }
 
     private Point moveHorseDownRight(Point position) {
-        if (position.getRank() > 0 && position.getFile() < 7) {
+        if (position.getFile() < 7 && position.getRank() > 0) {
             int newFileValue = position.getFile() + 1;
             int newRankValue = position.getRank() - 2;
-            return new Point(newFileValue, newRankValue);
+            if (newFileValue > 7 || newRankValue < 0) {
+                return position;
+            } else {
+                return new Point(newFileValue, newRankValue);
+            }
         } else {
             return position;
         }

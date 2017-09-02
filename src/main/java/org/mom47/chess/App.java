@@ -39,10 +39,10 @@ public class App {
             } else if (args[0].equals("tag")) {
                 int mix = Integer.valueOf(args[1]);
                 app.funController.tag(mix);
-            } else if (args[0].equals("moveLog")) {
+            } else if (args[0].equals("crazy-wander")) {
                 int file = Integer.valueOf(args[1]);
                 int rank = Integer.valueOf(args[2]);
-                app.funController.figuresMovementLogic(file, rank);
+                app.funController.crazyWander(file, rank);
             }
         }
         app.run();
