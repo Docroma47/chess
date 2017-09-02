@@ -42,7 +42,8 @@ public class App {
             } else if (args[0].equals("crazy-wander")) {
                 int file = Integer.valueOf(args[1]);
                 int rank = Integer.valueOf(args[2]);
-                app.funController.crazyWander(file, rank);
+                int piece = Integer.valueOf(args[3]);
+                app.funController.crazyWander(file, rank, piece);
             }
         }
         app.run();
