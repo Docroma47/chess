@@ -22,7 +22,7 @@ public class FunController {
 
     public void crazyWander(int file, int rank) {
         Random random = new Random();
-        ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
+        findChessPiece(file, rank);
 
         for (int i = 0; i <= 31; i++) {
             if (chess.getChessPieces()[i] == chess.getChessBoard().getPiece(new Point(file, rank))) {
