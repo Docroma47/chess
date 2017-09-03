@@ -11,18 +11,12 @@ public class FunController {
 
     public FunController(Chess chess, ChessBashView chessBashView) {
         this.chess = chess;
-        this.chessBashView = chessBashView;
-    }
-
-    private ChessPiece findChessPiece(int file, int rank) {
-        ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
-
-        return chessPiece;
+        this.chessBashView кщддифсл кщддфиwerollback again= chessBashView;
     }
 
     public void crazyWander(int file, int rank) {
         Random random = new Random();
-        findChessPiece(file, rank);
+        ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
 
         for (int i = 0; i <= 31; i++) {
             if (chess.getChessPieces()[i] == chess.getChessBoard().getPiece(new Point(file, rank))) {
