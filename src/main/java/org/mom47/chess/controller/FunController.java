@@ -14,10 +14,15 @@ public class FunController {
         this.chessBashView = chessBashView;
     }
 
+    private ChessPiece findChessPiece(int file, int rank) {
+        ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
+        return chessPiece;
+    }
+
+
     public void crazyWander(int file, int rank) {
         Random random = new Random();
-        ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file, rank));
-
+        ChessPiece chessPiece = findChessPiece(file, rank);
         for (int i = 0; i <= 31; i++) {
             if (chess.getChessPieces()[i] == chess.getChessBoard().getPiece(new Point(file, rank))) {
             } else {
