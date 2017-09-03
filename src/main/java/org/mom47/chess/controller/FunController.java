@@ -11,7 +11,7 @@ public class FunController {
 
     public FunController(Chess chess, ChessBashView chessBashView) {
         this.chess = chess;
-        this.chessBashView кщддифсл кщддфиwerollback again= chessBashView;
+        this.chessBashView = chessBashView;
     }
 
     public void crazyWander(int file, int rank) {
