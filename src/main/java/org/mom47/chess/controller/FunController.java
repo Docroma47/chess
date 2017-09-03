@@ -19,19 +19,9 @@ public class FunController {
         return chessPiece;
     }
 
-
-    public void crazyWander(int file, int rank) {
+    private int getRandomDirection(ChessPiece chessPiece) {
         Random random = new Random();
-        ChessPiece chessPiece = findChessPiece(file, rank);
-        for (int i = 0; i <= 31; i++) {
-            if (chess.getChessPieces()[i] == chess.getChessBoard().getPiece(new Point(file, rank))) {
-            } else {
-                chess.getChessBoard().remove(chess.getChessPieces()[i].getPosition());
-            }
-        }
-
         int direction;
-
         if (chessPiece.getPieceType().equals(PieceType.PAWN) && chessPiece.getColor().equals(PieceColour.WHITE)) {
             direction = 0;
         } else if (chessPiece.getPieceType().equals(PieceType.PAWN) && chessPiece.getColor().equals(PieceColour.BLACK)) {
@@ -47,6 +37,22 @@ public class FunController {
         } else {
             direction = 7 + random.nextInt(4) + 1;
         }
+        return direction;
+    }
+
+
+    public void crazyWander(int file, int rank) {
+        Random random = new Random();
+        ChessPiece chessPiece = findChessPiece(file, rank);
+
+        for (int i = 0; i <= 31; i++) {
+            if (chess.getChessPieces()[i] == chess.getChessBoard().getPiece(new Point(file, rank))) {
+            } else {
+                chess.getChessBoard().remove(chess.getChessPieces()[i].getPosition());
+            }
+        }
+
+        int direction = getRandomDirection(chessPiece);
 
         for (int i = 0; i < 500; i++) {
             //PawnLogic
