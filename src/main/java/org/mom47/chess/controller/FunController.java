@@ -125,8 +125,8 @@ public class FunController {
 
     private void hideChessPiecesRandomlyExcept(ChessPiece chessPiece, int chessPieceNumberToHide) {
         Random random = new Random();
-        for (int i = 0; i <= chessPieceNumberToHide - 1; i++) {
-            int x = random.nextInt(chess.getChessBoard().getChessPiecesNumber() - 1);
+        for (int i = chessPieceNumberToHide - 1; i <= 31; i++) {
+            int x = random.nextInt(chess.getChessBoard().getChessPiecesNumber());
             if (chess.getChessBoard().getChessPieces()[x].getPosition().equals(chessPiece.getPosition())) {
             } else {
                 if (chess.getChessBoard().getChessPieces()[x].getPosition() != chessPiece.getPosition()) {
