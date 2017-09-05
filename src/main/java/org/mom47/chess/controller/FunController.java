@@ -122,16 +122,27 @@ public class FunController {
         return direction;
     }
 
+    public int[] getRandomIndexes(int length) {
+        Random random = new Random();
+        int[] indexes = new int[length];
+        for(int i = 0; i < length; i++) {
+            int randomIndex = indexes[i];
+            indexes[i] = indexes[random.nextInt(length)];
+            indexes[random.nextInt(length)] = randomIndex;
+        }
+        return indexes;
+    }
+
 
     private void hideChessPiecesRandomlyExcept(ChessPiece chessPiece, int chessPieceNumberToHide) {
         Random random = new Random();
-        for (int i = chessPieceNumberToHide - 1; i <= 31; i++) {
+        for (int i = chessPieceNumberToHide; i <= 31; i++) {
             int x = random.nextInt(chess.getChessBoard().getChessPiecesNumber());
-            if (chess.getChessBoard().getChessPieces()[x].getPosition().equals(chessPiece.getPosition())) {
+            if (chess.getChessBoard().getChessPieces()[x].getPosition() == chessPiece.getPosition()) {
+                x = random.nextInt(chess.getChessBoard().getChessPiecesNumber());
+                chess.getChessBoard().remove(chess.getChessBoard().getChessPieces()[x].getPosition());
             } else {
-                if (chess.getChessBoard().getChessPieces()[x].getPosition() != chessPiece.getPosition()) {
-                    chess.getChessBoard().remove(chess.getChessBoard().getChessPieces()[x].getPosition());
-                }
+                chess.getChessBoard().remove(chess.getChessBoard().getChessPieces()[x].getPosition());
             }
         }
     }
