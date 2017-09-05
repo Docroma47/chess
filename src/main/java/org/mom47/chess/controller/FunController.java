@@ -40,7 +40,7 @@ public class FunController {
         return direction;
     }
 
-    private int logicFigures(ChessPiece chessPiece, int direction) {
+    private int getNextDirection(ChessPiece chessPiece, int direction) {
         Random random = new Random();
         //PawnLogic
         if (chessPiece.getPieceType().equals(PieceType.PAWN) && chessPiece.getPosition().getRank() == 7 && chessPiece.getColor().equals(PieceColour.WHITE)) {
@@ -102,7 +102,7 @@ public class FunController {
         return direction;
     }
 
-    private int moveFigures(int direction, Point newPosition, ChessPiece chessPiece) {
+    private int checkEmptyCellsDirection(int direction, Point newPosition, ChessPiece chessPiece) {
         Random random = new Random();
         if (chess.getChessBoard().getPiece(newPosition) != null && chessPiece.getPieceType().equals(PieceType.PAWN)) {
         } else if (chess.getChessBoard().getPiece(newPosition) != null && chessPiece.getPieceType().equals(PieceType.QUEEN)) {
@@ -122,40 +122,44 @@ public class FunController {
         return direction;
     }
 
-    private void randomlyChessPieces() {
-        for (int j = 0; j <= 31; j++) {
-            ChessPiece pieces = chess.getChessPieces()[j];
-            Point randomSquire = getRandomFreeSquire();
-            chess.getChessBoard().move(pieces.getPosition(), new Point(randomSquire.getFile(), randomSquire.getRank()));
-        }
-    }
 
-    private void hideAllPiecesExcept(int file, int rank) {
+    private void hideChessPiecesRandomlyExcept(ChessPiece chessPiece, int chessPieceNumberToHide) {
         Random random = new Random();
-        for (int i = 0; i <= 16; i++) {
-            int x = random.nextInt(31);// здесь хотел использовать x в chess.getChessPieces()[x] и тем самым ост дюбые рандомные игуры
-            // Но вылетает ошибка продебажить не смог засыпаю уже.
-            if (chess.getChessPieces()[i] == chess.getChessBoard().getPiece(new Point(file, rank))) {
+        for (int i = 0; i <= chessPieceNumberToHide - 1; i++) {
+            int x = random.nextInt(chess.getChessBoard().getChessPiecesNumber() - 1);
+            if (chess.getChessBoard().getChessPieces()[x].getPosition().equals(chessPiece.getPosition())) {
             } else {
-                chess.getChessBoard().remove(chess.getChessPieces()[i].getPosition());
+                if (chess.getChessBoard().getChessPieces()[x].getPosition() != chessPiece.getPosition()) {
+                    chess.getChessBoard().remove(chess.getChessBoard().getChessPieces()[x].getPosition());
+                }
             }
         }
     }
 
+    private void shuffleChessPieces() {
+        for (int j = 0; j <= 31; j++) {
+            int x = 0;
+            if (chess.getChessBoard().getChessPieces()[x] != null && x <= chess.getChessBoard().getChessPiecesNumber()) {
+                ChessPiece pieces = chess.getChessBoard().getChessPieces()[x];
+                Point randomSquire = getRandomFreeSquire();
+                chess.getChessBoard().move(pieces.getPosition(), new Point(randomSquire.getFile(), randomSquire.getRank()));
+            }
+        }
+    }
 
-    public void crazyWander(int file, int rank) {
+    public void crazyWander(int file, int rank, int hidePiece) {
         ChessPiece chessPiece = findChessPiece(file, rank);
-        randomlyChessPieces();
 
-        hideAllPiecesExcept(file, rank);
+        hideChessPiecesRandomlyExcept(chessPiece, hidePiece);
+        shuffleChessPieces();
 
         int direction = getRandomDirection(chessPiece);
 
         for (int i = 0; i < 500; i++) {
-            direction = logicFigures(chessPiece, direction);
+            direction = getNextDirection(chessPiece, direction);
 
             Point newPosition = getNewPosition(chessPiece.getPosition(), direction);
-            direction = moveFigures(direction, newPosition, chessPiece);
+            direction = checkEmptyCellsDirection(direction, newPosition, chessPiece);
             chessBashView.print();
             sleep();
         }
