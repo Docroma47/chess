@@ -12,9 +12,16 @@ public class FunControllerTest {
         Chess chess = new Chess();
         ChessBashView chessBashView = new ChessBashView(chess);
         FunController funController = new FunController(chess, chessBashView);
-        int[] x = funController.getRandomIndexes(30);
-        for (int i = 1; i <= 30; i++) {
+        int[] x = funController.getRandomIndexes(31);
+        for (int i = 1; i <= 31; i++) {
             System.out.println(x[i]);
         }
+    }
+
+    @Test
+    public void testVariable() {
+        int variable;
+
+        System.out.println(variable);
     }
 }
