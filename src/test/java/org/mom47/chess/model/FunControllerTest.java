@@ -6,6 +6,8 @@ import org.mom47.chess.controller.FunController;
 import org.mom47.chess.view.ChessBashView;
 
 public class FunControllerTest {
+    public int variable;
+    public int[] variable1 = new int[10];
 
     @Test
     public void testGetRandomIndexes() {
@@ -20,8 +22,10 @@ public class FunControllerTest {
 
     @Test
     public void testVariable() {
-        int variable;
 
-        System.out.println(variable);
+        System.out.println("variable: " + variable);
+        for(int i = 0; i <= 9; i++) {
+            System.out.println("variable char: " + variable1[i]);
+        }
     }
 }
