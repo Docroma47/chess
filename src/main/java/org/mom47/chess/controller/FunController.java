@@ -124,11 +124,12 @@ public class FunController {
 
     public int[] getRandomIndexes(int length) {
         Random random = new Random();
-        int[] indexes = new int[length];
-        for(int i = 0; i < length; i++) {
-            int randomIndex = indexes[i];
-            indexes[i] = indexes[random.nextInt(length)];
-            indexes[random.nextInt(length)] = randomIndex;
+        int[] indexes = new int[31];
+        for(int i = 1; i < length; i++) {
+            int randomIndex = random.nextInt(31);
+            int temp = indexes[i];
+            indexes[i] = indexes[randomIndex];
+            indexes[randomIndex] = temp;
         }
         return indexes;
     }
