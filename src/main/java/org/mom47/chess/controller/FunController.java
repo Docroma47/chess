@@ -124,10 +124,11 @@ public class FunController {
 
     public int[] getRandomIndexes(int length) {
         Random random = new Random();
-        int[] indexes = new int[32];
+        int[] indexes = new int[length];
         for (int i = 0; i < length; i++) {
             indexes[i] = i;
         }
+
         for(int i = 0; i < length; i++) {
             int randomIndex = random.nextInt(31);
             int temp = indexes[i];
@@ -137,25 +138,36 @@ public class FunController {
         return indexes;
     }
 
-
     private void hideChessPiecesRandomlyExcept(ChessPiece chessPiece, int chessPieceNumberToHide) {
-        Random random = new Random();
-        for (int i = chessPieceNumberToHide; i <= 31; i++) {
-            int x = random.nextInt(chess.getChessBoard().getChessPiecesNumber());
-            if (chess.getChessBoard().getChessPieces()[x].getPosition() == chessPiece.getPosition()) {
-                x = random.nextInt(chess.getChessBoard().getChessPiecesNumber());
-                chess.getChessBoard().remove(chess.getChessBoard().getChessPieces()[x].getPosition());
-            } else {
-                chess.getChessBoard().remove(chess.getChessBoard().getChessPieces()[x].getPosition());
+        int[] randomIndex = getRandomIndexes(32);
+        ChessPiece[] pieceFigures = chess.getChessPieces();
+        int indexChessPiece = 0;
+        int indexRandomIndex = 0;
+        for (int i = 0; i <= 31; i++) {
+            if (pieceFigures[i].equals(chessPiece)) {
+                indexChessPiece = i;
             }
+        }
+
+        for (int i = 0; i <= 31; i++) {
+            if (randomIndex[i] == indexChessPiece) {
+                indexRandomIndex = i;
+            }
+        }
+
+        int temp = randomIndex[indexRandomIndex];
+        randomIndex[indexRandomIndex] = randomIndex[0];
+        randomIndex[0] = temp;
+
+        for (int i = 1; i <= chessPieceNumberToHide; i++) {
+            chess.getChessBoard().remove(pieceFigures[randomIndex[i]].getPosition());
         }
     }
 
     private void shuffleChessPieces() {
-        for (int j = 0; j <= 31; j++) {
-            int x = 0;
-            if (chess.getChessBoard().getChessPieces()[x] != null && x <= chess.getChessBoard().getChessPiecesNumber()) {
-                ChessPiece pieces = chess.getChessBoard().getChessPieces()[x];
+        for (int j = 0; j <= chess.getChessBoard().getChessPiecesNumber() - 1; j++) {
+            if (chess.getChessBoard().getChessPieces()[j] != null && j <= chess.getChessBoard().getChessPiecesNumber()) {
+                ChessPiece pieces = chess.getChessBoard().getChessPieces()[j];
                 Point randomSquire = getRandomFreeSquire();
                 chess.getChessBoard().move(pieces.getPosition(), new Point(randomSquire.getFile(), randomSquire.getRank()));
             }
