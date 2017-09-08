@@ -1,6 +1,7 @@
 package org.mom47.chess.model;
 
-import junit.framework.Assert;
+
+import org.junit.Assert;
 import org.junit.Test;
 import org.mom47.chess.controller.FunController;
 import org.mom47.chess.view.ChessBashView;
@@ -16,7 +17,7 @@ public class FunControllerTest {
         FunController funController = new FunController(chess, chessBashView);
         int[] x = funController.getRandomIndexes(64);
         Assert.assertEquals(64, x.length);
-        for (int i = 1; i <= 64; i++) {
+        for (int i = 0; i < x.length; i++) {
             System.out.println(x[i]);
         }
     }
