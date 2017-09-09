@@ -159,7 +159,7 @@ public class FunController {
         randomIndex[indexRandomIndex] = randomIndex[0];
         randomIndex[0] = temp;
 
-        for (int i = chessPieceNumberToHide; i <= chessPieceNumberToHide; i++) {
+        for (int i = chessPieceNumberToHide; i <= 31; i++) {
             chess.getChessBoard().remove(pieceFigures[randomIndex[i]].getPosition());
         }
     }
