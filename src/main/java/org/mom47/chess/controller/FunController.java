@@ -159,18 +159,18 @@ public class FunController {
         randomIndex[indexRandomIndex] = randomIndex[0];
         randomIndex[0] = temp;
 
-        for (int i = 1; i <= chessPieceNumberToHide; i++) {
+        for (int i = chessPieceNumberToHide; i <= chessPieceNumberToHide; i++) {
             chess.getChessBoard().remove(pieceFigures[randomIndex[i]].getPosition());
         }
     }
 
     private void shuffleChessPieces() {
-        for (int j = 0; j <= chess.getChessBoard().getChessPiecesNumber() - 1; j++) {
-            if (chess.getChessBoard().getChessPieces()[j] != null && j <= chess.getChessBoard().getChessPiecesNumber()) {
-                ChessPiece pieces = chess.getChessBoard().getChessPieces()[j];
-                Point randomSquire = getRandomFreeSquire();
-                chess.getChessBoard().move(pieces.getPosition(), new Point(randomSquire.getFile(), randomSquire.getRank()));
-            }
+        int x = chess.getChessBoard().getChessPiecesNumber();
+        ChessPiece[] piece = chess.getChessBoard().getChessPieces();
+        for (int i = 1; i <= x - 1; i++) {
+            ChessPiece pieces = piece[i];
+            Point randomSquire = getRandomFreeSquire();
+            chess.getChessBoard().move(pieces.getPosition(), new Point(randomSquire.getFile(), randomSquire.getRank()));
         }
     }
 
