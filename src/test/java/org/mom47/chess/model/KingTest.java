@@ -30,36 +30,27 @@ public class KingTest {
         Assert.assertEquals(1, availablePaths[7].length);
 
         // check the path UP
-        availablePaths[0][0] = new Point(4, 5);
         Assert.assertEquals(new Point(4, 5), availablePaths[0][0]);
 
         // check the path UP-RIGHT
-        availablePaths[1][0] = new Point(5, 5);
         Assert.assertEquals(new Point(5, 5), availablePaths[1][0]);
 
         // check the path RIGHT
-        availablePaths[2][0] = new Point(5, 4);
         Assert.assertEquals(new Point(5, 4), availablePaths[2][0]);
 
         // check the path DOWN-RIGHT
-        availablePaths[3][0] = new Point(5, 3);
         Assert.assertEquals(new Point(5, 3), availablePaths[3][0]);
 
         // check the path DOWN
-        availablePaths[4][0] = new Point(4, 3);
         Assert.assertEquals(new Point(4, 3), availablePaths[4][0]);
 
         // check the path DOWN-LEFT
-        availablePaths[5][0] = new Point(3, 3);
         Assert.assertEquals(new Point(3, 3), availablePaths[5][0]);
 
         // check the path LEFT
-        availablePaths[6][0] = new Point(3, 4);
         Assert.assertEquals(new Point(3, 4), availablePaths[6][0]);
 
         // check the path UP-LEFT
-        availablePaths[7][0] = new Point(3, 5);
         Assert.assertEquals(new Point(3, 5), availablePaths[7][0]);
-
     }
 }
