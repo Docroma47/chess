@@ -28,4 +28,9 @@ public class Point {
         if (rank != point.rank) return false;
         return file == point.file;
     }
+
+    @Override
+    public String toString() {
+        return "File: " + file + " Rank: " + rank;
+    }
 }
