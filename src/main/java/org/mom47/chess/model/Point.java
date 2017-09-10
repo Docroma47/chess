@@ -26,6 +26,30 @@ public class Point {
         return new Point(file + 1, rank + 1);
     }
 
+    public Point getRight() {
+        return new Point(file + 1, rank);
+    }
+
+    public Point getDownRight() {
+        return new Point(file + 1, rank - 1);
+    }
+
+    public Point getDown() {
+        return new Point(file, rank - 1);
+    }
+
+    public Point getDownLeft() {
+        return new Point(file - 1, rank - 1);
+    }
+
+    public Point getLeft() {
+        return new Point(file - 1, rank);
+    }
+
+    public Point getUpLeft() {
+        return new Point(file - 1, rank + 1);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
