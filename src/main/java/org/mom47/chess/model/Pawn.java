@@ -15,5 +15,6 @@ public class Pawn extends ChessPiece {
             setSymbol(BLACK_PAWN);
         }
         setPieceType(PieceType.PAWN);
+        getAvailablePaths()[1][1];
     }
 }

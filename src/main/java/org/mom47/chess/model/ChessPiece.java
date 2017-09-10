@@ -4,7 +4,7 @@ package org.mom47.chess.model;
 public class ChessPiece {
     private PieceType pieceType;
     private PieceColour color;
-    public String state;
+    private String state;
     private String symbol;
     private Point position;
     private Boolean isCaptured = false;
@@ -51,6 +51,10 @@ public class ChessPiece {
 
     public Boolean getIsCaptured() {
         return isCaptured;
+    }
+
+    public Point[][] getAvailablePaths() {
+        return null;
     }
 
     @Override

@@ -15,5 +15,6 @@ public class Bishop extends ChessPiece {
             setPosition(new Point(file, 7));
         }
         setPieceType(PieceType.BISHOP);
+        getAvailablePaths()[4][8];
     }
 }

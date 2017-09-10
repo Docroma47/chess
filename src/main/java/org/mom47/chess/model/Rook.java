@@ -15,5 +15,6 @@ public class Rook extends ChessPiece {
             setPosition(new Point(file, 7));
         }
         setPieceType(PieceType.ROOK);
+        getAvailablePaths()[4][8];
     }
 }
