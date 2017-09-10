@@ -91,11 +91,11 @@ public class FunController {
         }
         //KnightLogic
         if (chessPiece.getPieceType().equals(PieceType.KNIGHT) && chessPiece.getPosition().getRank() == 7 && (direction == 8 || direction == 9 || direction == 10 || direction == 11 || direction == 12 || direction == 13 || direction == 14 || direction == 15)) {
-            direction = 7 + random.nextInt(4) + 1;
+            direction = 7 + random.nextInt(8) + 1;
         } else if (chessPiece.getPieceType().equals(PieceType.KNIGHT) && chessPiece.getPosition().getRank() == 0 && (direction == 8 || direction == 9 || direction == 10 || direction == 11 || direction == 12 || direction == 13 || direction == 14 || direction == 15)) {
-            direction = 7 + random.nextInt(4) + 1;
+            direction = 7 + random.nextInt(8) + 1;
         } else if (chessPiece.getPieceType().equals(PieceType.KNIGHT) && chessPiece.getPosition().getFile() == 0 && (direction == 8 || direction == 9 || direction == 10 || direction == 11 || direction == 12 || direction == 13 || direction == 14 || direction == 15)) {
-            direction = 7 + random.nextInt(4) + 1;
+            direction = 7 + random.nextInt(8) + 1;
         } else if (chessPiece.getPieceType().equals(PieceType.KNIGHT) && chessPiece.getPosition().getFile() == 7 && (direction == 8 || direction == 9 || direction == 10 || direction == 11 || direction == 12 || direction == 13 || direction == 14 || direction == 15)) {
             direction = 7 + random.nextInt(8) + 1;
         }
