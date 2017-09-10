@@ -7,14 +7,16 @@ public class King extends ChessPiece {
     @Override
     public Point[][] getAvailablePaths() {
         Point[][] free = new Point[8][1];
-        free[0][0] = new Point(4, 5);
-        free[1][0] = new Point(5, 5);
-        free[2][0] = new Point(5, 4);
-        free[3][0] = new Point(5, 3);
-        free[4][0] = new Point(4, 3);
-        free[5][0] = new Point(3, 3);
-        free[6][0] = new Point(3, 4);
-        free[7][0] = new Point(3, 5);
+        int file = getPosition().getFile();
+        int rank = getPosition().getRank();
+        free[0][0] = new Point(file, rank + 1);
+        free[1][0] = new Point(file + 1, rank + 1);
+        free[2][0] = new Point(file + 1, rank);
+        free[3][0] = new Point(file + 1, rank - 1);
+        free[4][0] = new Point(file, rank - 1);
+        free[5][0] = new Point(file - 1, rank - 1);
+        free[6][0] = new Point(file - 1, rank);
+        free[7][0] = new Point(file - 1, rank + 1);
         return free;
     }
 
