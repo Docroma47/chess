@@ -4,6 +4,11 @@ package org.mom47.chess.model;
 public class Queen extends ChessPiece {
     private static final String WHITE_QUEEN = "♛";
     private static final String BLACK_QUEEN = "♕";
+    @Override
+    public Point[][] getAvailablePaths() {
+        Point[][] free = new Point[8][8];
+        return free;
+    }
 
     public Queen(PieceColour color, int file) {
         super(color);
@@ -15,6 +20,5 @@ public class Queen extends ChessPiece {
             setPosition(new Point(file, 7));
         }
         setPieceType(PieceType.QUEEN);
-        getAvailablePaths()[8][8];
     }
 }

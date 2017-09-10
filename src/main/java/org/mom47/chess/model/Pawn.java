@@ -4,6 +4,11 @@ package org.mom47.chess.model;
 public class Pawn extends ChessPiece {
     private static final String WHITE_PAWN = "♟";
     private static final String BLACK_PAWN = "♙";
+    @Override
+    public Point[][] getAvailablePaths() {
+        Point[][] free = new Point[1][1];
+        return free;
+    }
 
     public Pawn(PieceColour color,int file) {
         super(color);
@@ -15,6 +20,5 @@ public class Pawn extends ChessPiece {
             setSymbol(BLACK_PAWN);
         }
         setPieceType(PieceType.PAWN);
-        getAvailablePaths()[1][1];
     }
 }

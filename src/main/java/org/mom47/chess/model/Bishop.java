@@ -4,6 +4,11 @@ package org.mom47.chess.model;
 public class Bishop extends ChessPiece {
     private static final String WHITE_BISHOP = "♝";
     private static final String BLACK_BISHOP = "♗";
+    @Override
+    public Point[][] getAvailablePaths() {
+        Point[][] free = new Point[4][8];
+        return free;
+    }
 
     public Bishop(PieceColour color, int file) {
         super(color);
@@ -15,6 +20,5 @@ public class Bishop extends ChessPiece {
             setPosition(new Point(file, 7));
         }
         setPieceType(PieceType.BISHOP);
-        getAvailablePaths()[4][8];
     }
 }
