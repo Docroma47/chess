@@ -18,6 +18,14 @@ public class Point {
         return file;
     }
 
+    public Point getUp() {
+        return new Point(file, rank + 1);
+    }
+
+    public Point getUpRight() {
+        return new Point(file + 1, rank + 1);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

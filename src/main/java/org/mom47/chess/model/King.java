@@ -9,8 +9,9 @@ public class King extends ChessPiece {
         Point[][] free = new Point[8][1];
         int file = getPosition().getFile();
         int rank = getPosition().getRank();
-        free[0][0] = new Point(file, rank + 1);
-        free[1][0] = new Point(file + 1, rank + 1);
+        Point position = getPosition();
+        free[0][0] = position.getUp();
+        free[1][0] = position.getUpRight();
         free[2][0] = new Point(file + 1, rank);
         free[3][0] = new Point(file + 1, rank - 1);
         free[4][0] = new Point(file, rank - 1);
