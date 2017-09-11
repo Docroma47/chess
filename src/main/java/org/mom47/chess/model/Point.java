@@ -49,6 +49,39 @@ public class Point {
     public Point getUpLeft() {
         return new Point(file - 1, rank + 1);
     }
+    //
+
+    public Point getUpLeftHorse() {
+        return new Point(file - 1, rank + 2);
+    }
+
+    public Point getUpRightHorse() {
+        return new Point(file + 1, rank + 2);
+    }
+
+    public Point getRightUpHorse() {
+        return new Point(file + 2, rank + 1);
+    }
+
+    public Point getRightDownHorse() {
+        return new Point(file + 2, rank - 1);
+    }
+
+    public Point getDownRightHorse() {
+        return new Point(file + 1, rank - 2);
+    }
+
+    public Point getDownLeftHorse() {
+        return new Point(file - 1, rank - 2);
+    }
+
+    public Point getLeftUpHorse() {
+        return new Point(file - 2, rank + 1);
+    }
+
+    public Point getLeftDownHorse() {
+        return new Point(file - 2, rank - 1);
+    }
 
     @Override
     public boolean equals(Object o) {

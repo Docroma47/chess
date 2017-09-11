@@ -7,6 +7,15 @@ public class Knight extends ChessPiece {
     @Override
     public Point[][] getAvailablePaths() {
         Point[][] free = new Point[8][1];
+        Point position = getPosition();
+        free[0][0] = position.getUpLeftHorse();
+        free[1][0] = position.getUpRightHorse();
+        free[2][0] = position.getRightDownHorse();
+        free[3][0] = position.getRightUpHorse();
+        free[4][0] = position.getDownLeftHorse();
+        free[5][0] = position.getDownRightHorse();
+        free[6][0] = position.getLeftDownHorse();
+        free[7][0] = position.getLeftUpHorse();
         return free;
     }
 

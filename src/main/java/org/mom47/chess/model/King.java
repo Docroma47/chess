@@ -16,6 +16,9 @@ public class King extends ChessPiece {
         free[5][0] = position.getDownLeft();
         free[6][0] = position.getLeft();
         free[7][0] = position.getUpLeft();
+        if (getPosition().getFile() > 7 || getPosition().getFile() < 0 ) {
+            getPosition().getFile();
+        }
         return free;
     }
 
