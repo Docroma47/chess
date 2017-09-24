@@ -119,7 +119,7 @@ public class KingTest {
         Assert.assertEquals(new Point(4, 1), availablePaths[0][0]);
 
         // check the path UP-RIGHT
-        Assert.assertEquals(new Point(4, 1), availablePaths[1][0]);
+        Assert.assertEquals(new Point(5, 1), availablePaths[1][0]);
 
         // check the path RIGHT
         Assert.assertEquals(new Point(5, 0), availablePaths[2][0]);

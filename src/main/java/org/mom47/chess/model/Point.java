@@ -49,7 +49,6 @@ public class Point {
     public Point getUpLeft() {
         return new Point(file - 1, rank + 1);
     }
-    //
 
     public Point getUpLeftHorse() {
         return new Point(file - 1, rank + 2);

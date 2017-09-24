@@ -8,16 +8,82 @@ public class King extends ChessPiece {
     public Point[][] getAvailablePaths() {
         Point[][] free = new Point[8][1];
         Point position = getPosition();
-        free[0][0] = position.getUp();
-        free[1][0] = position.getUpRight();
-        free[2][0] = position.getRight();
-        free[3][0] = position.getDownRight();
-        free[4][0] = position.getDown();
-        free[5][0] = position.getDownLeft();
-        free[6][0] = position.getLeft();
-        free[7][0] = position.getUpLeft();
-        if (getPosition().getFile() > 7 || getPosition().getFile() < 0 ) {
-            getPosition().getFile();
+        if (position.getRank() == 0) {
+            if (position.getFile() == 0) {
+                free[0][0] = position.getUp();
+                free[1][0] = position.getUpRight();
+                free[2][0] = position.getRight();
+            } else if (position.getFile() == 7) {
+                free[0][0] = position.getUp();
+                free[6][0] = position.getLeft();
+                free[7][0] = position.getUpLeft();
+            } else {
+                free[0][0] = position.getUp();
+                free[1][0] = position.getUpRight();
+                free[2][0] = position.getRight();
+                free[3][0] = //!free[3][0] = new Point[8][0];
+                free[4][0] = //
+                free[5][0] = //
+                free[6][0] = position.getLeft();
+                free[7][0] = position.getUpLeft();
+            }
+        } else if (position.getRank() == 7) {
+            if (position.getFile() == 0) {
+                free[2][0] = position.getRight();
+                free[3][0] = position.getDownRight();
+                free[4][0] = position.getDown();
+            } else if (position.getFile() == 7) {
+                free[4][0] = position.getDown();
+                free[5][0] = position.getDownLeft();
+                free[6][0] = position.getLeft();
+            } else {
+                free[2][0] = position.getRight();
+                free[3][0] = position.getDownRight();
+                free[4][0] = position.getDown();
+                free[5][0] = position.getDownLeft();
+                free[6][0] = position.getLeft();
+            }
+        } else if (position.getFile() == 0) {
+            if (position.getRank() == 0) {
+                free[0][0] = position.getUp();
+                free[1][0] = position.getUpRight();
+                free[2][0] = position.getRight();
+            } else if (position.getRank() == 7) {
+                free[2][0] = position.getRight();
+                free[3][0] = position.getDownRight();
+                free[4][0] = position.getDown();
+            } else {
+                free[0][0] = position.getUp();
+                free[1][0] = position.getUpRight();
+                free[2][0] = position.getRight();
+                free[3][0] = position.getDownRight();
+                free[4][0] = position.getDown();
+            }
+        } else if (position.getFile() == 7) {
+            if (position.getRank() == 7) {
+                free[4][0] = position.getDown();
+                free[5][0] = position.getDownLeft();
+                free[6][0] = position.getLeft();
+            } else if (position.getRank() == 0) {
+                free[0][0] = position.getUp();
+                free[6][0] = position.getLeft();
+                free[7][0] = position.getUpLeft();
+            } else {
+                free[0][0] = position.getUp();
+                free[4][0] = position.getDown();
+                free[5][0] = position.getDownLeft();
+                free[6][0] = position.getLeft();
+                free[7][0] = position.getUpLeft();
+            }
+        } else {
+            free[0][0] = position.getUp();
+            free[1][0] = position.getUpRight();
+            free[2][0] = position.getRight();
+            free[3][0] = position.getDownRight();
+            free[4][0] = position.getDown();
+            free[5][0] = position.getDownLeft();
+            free[6][0] = position.getLeft();
+            free[7][0] = position.getUpLeft();
         }
         return free;
     }
