@@ -85,12 +85,19 @@ public class Point {
     public Point[] getUpPath(int count) {
         Point[] path = new Point[count];
         Point point = new Point(file, rank);
+        int rank = point.rank;
+        int file = point.file;
         for (int i = 0; i <= count; i++) {
-            if (point.rank + i == 7) {
+            if (rank + i == 7) {
                 path = new Point[i];
                 break;
             }
         }
+
+        for (int i = 0; i <= path.length - 1; i++) {
+            path[i] = new Point(file, rank + i + 1);
+        }
+
         return path;
     }
 
