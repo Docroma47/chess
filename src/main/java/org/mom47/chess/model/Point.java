@@ -82,6 +82,53 @@ public class Point {
         return new Point(file - 2, rank - 1);
     }
 
+    public Point[] getUpPath(int count) {
+        Point[] path = new Point[count];
+        Point point = new Point(file, rank);
+        for (int i = 0; i <= count; i++) {
+            if (point.rank + i == 7) {
+                path = new Point[i];
+                break;
+            }
+        }
+        return path;
+    }
+
+    public Point[] getLeftPath(int count) {
+        Point[] path = new Point[count];
+        return path;
+    }
+
+    public Point[] getRightPath(int count) {
+        Point[] path = new Point[count];
+        return path;
+    }
+
+    public Point[] getDownPath(int count) {
+        Point[] path = new Point[count];
+        return path;
+    }
+
+    public Point[][] getUpLeftPath(int count) {
+        Point[][] path = new Point[count][count];
+        return path;
+    }
+
+    public Point[][] getUpRightPath(int count) {
+        Point[][] path = new Point[count][count];
+        return path;
+    }
+
+    public Point[][] getDownLeftPath(int count) {
+        Point[][] path = new Point[count][count];
+        return path;
+    }
+
+    public Point[][] getDownRightPath(int count) {
+        Point[][] path = new Point[count][count];
+        return path;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
