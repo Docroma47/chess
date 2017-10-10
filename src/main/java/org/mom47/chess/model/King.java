@@ -8,90 +8,14 @@ public class King extends ChessPiece {
     public Point[][] getAvailablePaths() {
         Point[][] free = new Point[8][1];
         Point position = getPosition();
-        free[0][0] = position.getUp();
-        free[1][0] = position.getUpRight();
-        free[2][0] = position.getRight();
-        free[3][0] = position.getDownRight();
-        free[4][0] = position.getDown();
-        free[5][0] = position.getDownLeft();
-        free[6][0] = position.getLeft();
-        free[7][0] = position.getUpLeft();
-        if (position.getRank() == 0) {
-            if (position.getFile() == 0) {
-                free[3] = new Point[]{ };
-                free[4] = new Point[]{ };
-                free[5] = new Point[]{ };
-                free[6] = new Point[]{ };
-                free[7] = new Point[]{ };
-            } else if (position.getFile() == 7) {
-                free[0][0] = position.getUp();
-                free[1] = new Point[]{ };
-                free[2] = new Point[]{ };
-                free[3] = new Point[]{ };
-                free[4] = new Point[]{ };
-                free[5] = new Point[]{ };
-            } else {
-                free[3] = new Point[]{ };
-                free[4] = new Point[]{ };
-                free[5] = new Point[]{ };
-            }
-        } else if (position.getRank() == 7) {
-            if (position.getFile() == 0) {
-                free[0] = new Point[]{ };
-                free[1] = new Point[]{ };
-                free[5] = new Point[]{ };
-                free[6] = new Point[]{ };
-                free[7] = new Point[]{ };
-            } else if (position.getFile() == 7) {
-                free[0] = new Point[]{ };
-                free[1] = new Point[]{ };
-                free[2] = new Point[]{ };
-                free[3] = new Point[]{ };
-                free[7] = new Point[]{ };
-            } else {
-                free[0] = new Point[]{ };
-                free[1] = new Point[]{ };
-                free[7] = new Point[]{ };
-            }
-        } else if (position.getFile() == 0) {
-            if (position.getRank() == 0) {
-                free[3] = new Point[]{ };
-                free[4] = new Point[]{ };
-                free[5] = new Point[]{ };
-                free[6] = new Point[]{ };
-                free[7] = new Point[]{ };
-            } else if (position.getRank() == 7) {
-                free[0] = new Point[]{ };
-                free[1] = new Point[]{ };
-                free[5] = new Point[]{ };
-                free[6] = new Point[]{ };
-                free[7] = new Point[]{ };
-            } else {
-                free[5] = new Point[]{ };
-                free[6] = new Point[]{ };
-                free[7] = new Point[]{ };
-            }
-        } else if (position.getFile() == 7) {
-            if (position.getRank() == 7) {
-                free[0] = new Point[]{ };
-                free[1] = new Point[]{ };
-                free[2] = new Point[]{ };
-                free[3] = new Point[]{ };
-                free[7] = new Point[]{ };
-            } else if (position.getRank() == 0) {
-                free[0][0] = position.getUp();
-                free[1] = new Point[]{ };
-                free[2] = new Point[]{ };
-                free[3] = new Point[]{ };
-                free[4] = new Point[]{ };
-                free[5] = new Point[]{ };
-            } else {
-                free[0][0] = position.getUp();
-                free[1] = new Point[]{ };
-                free[2] = new Point[]{ };
-                free[3] = new Point[]{ };
-            }
-        }
+        free[0] = position.getUpPath(1);
+        free[1] = position.getUpRightPath(1);
+        free[2] = position.getRightPath(1);
+        free[3] = position.getDownRightPath(1);
+        free[4] = position.getDownPath(1);
+        free[5] = position.getDownLeftPath(1);
+        free[6] = position.getLeftPath(1);
+        free[7] = position.getUpLeftPath(1);
         return free;
     }
 
@@ -101,7 +25,7 @@ public class King extends ChessPiece {
             setSymbol(WHITE_KING);
             setPosition(new Point(file, 0));
         } else {
-            setSymbol(BLACK_KING);;
+            setSymbol(BLACK_KING);
             setPosition(new Point(file, 7));
         }
         setPieceType(PieceType.KING);
