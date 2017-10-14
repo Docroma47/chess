@@ -199,16 +199,128 @@ public class Point {
     }
 
     public Point[] getDownRightHorsePath(int count) {
-        Point[] path = new Point[count];
         Point point = new Point(file, rank);
         int rank = point.rank;
         int file = point.file;
-        int x = 7 - file;
-        int y = 7 - rank;
-        int max = Math.min(x, y);
-        int size = Math.min(count, max );
-        for (int i = 0; i <= size - 1; i++) {
-            path[i] = new Point(file + i + 1, rank - i - 1);
+        Point[] path = new Point[count];
+        for (int i = 0; i <= count - 1; i++) {
+            path[i] = new Point(file + i + 1, rank - i - 2);
+            if (path[i].rank < 0 || path[i].file > 7) {
+                path = new Point[]{ };
+                return path;
+            }
+        }
+
+        return path;
+    }
+
+    public Point[] getDownLeftHorsePath(int count) {
+        Point point = new Point(file, rank);
+        int rank = point.rank;
+        int file = point.file;
+        Point[] path = new Point[count];
+        for (int i = 0; i <= count - 1; i++) {
+            path[i] = new Point(file - i - 1, rank - i - 2);
+            if (path[i].rank < 0 || path[i].file < 0) {
+                path = new Point[]{ };
+                return path;
+            }
+        }
+
+        return path;
+    }
+
+    public Point[] getUpRightHorsePath(int count) {
+        Point point = new Point(file, rank);
+        int rank = point.rank;
+        int file = point.file;
+        Point[] path = new Point[count];
+        for (int i = 0; i <= count - 1; i++) {
+            path[i] = new Point(file + i + 1, rank + i + 2);
+            if (path[i].rank > 7 || path[i].file > 7) {
+                path = new Point[]{ };
+                return path;
+            }
+        }
+
+        return path;
+    }
+
+    public Point[] getUpLeftHorsePath(int count) {
+        Point point = new Point(file, rank);
+        int rank = point.rank;
+        int file = point.file;
+        Point[] path = new Point[count];
+        for (int i = 0; i <= count - 1; i++) {
+            path[i] = new Point(file - i - 1, rank + i + 2);
+            if (path[i].rank > 7 || path[i].file < 0) {
+                path = new Point[]{ };
+                return path;
+            }
+        }
+
+        return path;
+    }
+
+    public Point[] getLeftUpHorsePath(int count) {
+        Point point = new Point(file, rank);
+        int rank = point.rank;
+        int file = point.file;
+        Point[] path = new Point[count];
+        for (int i = 0; i <= count - 1; i++) {
+            path[i] = new Point(file - i - 2, rank + i + 1);
+            if (path[i].rank > 7 || path[i].file < 0) {
+                path = new Point[]{ };
+                return path;
+            }
+        }
+
+        return path;
+    }
+
+    public Point[] getLeftDownHorsePath(int count) {
+        Point point = new Point(file, rank);
+        int rank = point.rank;
+        int file = point.file;
+        Point[] path = new Point[count];
+        for (int i = 0; i <= count - 1; i++) {
+            path[i] = new Point(file - i - 2, rank - i - 1);
+            if (path[i].rank < 0 || path[i].file < 0) {
+                path = new Point[]{ };
+                return path;
+            }
+        }
+
+        return path;
+    }
+
+    public Point[] getRightUpHorsePath(int count) {
+        Point point = new Point(file, rank);
+        int rank = point.rank;
+        int file = point.file;
+        Point[] path = new Point[count];
+        for (int i = 0; i <= count - 1; i++) {
+            path[i] = new Point(file + i + 2, rank + i + 1);
+            if (path[i].rank > 7 || path[i].file > 7) {
+                path = new Point[]{ };
+                return path;
+            }
+        }
+
+        return path;
+    }
+
+    public Point[] getRightDownHorsePath(int count) {
+        Point point = new Point(file, rank);
+        int rank = point.rank;
+        int file = point.file;
+        Point[] path = new Point[count];
+        for (int i = 0; i <= count - 1; i++) {
+            path[i] = new Point(file + i + 2, rank - i - 1);
+            if (path[i].rank < 0 || path[i].file > 7) {
+                path = new Point[]{ };
+                return path;
+            }
         }
 
         return path;

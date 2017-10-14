@@ -7,6 +7,11 @@ public class Rook extends ChessPiece {
     @Override
     public Point[][] getAvailablePaths() {
         Point[][] free = new Point[4][8];
+        Point position = getPosition();
+        free[0] = position.getUpPath(7);
+        free[2] = position.getRightPath(7);
+        free[4] = position.getDownPath(7);
+        free[6] = position.getLeftPath(7);
         return free;
     }
 

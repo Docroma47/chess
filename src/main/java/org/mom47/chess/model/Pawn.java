@@ -6,7 +6,9 @@ public class Pawn extends ChessPiece {
     private static final String BLACK_PAWN = "♙";
     @Override
     public Point[][] getAvailablePaths() {
-        Point[][] free = new Point[1][1];
+        Point[][] free = new Point[8][1];
+        Point position = getPosition();
+        free[0] = position.getUpPath(1);
         return free;
     }
 
