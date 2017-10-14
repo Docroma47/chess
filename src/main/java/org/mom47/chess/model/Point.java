@@ -83,18 +83,12 @@ public class Point {
     }
 
     public Point[] getUpPath(int count) {
-        Point[] path = new Point[count];
         Point point = new Point(file, rank);
         int rank = point.rank;
         int file = point.file;
-        for (int i = 0; i <= count; i++) {
-            if (rank + i == 7) {
-                path = new Point[i];
-                break;
-            }
-        }
-
-        for (int i = 0; i <= path.length - 1; i++) {
+        int size = Math.min(count, 7 - rank);
+        Point[] path = new Point[size];
+        for (int i = 0; i <= size - 1; i++) {
             path[i] = new Point(file, rank + i + 1);
         }
 
@@ -102,18 +96,12 @@ public class Point {
     }
 
     public Point[] getRightPath(int count) {
-        Point[] path = new Point[count];
         Point point = new Point(file, rank);
         int rank = point.rank;
         int file = point.file;
-        for (int i = 0; i <= count; i++) {
-            if (file + i == 7) {
-                path = new Point[i];
-                break;
-            }
-        }
-
-        for (int i = 0; i <= path.length - 1; i++) {
+        int size = Math.min(count, 7 - file);
+        Point[] path = new Point[size];
+        for (int i = 0; i <= size - 1; i++) {
             path[i] = new Point(file + i + 1, rank);
         }
 
@@ -121,18 +109,12 @@ public class Point {
     }
 
     public Point[] getLeftPath(int count) {
-        Point[] path = new Point[count];
         Point point = new Point(file, rank);
         int rank = point.rank;
         int file = point.file;
-        for (int i = 0; i <= count; i++) {
-            if (file - i == 0) {
-                path = new Point[i];
-                break;
-            }
-        }
-
-        for (int i = 0; i <= path.length - 1; i++) {
+        int size = Math.min(count, file);
+        Point[] path = new Point[size];
+        for (int i = 0; i <= size - 1; i++) {
             path[i] = new Point(file - i - 1, rank);
         }
 
@@ -140,18 +122,12 @@ public class Point {
     }
 
     public Point[] getDownPath(int count) {
-        Point[] path = new Point[count];
         Point point = new Point(file, rank);
         int rank = point.rank;
         int file = point.file;
-        for (int i = 0; i <= count; i++) {
-            if (rank - i == 0) {
-                path = new Point[i];
-                break;
-            }
-        }
-
-        for (int i = 0; i <= path.length - 1; i++) {
+        int size = Math.min(count, rank);
+        Point[] path = new Point[size];
+        for (int i = 0; i <= size - 1; i++) {
             path[i] = new Point(file, rank - i - 1);
         }
 
@@ -159,18 +135,15 @@ public class Point {
     }
 
     public Point[] getUpLeftPath(int count) {
-        Point[] path = new Point[count];
         Point point = new Point(file, rank);
         int rank = point.rank;
         int file = point.file;
-        for (int i = 0; i <= count; i++) {
-            if (rank + i == 7 || file - i == 0) {
-                path = new Point[i];
-                break;
-            }
-        }
-
-        for (int i = 0; i <= path.length - 1; i++) {
+        int x = file;
+        int y = rank;
+        int max = Math.min(x, 7 - y);
+        int size = Math.min(count, max);
+        Point[] path = new Point[size];
+        for (int i = 0; i <= size - 1; i++) {
             path[i] = new Point(file - i - 1, rank + i + 1);
         }
 
@@ -178,18 +151,15 @@ public class Point {
     }
 
     public Point[] getUpRightPath(int count) {
-        Point[] path = new Point[count];
         Point point = new Point(file, rank);
         int rank = point.rank;
         int file = point.file;
-        for (int i = 0; i <= count; i++) {
-            if (rank + i == 7 || file + i == 7) {
-                path = new Point[i];
-                break;
-            }
-        }
-
-        for (int i = 0; i <= path.length - 1; i++) {
+        int x = file;
+        int y = rank;
+        int max = Math.max(x, y);
+        int size = Math.min(count, 7 - max);
+        Point[] path = new Point[size];
+        for (int i = 0; i <= size - 1; i++) {
             path[i] = new Point(file + i + 1, rank + i + 1);
         }
 
@@ -197,18 +167,15 @@ public class Point {
     }
 
     public Point[] getDownLeftPath(int count) {
-        Point[] path = new Point[count];
         Point point = new Point(file, rank);
         int rank = point.rank;
         int file = point.file;
-        for (int i = 0; i <= count; i++) {
-            if (rank - i == 0 || file - i == 0) {
-                path = new Point[i];
-                break;
-            }
-        }
-
-        for (int i = 0; i <= path.length - 1; i++) {
+        int x = file;
+        int y = rank;
+        int max = Math.min(x, y);
+        int size = Math.min(count, max);
+        Point[] path = new Point[size];
+        for (int i = 0; i <= size - 1; i++) {
             path[i] = new Point(file - i - 1, rank - i - 1);
         }
 
@@ -216,18 +183,31 @@ public class Point {
     }
 
     public Point[] getDownRightPath(int count) {
+        Point point = new Point(file, rank);
+        int rank = point.rank;
+        int file = point.file;
+        int x = file;
+        int y = rank;
+        int max = Math.min(7 - x, y);
+        int size = Math.min(count, max );
+        Point[] path = new Point[size];
+        for (int i = 0; i <= size - 1; i++) {
+            path[i] = new Point(file + i + 1, rank - i - 1);
+        }
+
+        return path;
+    }
+
+    public Point[] getDownRightHorsePath(int count) {
         Point[] path = new Point[count];
         Point point = new Point(file, rank);
         int rank = point.rank;
         int file = point.file;
-        for (int i = 0; i <= count; i++) {
-            if (rank - i == 0 || file + i == 7) {
-                path = new Point[i];
-                break;
-            }
-        }
-
-        for (int i = 0; i <= path.length - 1; i++) {
+        int x = 7 - file;
+        int y = 7 - rank;
+        int max = Math.min(x, y);
+        int size = Math.min(count, max );
+        for (int i = 0; i <= size - 1; i++) {
             path[i] = new Point(file + i + 1, rank - i - 1);
         }
 

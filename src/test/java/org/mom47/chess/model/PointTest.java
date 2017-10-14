@@ -382,7 +382,7 @@ public class PointTest {
         Assert.assertEquals(path1[5], new Point(6, 1));
         Assert.assertEquals(path1[6], new Point(7, 0));
 
-        Point point2 = new Point(7, 0);
+        Point point2 = new Point(7, 7);
         Point[] path2 = point2.getDownRightPath(7);
         int x2 = path2.length;
 
