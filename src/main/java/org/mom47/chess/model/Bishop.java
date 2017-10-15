@@ -8,10 +8,10 @@ public class Bishop extends ChessPiece {
     public Point[][] getAvailablePaths() {
         Point[][] free = new Point[8][1];
         Point position = getPosition();
-        free[1] = position.getUpRightPath(7);
-        free[3] = position.getDownRightPath(7);
-        free[5] = position.getDownLeftPath(7);
-        free[7] = position.getUpLeftPath(7);
+        free[0] = position.getUpRightPath(7);
+        free[1] = position.getDownRightPath(7);
+        free[2] = position.getDownLeftPath(7);
+        free[3] = position.getUpLeftPath(7);
         return free;
     }
 

@@ -97,9 +97,9 @@ public class KnightTest {
 
         // moving the king to the bottom edge ==================
 
-        chessBoard.move(knight.getPosition(), new Point(4, 0));
+        chessBoard.move(knight.getPosition(), new Point(4, 2));
         position = knight.getPosition();
-        Assert.assertEquals(new Point(4, 0), position);
+        Assert.assertEquals(new Point(4, 2), position);
 
         availablePaths = knight.getAvailablePaths();
         Assert.assertEquals(8, availablePaths.length);
@@ -108,25 +108,25 @@ public class KnightTest {
         Assert.assertEquals(1, availablePaths[0].length);
         Assert.assertEquals(1, availablePaths[1].length);
         Assert.assertEquals(1, availablePaths[2].length);
-        Assert.assertEquals(0, availablePaths[3].length);
-        Assert.assertEquals(0, availablePaths[4].length);
-        Assert.assertEquals(0, availablePaths[5].length);
+        Assert.assertEquals(1, availablePaths[3].length);
+        Assert.assertEquals(1, availablePaths[4].length);
+        Assert.assertEquals(1, availablePaths[5].length);
         Assert.assertEquals(1, availablePaths[6].length);
         Assert.assertEquals(1, availablePaths[7].length);
 
         // check the path UP
-        Assert.assertEquals(new Point(4, 1), availablePaths[0][0]);
+        Assert.assertEquals(new Point(3, 4), availablePaths[0][0]);
 
         // check the path UP-RIGHT
-        Assert.assertEquals(new Point(4, 1), availablePaths[1][0]);
+        Assert.assertEquals(new Point(5, 4), availablePaths[1][0]);
 
         // check the path RIGHT
-        Assert.assertEquals(new Point(5, 0), availablePaths[2][0]);
+        Assert.assertEquals(new Point(6, 1), availablePaths[2][0]);
 
         // check the path LEFT
-        Assert.assertEquals(new Point(3, 0), availablePaths[6][0]);
+        Assert.assertEquals(new Point(2, 1), availablePaths[6][0]);
 
         // check the path UP-LEFT
-        Assert.assertEquals(new Point(3, 1), availablePaths[7][0]);
+        Assert.assertEquals(new Point(2, 3), availablePaths[7][0]);
     }
 }

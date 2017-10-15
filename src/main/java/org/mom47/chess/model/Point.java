@@ -88,8 +88,10 @@ public class Point {
         int file = point.file;
         int size = Math.min(count, 7 - rank);
         Point[] path = new Point[size];
+        int j = 1;
         for (int i = 0; i <= size - 1; i++) {
-            path[i] = new Point(file, rank + i + 1);
+            path[i] = new Point(file, rank + j);
+            j++;
         }
 
         return path;
@@ -101,8 +103,10 @@ public class Point {
         int file = point.file;
         int size = Math.min(count, 7 - file);
         Point[] path = new Point[size];
+        int j = 1;
         for (int i = 0; i <= size - 1; i++) {
-            path[i] = new Point(file + i + 1, rank);
+            path[i] = new Point(file + j, rank);
+            j++;
         }
 
         return path;
@@ -114,8 +118,10 @@ public class Point {
         int file = point.file;
         int size = Math.min(count, file);
         Point[] path = new Point[size];
+        int j = 1;
         for (int i = 0; i <= size - 1; i++) {
-            path[i] = new Point(file - i - 1, rank);
+            path[i] = new Point(file - j, rank);
+            j++;
         }
 
         return path;
@@ -127,8 +133,10 @@ public class Point {
         int file = point.file;
         int size = Math.min(count, rank);
         Point[] path = new Point[size];
+        int j = 1;
         for (int i = 0; i <= size - 1; i++) {
-            path[i] = new Point(file, rank - i - 1);
+            path[i] = new Point(file, rank - j);
+            j++;
         }
 
         return path;
@@ -143,8 +151,10 @@ public class Point {
         int max = Math.min(x, 7 - y);
         int size = Math.min(count, max);
         Point[] path = new Point[size];
+        int j = 1;
         for (int i = 0; i <= size - 1; i++) {
-            path[i] = new Point(file - i - 1, rank + i + 1);
+            path[i] = new Point(file - j, rank + j);
+            j++;
         }
 
         return path;
@@ -159,8 +169,10 @@ public class Point {
         int max = Math.max(x, y);
         int size = Math.min(count, 7 - max);
         Point[] path = new Point[size];
+        int j = 1;
         for (int i = 0; i <= size - 1; i++) {
-            path[i] = new Point(file + i + 1, rank + i + 1);
+            path[i] = new Point(file + j, rank + j);
+            j++;
         }
 
         return path;
@@ -175,8 +187,10 @@ public class Point {
         int max = Math.min(x, y);
         int size = Math.min(count, max);
         Point[] path = new Point[size];
+        int j = 1;
         for (int i = 0; i <= size - 1; i++) {
-            path[i] = new Point(file - i - 1, rank - i - 1);
+            path[i] = new Point(file - j, rank - j);
+            j++;
         }
 
         return path;
@@ -191,8 +205,10 @@ public class Point {
         int max = Math.min(7 - x, y);
         int size = Math.min(count, max );
         Point[] path = new Point[size];
+        int j = 1;
         for (int i = 0; i <= size - 1; i++) {
-            path[i] = new Point(file + i + 1, rank - i - 1);
+            path[i] = new Point(file + j, rank - j);
+            j++;
         }
 
         return path;

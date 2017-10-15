@@ -9,6 +9,7 @@ public class Pawn extends ChessPiece {
         Point[][] free = new Point[8][1];
         Point position = getPosition();
         free[0] = position.getUpPath(1);
+        free[1] = position.getDownPath(1);
         return free;
     }
 
