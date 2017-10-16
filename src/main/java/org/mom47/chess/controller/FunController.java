@@ -42,61 +42,28 @@ public class FunController {
 
     private int getNextDirection(ChessPiece chessPiece, int direction) {
         Random random = new Random();
-        //PawnLogic
-        if (chessPiece.getPieceType().equals(PieceType.PAWN) && direction == 0 && chessPiece.getAvailablePaths()[direction].length == 0 && chessPiece.getColor().equals(PieceColour.WHITE)) {
+        Boolean bishop = chessPiece.getPieceType().equals(PieceType.BISHOP);
+        Boolean rook = chessPiece.getPieceType().equals(PieceType.ROOK);
+        Boolean queen = chessPiece.getPieceType().equals(PieceType.QUEEN);
+        Boolean king = chessPiece.getPieceType().equals(PieceType.KING);
+        Boolean knight = chessPiece.getPieceType().equals(PieceType.KNIGHT);
+        Boolean pawn = chessPiece.getPieceType().equals(PieceType.PAWN);
+        Boolean colorWhite = chessPiece.getColor().equals(PieceColour.WHITE);
+        Boolean colorBlack = chessPiece.getColor().equals(PieceColour.BLACK);
+        int pathLength = chessPiece.getAvailablePaths()[direction].length;
+        if (pawn && direction == 0 && pathLength == 0 && colorWhite) {
             direction = 0;
         }
-        if (chessPiece.getPieceType().equals(PieceType.PAWN) && direction == 1 && chessPiece.getAvailablePaths()[direction].length == 0 && chessPiece.getColor().equals(PieceColour.BLACK)) {
+
+        if (pawn && direction == 1 && pathLength == 0 && colorBlack) {
             direction = 1;
         }
-        //QueenLogic
-        if (chessPiece.getPieceType().equals(PieceType.QUEEN) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(8);
-        } else if (chessPiece.getPieceType().equals(PieceType.QUEEN) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(8);
-        } else if (chessPiece.getPieceType().equals(PieceType.QUEEN) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(8);
-        } else if (chessPiece.getPieceType().equals(PieceType.QUEEN) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(8);
-        }
-        //KingLogic
-        if (chessPiece.getPieceType().equals(PieceType.KING) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(8);
-        } else if (chessPiece.getPieceType().equals(PieceType.KING) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(8);
-        } else if (chessPiece.getPieceType().equals(PieceType.KING) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(8);
-        } else if (chessPiece.getPieceType().equals(PieceType.KING) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(8);
-        }
-        //BishopLogic
-        if (chessPiece.getPieceType().equals(PieceType.BISHOP) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(4);
-        } else if (chessPiece.getPieceType().equals(PieceType.BISHOP) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(4);
-        } else if (chessPiece.getPieceType().equals(PieceType.BISHOP) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(4);
-        } else if (chessPiece.getPieceType().equals(PieceType.BISHOP)&& chessPiece.getAvailablePaths()[direction].length == 0) {
+
+        if (rook || bishop && pathLength == 0) {
             direction = random.nextInt(4);
         }
-        //RookLogic
-        if (chessPiece.getPieceType().equals(PieceType.ROOK) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(4);
-        } else if (chessPiece.getPieceType().equals(PieceType.ROOK) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(4);
-        } else if (chessPiece.getPieceType().equals(PieceType.ROOK) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(4);
-        } else if (chessPiece.getPieceType().equals(PieceType.ROOK) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(4);
-        }
-        //KnightLogic
-        if (chessPiece.getPieceType().equals(PieceType.KNIGHT) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(8);
-        } else if (chessPiece.getPieceType().equals(PieceType.KNIGHT) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(8);
-        } else if (chessPiece.getPieceType().equals(PieceType.KNIGHT) && chessPiece.getAvailablePaths()[direction].length == 0) {
-            direction = random.nextInt(8);
-        } else if (chessPiece.getPieceType().equals(PieceType.KNIGHT) && chessPiece.getAvailablePaths()[direction].length == 0) {
+
+        if (queen || king || knight && pathLength == 0) {
             direction = random.nextInt(8);
         }
         return direction;
@@ -360,12 +327,13 @@ public class FunController {
 
     private Point getNewPosition(ChessPiece chessPiece, int direction) {
         Point newPosition;
+        Random random = new Random();
         int pathLength = chessPiece.getAvailablePaths()[direction].length;
-        if(pathLength == 0) {
+        if (pathLength == 0) {
             newPosition = chessPiece.getPosition();
-            return newPosition;
+        } else {
+            newPosition = chessPiece.getAvailablePaths()[direction][random.nextInt(pathLength)];
         }
-        newPosition = chessPiece.getAvailablePaths()[direction][0];
         return newPosition;
     }
 
