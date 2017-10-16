@@ -219,8 +219,13 @@ public class Point {
         int rank = point.rank;
         int file = point.file;
         Point[] path = new Point[count];
+        int j = 1;
+        int x = 2;
         for (int i = 0; i <= count - 1; i++) {
-            path[i] = new Point(file + i + 1, rank - i - 2);
+            path[i] = new Point(file + j, rank - x);
+            j++;
+            x++;
+            x++;
             if (path[i].rank < 0 || path[i].file > 7) {
                 path = new Point[]{ };
                 return path;
@@ -235,8 +240,13 @@ public class Point {
         int rank = point.rank;
         int file = point.file;
         Point[] path = new Point[count];
+        int j = 1;
+        int x = 2;
         for (int i = 0; i <= count - 1; i++) {
-            path[i] = new Point(file - i - 1, rank - i - 2);
+            path[i] = new Point(file - j, rank - x);
+            j++;
+            x++;
+            x++;
             if (path[i].rank < 0 || path[i].file < 0) {
                 path = new Point[]{ };
                 return path;
@@ -251,8 +261,13 @@ public class Point {
         int rank = point.rank;
         int file = point.file;
         Point[] path = new Point[count];
+        int j = 1;
+        int x = 2;
         for (int i = 0; i <= count - 1; i++) {
-            path[i] = new Point(file + i + 1, rank + i + 2);
+            path[i] = new Point(file + j, rank + x);
+            j++;
+            x++;
+            x++;
             if (path[i].rank > 7 || path[i].file > 7) {
                 path = new Point[]{ };
                 return path;
@@ -267,8 +282,13 @@ public class Point {
         int rank = point.rank;
         int file = point.file;
         Point[] path = new Point[count];
+        int j = 1;
+        int x = 2;
         for (int i = 0; i <= count - 1; i++) {
-            path[i] = new Point(file - i - 1, rank + i + 2);
+            path[i] = new Point(file - j, rank + x);
+            j++;
+            x++;
+            x++;
             if (path[i].rank > 7 || path[i].file < 0) {
                 path = new Point[]{ };
                 return path;
@@ -283,8 +303,13 @@ public class Point {
         int rank = point.rank;
         int file = point.file;
         Point[] path = new Point[count];
+        int j = 1;
+        int x = 2;
         for (int i = 0; i <= count - 1; i++) {
-            path[i] = new Point(file - i - 2, rank + i + 1);
+            path[i] = new Point(file - x, rank + j);
+            j++;
+            x++;
+            x++;
             if (path[i].rank > 7 || path[i].file < 0) {
                 path = new Point[]{ };
                 return path;
@@ -299,8 +324,13 @@ public class Point {
         int rank = point.rank;
         int file = point.file;
         Point[] path = new Point[count];
+        int j = 1;
+        int x = 2;
         for (int i = 0; i <= count - 1; i++) {
-            path[i] = new Point(file - i - 2, rank - i - 1);
+            path[i] = new Point(file - x, rank - j);
+            j++;
+            x++;
+            x++;
             if (path[i].rank < 0 || path[i].file < 0) {
                 path = new Point[]{ };
                 return path;
@@ -315,8 +345,13 @@ public class Point {
         int rank = point.rank;
         int file = point.file;
         Point[] path = new Point[count];
+        int j = 1;
+        int x = 2;
         for (int i = 0; i <= count - 1; i++) {
-            path[i] = new Point(file + i + 2, rank + i + 1);
+            path[i] = new Point(file + x, rank + j);
+            j++;
+            x++;
+            x++;
             if (path[i].rank > 7 || path[i].file > 7) {
                 path = new Point[]{ };
                 return path;
@@ -331,8 +366,13 @@ public class Point {
         int rank = point.rank;
         int file = point.file;
         Point[] path = new Point[count];
+        int j = 1;
+        int x = 2;
         for (int i = 0; i <= count - 1; i++) {
-            path[i] = new Point(file + i + 2, rank - i - 1);
+            path[i] = new Point(file + x, rank - j);
+            j++;
+            x++;
+            x++;
             if (path[i].rank < 0 || path[i].file > 7) {
                 path = new Point[]{ };
                 return path;

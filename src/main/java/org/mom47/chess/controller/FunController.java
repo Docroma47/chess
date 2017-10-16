@@ -110,11 +110,11 @@ public class FunController {
         } else if (chess.getChessBoard().getPiece(newPosition) != null && chessPiece.getPieceType().equals(PieceType.KING)) {
             direction = random.nextInt(8);
         } else if (chess.getChessBoard().getPiece(newPosition) != null && chessPiece.getPieceType().equals(PieceType.BISHOP)) {
-            direction = 3 + random.nextInt(4) + 1;
+            direction = random.nextInt(4);
         } else if (chess.getChessBoard().getPiece(newPosition) != null && chessPiece.getPieceType().equals(PieceType.ROOK)) {
             direction = random.nextInt(4);
         } else if (chess.getChessBoard().getPiece(newPosition) != null && chessPiece.getPieceType().equals(PieceType.KNIGHT)) {
-            direction = 7 + random.nextInt(8) + 1;
+            direction = random.nextInt(8);
         } else {
             chess.getChessBoard().move(chessPiece.getPosition(), newPosition);
         }
@@ -360,6 +360,11 @@ public class FunController {
 
     private Point getNewPosition(ChessPiece chessPiece, int direction) {
         Point newPosition;
+        int pathLength = chessPiece.getAvailablePaths()[direction].length;
+        if(pathLength == 0) {
+            newPosition = chessPiece.getPosition();
+            return newPosition;
+        }
         newPosition = chessPiece.getAvailablePaths()[direction][0];
         return newPosition;
     }
