@@ -22,17 +22,35 @@ public class FunController {
     private int getRandomDirection(ChessPiece chessPiece) {
         Random random = new Random();
         int direction;
-        int directionLenght = chessPiece.getAvailablePaths().length;
-        direction = random.nextInt(directionLenght);
+        if (chessPiece.getPieceType().equals(PieceType.PAWN) && chessPiece.getColor().equals(PieceColour.WHITE)) {
+            direction = 0;
+        } else if (chessPiece.getPieceType().equals(PieceType.PAWN) && chessPiece.getColor().equals(PieceColour.BLACK)) {
+            direction = 1;
+        } else if (chessPiece.getPieceType().equals(PieceType.QUEEN)) {
+            direction = random.nextInt(8);
+        } else if (chessPiece.getPieceType().equals(PieceType.BISHOP)) {
+            direction = random.nextInt(4);
+        } else if (chessPiece.getPieceType().equals(PieceType.KING)) {
+            direction = random.nextInt(8);
+        } else if (chessPiece.getPieceType().equals(PieceType.ROOK)) {
+            direction = random.nextInt(4);
+        } else {
+            direction = random.nextInt(8);
+        }
         return direction;
     }
 
     private int getNextDirection(ChessPiece chessPiece, int direction) {
-        Random random = new Random();
-        int pathLength = chessPiece.getAvailablePaths()[direction].length;
-        int directionLenght = chessPiece.getAvailablePaths().length;
+        Point[][] availablePaths = chessPiece.getAvailablePaths();
+        int pathLength = availablePaths[direction].length;
+        int directionLenght = availablePaths.length;
+        int[] randomIndexes = getRandomIndexes(directionLenght);
         if (pathLength == 0) {
-            direction = random.nextInt(directionLenght);
+            for (int i = 0; i < directionLenght; i++) {
+                if (availablePaths[randomIndexes[i]] != null) {
+                    direction = randomIndexes[i];
+                }
+            }
         }
         return direction;
     }
