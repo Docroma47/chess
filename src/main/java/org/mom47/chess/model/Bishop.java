@@ -6,7 +6,7 @@ public class Bishop extends ChessPiece {
     private static final String BLACK_BISHOP = "♗";
     @Override
     public Point[][] getAvailablePaths() {
-        Point[][] free = new Point[8][1];
+        Point[][] free = new Point[4][1];
         Point position = getPosition();
         free[0] = position.getUpRightPath(7);
         free[1] = position.getDownRightPath(7);

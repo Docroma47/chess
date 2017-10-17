@@ -22,49 +22,17 @@ public class FunController {
     private int getRandomDirection(ChessPiece chessPiece) {
         Random random = new Random();
         int direction;
-        if (chessPiece.getPieceType().equals(PieceType.PAWN) && chessPiece.getColor().equals(PieceColour.WHITE)) {
-            direction = 0;
-        } else if (chessPiece.getPieceType().equals(PieceType.PAWN) && chessPiece.getColor().equals(PieceColour.BLACK)) {
-            direction = 1;
-        } else if (chessPiece.getPieceType().equals(PieceType.QUEEN)) {
-            direction = random.nextInt(8);
-        } else if (chessPiece.getPieceType().equals(PieceType.BISHOP)) {
-            direction = random.nextInt(4);
-        } else if (chessPiece.getPieceType().equals(PieceType.KING)) {
-            direction = random.nextInt(8);
-        } else if (chessPiece.getPieceType().equals(PieceType.ROOK)) {
-            direction = random.nextInt(4);
-        } else {
-            direction = random.nextInt(8);
-        }
+        int directionLenght = chessPiece.getAvailablePaths().length;
+        direction = random.nextInt(directionLenght);
         return direction;
     }
 
     private int getNextDirection(ChessPiece chessPiece, int direction) {
         Random random = new Random();
-        Boolean bishop = chessPiece.getPieceType().equals(PieceType.BISHOP);
-        Boolean rook = chessPiece.getPieceType().equals(PieceType.ROOK);
-        Boolean queen = chessPiece.getPieceType().equals(PieceType.QUEEN);
-        Boolean king = chessPiece.getPieceType().equals(PieceType.KING);
-        Boolean knight = chessPiece.getPieceType().equals(PieceType.KNIGHT);
-        Boolean pawn = chessPiece.getPieceType().equals(PieceType.PAWN);
-        Boolean colorWhite = chessPiece.getColor().equals(PieceColour.WHITE);
-        Boolean colorBlack = chessPiece.getColor().equals(PieceColour.BLACK);
         int pathLength = chessPiece.getAvailablePaths()[direction].length;
-        if (pawn && direction == 0 && pathLength == 0 && colorWhite) {
-            direction = 0;
-        }
-
-        if (pawn && direction == 1 && pathLength == 0 && colorBlack) {
-            direction = 1;
-        }
-
-        if (rook || bishop && pathLength == 0) {
-            direction = random.nextInt(4);
-        }
-
-        if (queen || king || knight && pathLength == 0) {
-            direction = random.nextInt(8);
+        int directionLenght = chessPiece.getAvailablePaths().length;
+        if (pathLength == 0) {
+            direction = random.nextInt(directionLenght);
         }
         return direction;
     }
