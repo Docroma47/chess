@@ -83,7 +83,7 @@ public class FunController {
         }
 
         for(int i = 0; i < length; i++) {
-            int randomIndex = random.nextInt(31);
+            int randomIndex = random.nextInt(length);
             int temp = indexes[i];
             indexes[i] = indexes[randomIndex];
             indexes[randomIndex] = temp;
