@@ -22,6 +22,7 @@ public class ChessBashView {
 
         System.out.println(Ansi.ansi().cursor(30, 0).a("").reset().toString());
         AnsiConsole.systemUninstall();
+        printcursor();
     }
 
     private void printChessPieces() {
@@ -68,6 +69,18 @@ public class ChessBashView {
         print(x, y + 15, "1 ║   │   │   │   │   │   │   │   ║");
         print(x, y + 16, "  ╚═══╧═══╧═══╧═══╧═══╧═══╧═══╧═══╝");
         print(x, y + 17, "    A   B   C   D   E   F   G   H");
+    }
+
+    private void printcursor() {
+        int horizontalNumberOfSymbolsPerCell = 4;
+        int verticalNumberOfSymbolsPerCell = 2;
+        int boardInitialPointX = 5;
+        int bardInitialPointY = 0;
+        int boardHeight = 16;
+        Point cursor = chess.cursor;
+        int rank = bardInitialPointY + (boardHeight - (cursor.getRank() * verticalNumberOfSymbolsPerCell));
+        int file = boardInitialPointX + (cursor.getFile() * horizontalNumberOfSymbolsPerCell);
+        System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.YELLOW).a("▒"));
     }
 
     private static void print(int x, int y, String text) {
