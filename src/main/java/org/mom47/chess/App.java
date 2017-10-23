@@ -72,8 +72,8 @@ public class App {
             app.chessBashView.print();
             do {
                 action = (ChessController.Action) reader.readBinding(map);
-                app.chessBashView.print();
                 app.chessController.handleKey(action);
+                app.chessBashView.print();
             } while (action != ChessController.Action.Escape);
         }
     }
