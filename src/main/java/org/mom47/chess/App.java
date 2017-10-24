@@ -13,7 +13,6 @@ import org.mom47.chess.view.ChessBashView;
 
 import java.io.IOException;
 
-import static org.mom47.chess.controller.ChessController.Action.Enter;
 
 public class App {
     private Chess chess;
@@ -77,7 +76,7 @@ public class App {
                 action = (ChessController.Action) reader.readBinding(map);
                 app.chessController.handleKey(action);
                 app.chessBashView.print();
-                app.chessBashView.printFiguresMove(action);
+                System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
             } while (action != ChessController.Action.Escape);
         }
     }

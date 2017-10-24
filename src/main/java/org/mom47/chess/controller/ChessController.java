@@ -35,6 +35,12 @@ public class ChessController {
         } else if (action == Down && chess.cursor.getRank() > 0) {
             chess.cursor = chess.cursor.getDown();
         }
-    }
 
+        Point cursor = chess.cursor;
+        if (action == ChessController.Action.Enter && chess.getChessBoard().getPiece(cursor) != null) {
+            chess.selectedPiece = chess.getChessBoard().getPiece(cursor);
+        } else if (action == Enter && chess.getChessBoard().getPiece(cursor) == null) {
+            chess.selectedPiece = null;
+        }
+    }
 }
