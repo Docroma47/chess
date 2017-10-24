@@ -3,9 +3,11 @@ package org.mom47.chess.view;
 
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
-import org.mom47.chess.model.Chess;
-import org.mom47.chess.model.ChessPiece;
-import org.mom47.chess.model.Point;
+import org.mom47.chess.controller.ChessController;
+import org.mom47.chess.model.*;
+
+import static org.mom47.chess.controller.ChessController.Action.Enter;
+
 public class ChessBashView {
     private Chess chess;
 
@@ -19,6 +21,7 @@ public class ChessBashView {
 
         printChessBoard();
         printChessPieces();
+
 
         System.out.println(Ansi.ansi().cursor(30, 0).a("").reset().toString());
         AnsiConsole.systemUninstall();
@@ -69,6 +72,30 @@ public class ChessBashView {
         print(x, y + 15, "1 ║   │   │   │   │   │   │   │   ║");
         print(x, y + 16, "  ╚═══╧═══╧═══╧═══╧═══╧═══╧═══╧═══╝");
         print(x, y + 17, "    A   B   C   D   E   F   G   H");
+    }
+
+    public void printFiguresMove(ChessController.Action action) {
+        Point cursor = chess.cursor;
+        chess.selectedPiece = chess.getChessBoard().getPiece(cursor);
+        if (action == ChessController.Action.Enter && chess.getChessBoard().getPiece(cursor) != null) {
+            PieceColour colour = chess.getChessBoard().getPiece(cursor).getColor();
+            PieceType pieceType = chess.getChessBoard().getPiece(cursor).getPieceType();
+            String symbol = chess.getChessBoard().getPiece(cursor).getSymbol();
+            Point[][] availablePaths = chess.selectedPiece.getAvailablePaths();
+            for (int i = 0; i <= availablePaths.length - 1; i++) {
+                for (int j = 0; j <= availablePaths[i].length - 1; j++) {
+                    int rank1 = chess.selectedPiece.getAvailablePaths()[i][j].getRank();
+                    int file1 = chess.selectedPiece.getAvailablePaths()[i][j].getFile();
+                    int rank = 16 - (rank1 * 2);
+                    int file = 5 + (file1 * 4);
+                    System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.RED).a("▒"));
+                }
+            }
+            System.out.println(Ansi.ansi().cursor(21, 0).fg(Ansi.Color.WHITE).a(colour + " ").a(pieceType + " ").a(symbol + " "));
+        } else if (action == Enter && chess.getChessBoard().getPiece(cursor) == null) {
+            System.out.println(Ansi.ansi().cursor(21, 0).fg(Ansi.Color.WHITE).a("Empty cell"));
+        }
+        System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
     }
 
     private void printcursor() {

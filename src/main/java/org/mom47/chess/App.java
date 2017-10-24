@@ -77,26 +77,7 @@ public class App {
                 action = (ChessController.Action) reader.readBinding(map);
                 app.chessController.handleKey(action);
                 app.chessBashView.print();
-                Point cursor = app.chess.cursor;
-                if (action == ChessController.Action.Enter && app.chess.getChessBoard().getPiece(cursor) != null) {
-                    PieceColour colour = app.chess.getChessBoard().getPiece(cursor).getColor();
-                    PieceType pieceType = app.chess.getChessBoard().getPiece(cursor).getPieceType();
-                    String symbol = app.chess.getChessBoard().getPiece(cursor).getSymbol();
-                    app.chess.selectedPiece = app.chess.getChessBoard().getPiece(cursor);
-                    for (int i = 0; i <= app.chess.selectedPiece.getAvailablePaths().length - 1; i++) {
-                        for (int j = 0; j <= app.chess.selectedPiece.getAvailablePaths()[i].length - 1; j++) {
-                            int rank1 = app.chess.selectedPiece.getAvailablePaths()[i][j].getRank();
-                            int file1 = app.chess.selectedPiece.getAvailablePaths()[i][j].getFile();
-                            int rank = 16 - (rank1 * 2);
-                            int file = 5 + (file1 * 4);
-                            System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.RED).a("▒"));
-                        }
-                    }
-                    System.out.println(Ansi.ansi().cursor(21, 0).fg(Ansi.Color.WHITE).a(colour + " ").a(pieceType + " ").a(symbol + " "));
-                } else if (action == Enter && app.chess.getChessBoard().getPiece(cursor) == null) {
-                    System.out.println(Ansi.ansi().cursor(21, 0).fg(Ansi.Color.WHITE).a("Empty cell"));
-                }
-                System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
+                app.chessBashView.printFiguresMove(action);
             } while (action != ChessController.Action.Escape);
         }
     }
