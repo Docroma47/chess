@@ -24,7 +24,8 @@ public class ChessBashView {
         System.out.println(Ansi.ansi().cursor(30, 0).a("").reset().toString());
         AnsiConsole.systemUninstall();
         printSelectedChessPiece();
-        camelcase();
+        printСursor();
+
     }
 
     private void printChessPieces() {
@@ -83,11 +84,17 @@ public class ChessBashView {
                 Point[][] availablePaths = selectedPiece.getAvailablePaths();
                 for (int i = 0; i <= availablePaths.length - 1; i++) {
                     for (int j = 0; j <= availablePaths[i].length - 1; j++) {
-                        int rank1 = selectedPiece.getAvailablePaths()[i][j].getRank();
-                        int file1 = selectedPiece.getAvailablePaths()[i][j].getFile();
+                        int rank1 = availablePaths[i][j].getRank();
+                        int file1 = availablePaths[i][j].getFile();
                         int rank = 16 - (rank1 * 2);
                         int file = 5 + (file1 * 4);
-                        System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.RED).a("▒"));
+                        ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file1, rank1));
+                        if (chessPiece != null) {
+                            String symbolAvailablePaths = chessPiece.getSymbol();
+                            System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.RED).a(symbolAvailablePaths));
+                        } else {
+                            System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.BLUE).a("▒"));
+                        }
                         System.out.println(Ansi.ansi().cursor(21, 0).fg(Ansi.Color.WHITE).a(colour + " ").a(pieceType + " ").a(symbol + " "));
                     }
                 }
@@ -95,7 +102,7 @@ public class ChessBashView {
         }
     }
 
-    private void camelcase() {
+    private void printСursor() {
         int horizontalNumberOfSymbolsPerCell = 4;
         int verticalNumberOfSymbolsPerCell = 2;
         int boardInitialPointX = 5;
@@ -104,7 +111,13 @@ public class ChessBashView {
         Point cursor = chess.cursor;
         int rank = bardInitialPointY + (boardHeight - (cursor.getRank() * verticalNumberOfSymbolsPerCell));
         int file = boardInitialPointX + (cursor.getFile() * horizontalNumberOfSymbolsPerCell);
-        System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.YELLOW).a("▒"));
+        ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(cursor.getFile(), cursor.getRank()));
+        if (chessPiece != null) {
+            String symbolAvailablePaths = chessPiece.getSymbol();
+            System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.YELLOW).a(symbolAvailablePaths));
+        } else if (chessPiece == null) {
+            System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.YELLOW).a("▒"));
+        }
     }
 
     private static void print(int x, int y, String text) {
