@@ -93,8 +93,13 @@ public class ChessBashView {
                             String symbolAvailablePaths = chessPiece.getSymbol();
                             System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.RED).a(symbolAvailablePaths));
                         } else {
-                            System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.BLUE).a("▒"));
+                            System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.RED).a("▒"));
                         }
+                        int rankSelectPiece = selectedPiece.getPosition().getRank();
+                        int fileSelectPiece = selectedPiece.getPosition().getFile();
+                        rankSelectPiece = 16 - (rankSelectPiece * 2);
+                        fileSelectPiece = 5 + (fileSelectPiece * 4);
+                        System.out.println(Ansi.ansi().cursor(rankSelectPiece, fileSelectPiece).fg(Ansi.Color.YELLOW).a(selectedPiece.getSymbol()));
                         System.out.println(Ansi.ansi().cursor(21, 0).fg(Ansi.Color.WHITE).a(colour + " ").a(pieceType + " ").a(symbol + " "));
                     }
                 }
