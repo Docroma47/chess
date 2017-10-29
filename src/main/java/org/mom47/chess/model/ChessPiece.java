@@ -1,6 +1,8 @@
 package org.mom47.chess.model;
 
 
+import java.util.Arrays;
+
 public class ChessPiece {
     private PieceType pieceType;
     private PieceColour color;
@@ -53,8 +55,18 @@ public class ChessPiece {
         return isCaptured;
     }
 
-    public Point[][] getAvailablePaths() {
+    public Point[][] getAvailablePaths(ChessBoard chessBoard) {
         return null;
+    }
+
+    public Point[] getClearPath(ChessBoard chessBoard, Point[] path) {
+        for (int i = 0; i <= path.length - 1; i++) {
+            if (chessBoard.getPiece(path[i]) != null) {
+                path = Arrays.copyOf(path, i + 1);
+                break;
+            }
+        }
+        return path;
     }
 
     @Override

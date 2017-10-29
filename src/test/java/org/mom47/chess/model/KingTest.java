@@ -16,7 +16,7 @@ public class KingTest {
         Point position = king.getPosition();
         Assert.assertEquals(new Point(4, 4), position);
 
-        Point[][] availablePaths = king.getAvailablePaths();
+        Point[][] availablePaths = king.getAvailablePaths(chessBoard);
         Assert.assertEquals(8, availablePaths.length);
 
         // check that every paths is 1 squire long
@@ -59,7 +59,7 @@ public class KingTest {
         position = king.getPosition();
         Assert.assertEquals(new Point(5, 4), position);
 
-        availablePaths = king.getAvailablePaths();
+        availablePaths = king.getAvailablePaths(chessBoard);
         Assert.assertEquals(8, availablePaths.length);
 
         // check that every paths is 1 squire long
@@ -102,7 +102,7 @@ public class KingTest {
         position = king.getPosition();
         Assert.assertEquals(new Point(4, 0), position);
 
-        availablePaths = king.getAvailablePaths();
+        availablePaths = king.getAvailablePaths(chessBoard);
         Assert.assertEquals(8, availablePaths.length);
 
         // check that every paths is 1 squire long

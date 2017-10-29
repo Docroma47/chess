@@ -1,17 +1,19 @@
 package org.mom47.chess.model;
 
 
+import java.util.Arrays;
+
 public class Rook extends ChessPiece {
     private static final String WHITE_ROOK = "♜";
     private static final String BLACK_ROOK = "♖";
     @Override
-    public Point[][] getAvailablePaths() {
+    public Point[][] getAvailablePaths(ChessBoard chessBoard) {
         Point[][] free = new Point[4][8];
         Point position = getPosition();
-        free[0] = position.getUpPath(7);
-        free[1] = position.getRightPath(7);
-        free[2] = position.getDownPath(7);
-        free[3] = position.getLeftPath(7);
+        free[0] = getClearPath(chessBoard, position.getUpPath(7));
+        free[1] = getClearPath(chessBoard, position.getRightPath(7));
+        free[2] = getClearPath(chessBoard, position.getDownPath(7));
+        free[3] = getClearPath(chessBoard, position.getLeftPath(7));
         return free;
     }
 

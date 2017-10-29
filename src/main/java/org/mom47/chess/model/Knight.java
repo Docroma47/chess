@@ -5,7 +5,7 @@ public class Knight extends ChessPiece {
     private static final String WHITE_KNIGHT = "♞";
     private static final String BLACK_KNIGHT = "♘";
     @Override
-    public Point[][] getAvailablePaths() {
+    public Point[][] getAvailablePaths(ChessBoard chessBoard) {
         Point[][] free = new Point[8][1];
         Point position = getPosition();
         free[0] = position.getUpLeftHorsePath(1);

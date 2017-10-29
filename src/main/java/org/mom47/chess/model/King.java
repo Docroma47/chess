@@ -1,21 +1,23 @@
 package org.mom47.chess.model;
 
 
+import java.util.Arrays;
+
 public class King extends ChessPiece {
     private static final String WHITE_KING = "♚";
     private static final String BLACK_KING = "♔";
     @Override
-    public Point[][] getAvailablePaths() {
+    public Point[][] getAvailablePaths(ChessBoard chessBoard) {
         Point[][] free = new Point[8][1];
         Point position = getPosition();
-        free[0] = position.getUpPath(1);
-        free[1] = position.getUpRightPath(1);
-        free[2] = position.getRightPath(1);
-        free[3] = position.getDownRightPath(1);
-        free[4] = position.getDownPath(1);
-        free[5] = position.getDownLeftPath(1);
-        free[6] = position.getLeftPath(1);
-        free[7] = position.getUpLeftPath(1);
+        free[0] = getClearPath(chessBoard, position.getUpPath(1));
+        free[1] = getClearPath(chessBoard, position.getUpRightPath(1));
+        free[2] = getClearPath(chessBoard, position.getRightPath(1));
+        free[3] = getClearPath(chessBoard, position.getDownRightPath(1));
+        free[4] = getClearPath(chessBoard, position.getDownPath(1));
+        free[5] = getClearPath(chessBoard, position.getDownLeftPath(1));
+        free[6] = getClearPath(chessBoard, position.getLeftPath(1));
+        free[7] = getClearPath(chessBoard, position.getUpLeftPath(1));
         return free;
     }
 

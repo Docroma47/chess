@@ -81,7 +81,7 @@ public class ChessBashView {
                 PieceColour colour = selectedPiece.getColor();
                 PieceType pieceType = selectedPiece.getPieceType();
                 String symbol = selectedPiece.getSymbol();
-                Point[][] availablePaths = selectedPiece.getAvailablePaths();
+                Point[][] availablePaths = selectedPiece.getAvailablePaths(chess.getChessBoard());
                 for (int i = 0; i <= availablePaths.length - 1; i++) {
                     for (int j = 0; j <= availablePaths[i].length - 1; j++) {
                         int rank1 = availablePaths[i][j].getRank();
@@ -89,10 +89,10 @@ public class ChessBashView {
                         int rank = 16 - (rank1 * 2);
                         int file = 5 + (file1 * 4);
                         ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file1, rank1));
-                        if (chessPiece != null) {
+                        if (chessPiece != null && selectedPiece.getColor() != chessPiece.getColor()) {
                             String symbolAvailablePaths = chessPiece.getSymbol();
-                            System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.RED).a(symbolAvailablePaths));
-                        } else {
+                            System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.BLUE).a(symbolAvailablePaths));
+                        } else if(chessPiece == null) {
                             System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.BLUE).a("▒"));
                         }
                         int rankSelectPiece = selectedPiece.getPosition().getRank();

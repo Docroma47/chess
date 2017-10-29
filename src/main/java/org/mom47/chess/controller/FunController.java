@@ -41,7 +41,8 @@ public class FunController {
     }
 
     private int getNextDirection(ChessPiece chessPiece, int direction) {
-        Point[][] availablePaths = chessPiece.getAvailablePaths();
+        ChessBoard chessBoard = new ChessBoard();
+        Point[][] availablePaths = chessPiece.getAvailablePaths(chessBoard);
         int pathLength = availablePaths[direction].length;
         int directionLenght = availablePaths.length;
         int[] randomIndexes = getRandomIndexes(directionLenght);
@@ -312,13 +313,14 @@ public class FunController {
     }
 
     private Point getNewPosition(ChessPiece chessPiece, int direction) {
+        ChessBoard chessBoard = new ChessBoard();
         Point newPosition;
         Random random = new Random();
-        int pathLength = chessPiece.getAvailablePaths()[direction].length;
+        int pathLength = chessPiece.getAvailablePaths(chessBoard)[direction].length;
         if (pathLength == 0) {
             newPosition = chessPiece.getPosition();
         } else {
-            newPosition = chessPiece.getAvailablePaths()[direction][random.nextInt(pathLength)];
+            newPosition = chessPiece.getAvailablePaths(chessBoard)[direction][random.nextInt(pathLength)];
         }
         return newPosition;
     }
