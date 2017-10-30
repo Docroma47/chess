@@ -14,8 +14,7 @@ public class ChessController {
         Right,
         Down,
         Enter,
-        Escape,
-        Back
+        Escape
     }
 
     private Chess chess;
@@ -39,9 +38,21 @@ public class ChessController {
 
         Point cursor = chess.cursor;
         if (action == ChessController.Action.Enter && chess.getChessBoard().getPiece(cursor) != null) {
-            chess.selectedPiece = chess.getChessBoard().getPiece(cursor);
+            ChessPiece chessPiece = chess.selectedPiece;
+            if (chessPiece != null) {
+                chess.getChessBoard().move(chessPiece.getPosition(), cursor);
+                chess.selectedPiece = null;
+            } else {
+                chess.selectedPiece = chess.getChessBoard().getPiece(cursor);
+            }
         } else if (action == Enter && chess.getChessBoard().getPiece(cursor) == null) {
-            chess.selectedPiece = null;
+            ChessPiece chessPiece = chess.selectedPiece;
+            if (chessPiece != null) {
+                chess.getChessBoard().move(chessPiece.getPosition(), cursor);
+                chess.selectedPiece = null;
+            } else {
+                chess.selectedPiece = null;
+            }
         }
     }
 }
