@@ -39,6 +39,7 @@ public class App {
         map.bind(ChessController.Action.Down, "\033[B");
         map.bind(ChessController.Action.Enter, "\r");
         map.bind(ChessController.Action.Escape, "\033");
+        map.bind(ChessController.Action.Back, "z");
 
         App app = new App();
         if (args.length > 0) {
@@ -74,8 +75,21 @@ public class App {
             app.chessBashView.print();
             do {
                 action = (ChessController.Action) reader.readBinding(map);
-                app.chessController.handleKey(action);
-                app.chessBashView.print();
+                if (action != ChessController.Action.Back) {
+                    ChessPiece chessPiece = app.chess.selectedPiece;
+                    Point cursor = app.chess.cursor;
+                    if (chessPiece != null && action == ChessController.Action.Enter) {
+                        app.chess.getChessBoard().move(chessPiece.getPosition(), cursor);
+                        app.chess.selectedPiece = null;
+                        app.chessBashView.print();
+                    } else {
+                        app.chessController.handleKey(action);
+                        app.chessBashView.print();
+                    }
+                } else {
+                    app.chess.selectedPiece = null;
+                    app.chessBashView.print();
+                }
                 System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
             } while (action != ChessController.Action.Escape);
         }

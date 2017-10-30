@@ -14,7 +14,8 @@ public class ChessController {
         Right,
         Down,
         Enter,
-        Escape
+        Escape,
+        Back
     }
 
     private Chess chess;
