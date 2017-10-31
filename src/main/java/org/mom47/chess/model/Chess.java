@@ -6,6 +6,7 @@ public class Chess {
     private ChessPiece[] chessPieces;
     public ChessPiece selectedPiece;
     public Point cursor = new Point(0, 0);
+    public Point[] selectedPath;
 
     public Chess() {
         chessPieces = createChessPieces();
