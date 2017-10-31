@@ -54,8 +54,8 @@ public class ChessController {
             }
 
         } else {
+            int length1 = chess.selectedPath.length;
             if (action == Up) {
-                int length1 = chess.selectedPath.length;
                 for (int i = 0; i <= length1 - 1; i++) {
                     if (chess.selectedPath[i].equals(chess.cursor)) {
                         if (i + 1 <= length1 - 1) {
@@ -64,9 +64,15 @@ public class ChessController {
                         }
                     }
                 }
-
             } else if (action == Down) {
-                int x = 0;
+                for (int i = 0; i <= length1 - 1; i++) {
+                    if (chess.selectedPath[i].equals(chess.cursor)) {
+                        if (i + 1 <= length1 - 1) {
+                            chess.cursor = chess.selectedPath[i - 1];
+                            break;
+                        }
+                    }
+                }
             } else if (action == ChessController.Action.Enter) {
                 chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
                 chess.selectedPiece = null;
