@@ -28,8 +28,7 @@ public class ChessController {
     }
 
     public void handleKey(Action action) {
-        ChessPiece chessPiece = chess.selectedPiece;
-        if (chessPiece == null) {
+        if (chess.selectedPiece == null) {
             int rank = chess.cursor.getRank();
             int file = chess.cursor.getFile();
             if (action == Up && rank < 7) {
@@ -40,21 +39,21 @@ public class ChessController {
                 chess.cursor = chess.cursor.getRight();
             } else if (action == Down && rank > 0) {
                 chess.cursor = chess.cursor.getDown();
-            }
-        } else {
-            int rank = chess.cursor.getRank();
-            int file = chess.cursor.getFile();
-            int length = chessPiece.getAvailablePaths(chess.getChessBoard()).length;
-            ChessBoard chessBoard = chess.getChessBoard();
-            Point[][] availablePaths = chessPiece.getAvailablePaths(chessBoard);
-            for (int i = 0; i <= length - 1; i++) {
-                if (availablePaths[i] != null) {
-                    chess.selectedPath = availablePaths[i];
-                    chess.cursor = chess.selectedPath[0];
-                    break;
+            } else if (action == ChessController.Action.Enter) {
+                chess.selectedPiece = chess.getChessBoard().getPiece(chess.cursor);
+                int length = chess.selectedPiece.getAvailablePaths(chess.getChessBoard()).length;
+                ChessBoard chessBoard = chess.getChessBoard();
+                Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
+                for (int i = 0; i <= length - 1; i++) {
+                    if (availablePaths[i] != null) {
+                        chess.selectedPath = availablePaths[i];
+                        chess.cursor = chess.selectedPath[0];
+                        break;
+                    }
                 }
             }
 
+        } else {
             if (action == Up) {
                 int length1 = chess.selectedPath.length;
                 for (int i = 0; i <= length1 - 1; i++) {
@@ -66,23 +65,13 @@ public class ChessController {
                     }
                 }
 
-            } else if (action == Left && file > 0) {
-
-            } else if (action == Right && file < 7) {
-
-            } else if (action == Down && rank > 0) {
-
-            }
-        }
-
-        Point cursor = chess.cursor;
-        if (action == ChessController.Action.Enter ) {
-            if (chessPiece != null) {
-                chess.getChessBoard().move(chessPiece.getPosition(), cursor);
+            } else if (action == Down) {
+                int x = 0;
+            } else if (action == ChessController.Action.Enter) {
+                chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
                 chess.selectedPiece = null;
-            } else {
-                chess.selectedPiece = chess.getChessBoard().getPiece(cursor);
             }
         }
+
     }
 }
