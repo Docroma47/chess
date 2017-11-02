@@ -61,8 +61,11 @@ public class ChessPiece {
 
     public Point[] getClearPath(ChessBoard chessBoard, Point[] path) {
         for (int i = 0; i <= path.length - 1; i++) {
-            if (chessBoard.getPiece(path[i]) != null) {
+            if (chessBoard.getPiece(path[i]) != null && getColor() != chessBoard.getPiece(path[i]).getColor()) {
                 path = Arrays.copyOf(path, i + 1);
+                break;
+            } else if (chessBoard.getPiece(path[i]) != null && getColor() == chessBoard.getPiece(path[i]).getColor()) {
+                path = Arrays.copyOf(path, i);
                 break;
             }
         }
