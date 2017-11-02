@@ -68,7 +68,7 @@ public class ChessController {
             } else if (action == Left) {
                 if (chess.selectedPath - 1 >= 0) {
                     chess.selectedPath = chess.selectedPath - 1;
-                    if (availablePaths[chess.selectedPath] != null) {
+                    if (availablePaths[chess.selectedPath].length != 0) {
                         chess.cursor = availablePaths[chess.selectedPath][0];
                     }
                 }
@@ -77,8 +77,6 @@ public class ChessController {
                     chess.selectedPath = chess.selectedPath + 1;
                     if (availablePaths[chess.selectedPath].length != 0) {
                         chess.cursor = availablePaths[chess.selectedPath][0];
-                    } else {
-                        chess.selectedPath = chess.selectedPath - 1;
                     }
                 }
             } else if (action == Down) {

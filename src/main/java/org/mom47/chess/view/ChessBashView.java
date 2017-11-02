@@ -91,7 +91,7 @@ public class ChessBashView {
                         ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file1, rank1));
                         if (chessPiece != null && selectedPiece.getColor() != chessPiece.getColor()) {
                             String symbolAvailablePaths = chessPiece.getSymbol();
-                            System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.BLUE).a(symbolAvailablePaths));
+                            System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color. RED).a(symbolAvailablePaths));
                         } else if(chessPiece == null) {
                             System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.BLUE).a("▒"));
                         }
