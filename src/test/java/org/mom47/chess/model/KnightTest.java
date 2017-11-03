@@ -29,28 +29,28 @@ public class KnightTest {
         Assert.assertEquals(1, availablePaths[7].length);
 
         // check the path UP-Left
-        Assert.assertEquals(new Point(3, 6), availablePaths[0][0]);
+        Assert.assertEquals(new Point(5, 6), availablePaths[0][0]);
 
         // check the path UP-RIGHT
-        Assert.assertEquals(new Point(5, 6), availablePaths[1][0]);
+        Assert.assertEquals(new Point(6, 5), availablePaths[1][0]);
 
         // check the path RIGHT-Down
         Assert.assertEquals(new Point(6, 3), availablePaths[2][0]);
 
         // check the path RIGHT-UP
-        Assert.assertEquals(new Point(6, 5), availablePaths[3][0]);
+        Assert.assertEquals(new Point(5, 2), availablePaths[3][0]);
 
         // check the path DOWN-Left
         Assert.assertEquals(new Point(3, 2), availablePaths[4][0]);
 
         // check the path DOWN-Right
-        Assert.assertEquals(new Point(5, 2), availablePaths[5][0]);
+        Assert.assertEquals(new Point(2, 3), availablePaths[5][0]);
 
         // check the path LEFT-UP
-        Assert.assertEquals(new Point(2, 3), availablePaths[6][0]);
+        Assert.assertEquals(new Point(2, 5), availablePaths[6][0]);
 
         // check the path LEFT-Down
-        Assert.assertEquals(new Point(2, 5), availablePaths[7][0]);
+        Assert.assertEquals(new Point(3, 6), availablePaths[7][0]);
 
         // moving the king by one squire to he right ==================
 
@@ -72,28 +72,28 @@ public class KnightTest {
         Assert.assertEquals(1, availablePaths[7].length);
 
         // check the path UP-Left
-        Assert.assertEquals(new Point(4, 6), availablePaths[0][0]);
+        Assert.assertEquals(new Point(6, 6), availablePaths[0][0]);
 
         // check the path UP-RIGHT
-        Assert.assertEquals(new Point(6, 6), availablePaths[1][0]);
+        Assert.assertEquals(new Point(7, 5), availablePaths[1][0]);
 
         // check the path RIGHT-Down
         Assert.assertEquals(new Point(7, 3), availablePaths[2][0]);
 
         // check the path RIGHT-UP
-        Assert.assertEquals(new Point(7, 5), availablePaths[3][0]);
+        Assert.assertEquals(new Point(6, 2), availablePaths[3][0]);
 
         // check the path DOWN-Left
         Assert.assertEquals(new Point(4, 2), availablePaths[4][0]);
 
         // check the path DOWN-Right
-        Assert.assertEquals(new Point(6, 2), availablePaths[5][0]);
+        Assert.assertEquals(new Point(3, 3), availablePaths[5][0]);
 
         // check the path LEFT-UP
-        Assert.assertEquals(new Point(3, 3), availablePaths[6][0]);
+        Assert.assertEquals(new Point(3, 5), availablePaths[6][0]);
 
         // check the path LEFT-Down
-        Assert.assertEquals(new Point(3, 5), availablePaths[7][0]);
+        Assert.assertEquals(new Point(4, 6), availablePaths[7][0]);
 
         // moving the king to the bottom edge ==================
 
@@ -115,18 +115,18 @@ public class KnightTest {
         Assert.assertEquals(1, availablePaths[7].length);
 
         // check the path UP
-        Assert.assertEquals(new Point(3, 4), availablePaths[0][0]);
+        Assert.assertEquals(new Point(5, 4), availablePaths[0][0]);
 
         // check the path UP-RIGHT
-        Assert.assertEquals(new Point(5, 4), availablePaths[1][0]);
+        Assert.assertEquals(new Point(6, 3), availablePaths[1][0]);
 
         // check the path RIGHT
         Assert.assertEquals(new Point(6, 1), availablePaths[2][0]);
 
         // check the path LEFT
-        Assert.assertEquals(new Point(2, 1), availablePaths[6][0]);
+        Assert.assertEquals(new Point(2, 3), availablePaths[6][0]);
 
         // check the path UP-LEFT
-        Assert.assertEquals(new Point(2, 3), availablePaths[7][0]);
+        Assert.assertEquals(new Point(3, 4), availablePaths[7][0]);
     }
 }

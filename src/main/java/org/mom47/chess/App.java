@@ -39,6 +39,7 @@ public class App {
         map.bind(ChessController.Action.Down, "\033[B");
         map.bind(ChessController.Action.Enter, "\r");
         map.bind(ChessController.Action.Escape, "\033");
+        map.bind(ChessController.Action.Exit, "q");
 
         App app = new App();
         if (args.length > 0) {
@@ -77,7 +78,7 @@ public class App {
                 app.chessController.handleKey(action);
                 app.chessBashView.print();
                 System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
-            } while (action != ChessController.Action.Escape);
+            } while (action != ChessController.Action.Exit);
         }
     }
 }

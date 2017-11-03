@@ -16,7 +16,8 @@ public class ChessController {
         Right,
         Down,
         Enter,
-        Escape
+        Escape,
+        Exit
     }
 
     private Chess chess;
@@ -70,7 +71,7 @@ public class ChessController {
                     if (chess.selectedPath == 0) {
                         chess.selectedPath = availablePaths.length - 1;
                         if (availablePaths[chess.selectedPath].length == 0) {
-                            for (int i = chess.selectedPath; i <= availablePaths.length - 1; i--) {
+                            for (int i = chess.selectedPath; i >= 0; i--) {
                                 if (availablePaths[i].length != 0) {
                                     chess.selectedPath = i;
                                     chess.cursor = availablePaths[i][0];
@@ -83,12 +84,13 @@ public class ChessController {
                     } else {
                         chess.selectedPath = chess.selectedPath - 1;
                         if (availablePaths[chess.selectedPath].length == 0) {
-                            for (int i = chess.selectedPath; i <= availablePaths.length - 1; i--) {
+                            for (int i = chess.selectedPath; i >= 0; i--) {
                                 if (availablePaths[i].length != 0) {
                                     chess.selectedPath = i;
                                     chess.cursor = availablePaths[i][0];
                                     break;
                                 } else if (chess.selectedPath == 0) {
+                                    chess.selectedPath =availablePaths.length;
                                     i = availablePaths.length;
                                 }
                             }
@@ -120,6 +122,9 @@ public class ChessController {
                                     chess.selectedPath = i;
                                     chess.cursor = availablePaths[i][0];
                                     break;
+                                } else if (chess.selectedPath == availablePaths.length - 1) {
+                                    chess.selectedPath = - 1;
+                                    i = - 1;
                                 }
                             }
                         } else {
@@ -137,10 +142,20 @@ public class ChessController {
                     }
                 }
             } else if (action == ChessController.Action.Enter) {
-                chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
+                if (chessBoard.getPiece(chess.cursor) != null) {
+                    if (chess.selectedPiece.getColor() != chessBoard.getPiece(chess.cursor).getColor()) {
+                        chessBoard.getPiece(chess.cursor).setIsCaptured(false);
+                        chessBoard.remove(chess.cursor);
+                        chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
+                        chess.selectedPiece = null;
+                    }
+                } else {
+                    chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
+                    chess.selectedPiece = null;
+                }
+            } else if (action == Action.Escape) {
                 chess.selectedPiece = null;
             }
         }
-
     }
 }
