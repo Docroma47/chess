@@ -82,12 +82,14 @@ public class ChessController {
                         }
                     } else {
                         chess.selectedPath = chess.selectedPath - 1;
-                        if (availablePaths[chess.selectedPath].length != 0) {
+                        if (availablePaths[chess.selectedPath].length == 0) {
                             for (int i = chess.selectedPath; i <= availablePaths.length - 1; i--) {
                                 if (availablePaths[i].length != 0) {
                                     chess.selectedPath = i;
                                     chess.cursor = availablePaths[i][0];
                                     break;
+                                } else if (chess.selectedPath == 0) {
+                                    i = availablePaths.length;
                                 }
                             }
                         } else {
