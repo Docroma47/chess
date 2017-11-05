@@ -58,86 +58,94 @@ public class ChessController {
             ChessBoard chessBoard = chess.getChessBoard();
             Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
             if (action == Up) {
-                for (int i = 0; i <= availablePaths[chess.selectedPath].length - 1; i++) {
-                    if (availablePaths[chess.selectedPath][i].equals(chess.cursor)) {
-                        if (i + 1 <= availablePaths[chess.selectedPath].length - 1) {
-                            chess.cursor = availablePaths[chess.selectedPath][i + 1];
-                            break;
+                if (availablePaths.length > chess.selectedPath) {
+                    for (int i = 0; i <= availablePaths[chess.selectedPath].length - 1; i++) {
+                        if (availablePaths[chess.selectedPath][i].equals(chess.cursor)) {
+                            if (i + 1 <= availablePaths[chess.selectedPath].length - 1) {
+                                chess.cursor = availablePaths[chess.selectedPath][i + 1];
+                                break;
+                            }
                         }
                     }
                 }
             } else if (action == Left) {
                 if (chess.selectedPath >= 0) {
-                    if (chess.selectedPath == 0) {
-                        chess.selectedPath = availablePaths.length - 1;
-                        if (availablePaths[chess.selectedPath].length == 0) {
-                            for (int i = chess.selectedPath; i >= 0; i--) {
-                                if (availablePaths[i].length != 0) {
-                                    chess.selectedPath = i;
-                                    chess.cursor = availablePaths[i][0];
-                                    break;
+                    if (availablePaths.length > chess.selectedPath) {
+                        if (chess.selectedPath == 0) {
+                            chess.selectedPath = availablePaths.length - 1;
+                            if (availablePaths[chess.selectedPath].length == 0) {
+                                for (int i = chess.selectedPath; i >= 0; i--) {
+                                    if (availablePaths[i].length != 0) {
+                                        chess.selectedPath = i;
+                                        chess.cursor = availablePaths[i][0];
+                                        break;
+                                    }
                                 }
+                            } else {
+                                chess.cursor = availablePaths[chess.selectedPath][0];
                             }
                         } else {
-                            chess.cursor = availablePaths[chess.selectedPath][0];
-                        }
-                    } else {
-                        chess.selectedPath = chess.selectedPath - 1;
-                        if (availablePaths[chess.selectedPath].length == 0) {
-                            for (int i = chess.selectedPath; i >= 0; i--) {
-                                if (availablePaths[i].length != 0) {
-                                    chess.selectedPath = i;
-                                    chess.cursor = availablePaths[i][0];
-                                    break;
-                                } else if (i == 0) {
-                                    chess.selectedPath =availablePaths.length;
-                                    i = availablePaths.length;
+                            chess.selectedPath = chess.selectedPath - 1;
+                            if (availablePaths[chess.selectedPath].length == 0) {
+                                for (int i = chess.selectedPath; i >= 0; i--) {
+                                    if (availablePaths[i].length != 0) {
+                                        chess.selectedPath = i;
+                                        chess.cursor = availablePaths[i][0];
+                                        break;
+                                    } else if (i == 0) {
+                                        chess.selectedPath = availablePaths.length;
+                                        i = availablePaths.length;
+                                    }
                                 }
+                            } else {
+                                chess.cursor = availablePaths[chess.selectedPath][0];
                             }
-                        } else {
-                            chess.cursor = availablePaths[chess.selectedPath][0];
                         }
                     }
                 }
             } else if (action == Right) {
                 if (chess.selectedPath <= availablePaths.length - 1) {
-                    if (chess.selectedPath == availablePaths.length - 1) {
-                        chess.selectedPath = 0;
-                        if (availablePaths[chess.selectedPath].length == 0) {
-                            for (int i = chess.selectedPath; i <= availablePaths.length - 1; i++) {
-                                if (availablePaths[i].length != 0) {
-                                    chess.selectedPath = i;
-                                    chess.cursor = availablePaths[i][0];
-                                    break;
+                    if (availablePaths.length > chess.selectedPath) {
+                        if (chess.selectedPath == availablePaths.length - 1) {
+                            chess.selectedPath = 0;
+                            if (availablePaths[chess.selectedPath].length == 0) {
+                                for (int i = chess.selectedPath; i <= availablePaths.length - 1; i++) {
+                                    if (availablePaths[i].length != 0) {
+                                        chess.selectedPath = i;
+                                        chess.cursor = availablePaths[i][0];
+                                        break;
+                                    }
                                 }
+                            } else {
+                                chess.cursor = availablePaths[chess.selectedPath][0];
                             }
                         } else {
-                            chess.cursor = availablePaths[chess.selectedPath][0];
-                        }
-                    } else {
-                        chess.selectedPath = chess.selectedPath + 1;
-                        if (availablePaths[chess.selectedPath].length == 0) {
-                            for (int i = chess.selectedPath; i <= availablePaths.length - 1; i++) {
-                                if (availablePaths[i].length != 0) {
-                                    chess.selectedPath = i;
-                                    chess.cursor = availablePaths[i][0];
-                                    break;
-                                } else if (i == availablePaths.length - 1) {
-                                    chess.selectedPath = - 1;
-                                    i = - 1;
+                            chess.selectedPath = chess.selectedPath + 1;
+                            if (availablePaths[chess.selectedPath].length == 0) {
+                                for (int i = chess.selectedPath; i <= availablePaths.length - 1; i++) {
+                                    if (availablePaths[i].length != 0) {
+                                        chess.selectedPath = i;
+                                        chess.cursor = availablePaths[i][0];
+                                        break;
+                                    } else if (i == availablePaths.length - 1) {
+                                        chess.selectedPath = -1;
+                                        i = -1;
+                                    }
                                 }
+                            } else {
+                                chess.cursor = availablePaths[chess.selectedPath][0];
                             }
-                        } else {
-                            chess.cursor = availablePaths[chess.selectedPath][0];
                         }
                     }
                 }
             } else if (action == Down) {
-                for (int i = 0; i <= availablePaths[chess.selectedPath].length - 1; i++) {
-                    if (availablePaths[chess.selectedPath][i].equals(chess.cursor)) {
-                        if (i - 1 >= 0) {
-                            chess.cursor = availablePaths[chess.selectedPath][i - 1];
-                            break;
+                if (availablePaths.length > chess.selectedPath) {
+                    for (int i = 0; i <= availablePaths[chess.selectedPath].length - 1; i++) {
+                        if (availablePaths[chess.selectedPath][i].equals(chess.cursor)) {
+                            if (i - 1 >= 0) {
+                                chess.cursor = availablePaths[chess.selectedPath][i - 1];
+                                break;
+                            }
                         }
                     }
                 }
