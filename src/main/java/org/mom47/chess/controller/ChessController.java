@@ -17,7 +17,8 @@ public class ChessController {
         Down,
         Enter,
         Escape,
-        Exit
+        Exit,
+        Coup
     }
 
     private Chess chess;
@@ -32,6 +33,18 @@ public class ChessController {
         if (chess.selectedPiece == null) {
             int rank = chess.cursor.getRank();
             int file = chess.cursor.getFile();
+            if (chess.side != PieceColour.WHITE) {
+                if (action == Up) {
+                    action = Down;
+                } else if (action == Left) {
+                    action = Right;
+                } else if (action == Right) {
+                    action = Left;
+                } else if (action == Down) {
+                    action = Up;
+                }
+            }
+
             if (action == Up && rank < 7) {
                 chess.cursor = chess.cursor.getUp();
             } else if (action == Left && file > 0) {
@@ -40,20 +53,30 @@ public class ChessController {
                 chess.cursor = chess.cursor.getRight();
             } else if (action == Down && rank > 0) {
                 chess.cursor = chess.cursor.getDown();
-            } else if (action == ChessController.Action.Enter) {
+            }
+            if (action == ChessController.Action.Enter) {
                 chess.selectedPiece = chess.getChessBoard().getPiece(chess.cursor);
-                int length = chess.selectedPiece.getAvailablePaths(chess.getChessBoard()).length;
-                ChessBoard chessBoard = chess.getChessBoard();
-                Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
-                for (int i = 0; i <= length - 1; i++) {
-                    if (availablePaths[i].length != 0) {
-                        chess.selectedPath = i;
-                        chess.cursor = availablePaths[i][0];
-                        break;
+                if (chess.selectedPiece != null) {
+                    int length = chess.selectedPiece.getAvailablePaths(chess.getChessBoard()).length;
+                    ChessBoard chessBoard = chess.getChessBoard();
+                    Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
+                    for (int i = 0; i <= length - 1; i++) {
+                        if (availablePaths[i].length != 0) {
+                            chess.selectedPath = i;
+                            chess.cursor = availablePaths[i][0];
+                            break;
+                        }
                     }
                 }
             }
-
+            if (action == Action.Coup) {
+                if (chess.side == PieceColour.WHITE) {
+                    chess.side = PieceColour.BLACK;
+                } else {
+                    chess.side = PieceColour.WHITE;
+                }
+                
+            }
         } else {
             ChessBoard chessBoard = chess.getChessBoard();
             Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
@@ -75,13 +98,14 @@ public class ChessController {
                         for (int j = 0; j <= availablePaths.length - 1; j++) {
                             int x = 0;
                             if (availablePaths[j].length != 0) {
-                                x++;
-                            } else if (j == availablePaths.length - 1 && x == 0) {
-                                y = 15;
+                                x = x + 1;
+                            }
+                            if (x > 0) {
+                                y = 1;
                                 break;
                             }
                         }
-                        if (y != 15) {
+                        if (y == 1) {
                             if (chess.selectedPath == 0) {
                                 chess.selectedPath = availablePaths.length - 1;
                                 if (availablePaths[chess.selectedPath].length == 0) {
@@ -123,13 +147,14 @@ public class ChessController {
                         for (int j = 0; j <= availablePaths.length - 1; j++) {
                             int x = 0;
                             if (availablePaths[j].length != 0) {
-                                x++;
-                            } else if (j == availablePaths.length - 1 && x == 0) {
-                                y = 15;
+                                x = x + 1;
+                            }
+                            if (x > 0) {
+                                y = 1;
                                 break;
                             }
                         }
-                        if (y != 15) {
+                        if (y == 1) {
                             if (chess.selectedPath == availablePaths.length - 1) {
                                 chess.selectedPath = 0;
                                 if (availablePaths[chess.selectedPath].length == 0) {

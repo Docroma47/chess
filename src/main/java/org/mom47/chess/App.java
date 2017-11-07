@@ -40,6 +40,7 @@ public class App {
         map.bind(ChessController.Action.Enter, "\r");
         map.bind(ChessController.Action.Escape, "\033");
         map.bind(ChessController.Action.Exit, "q");
+        map.bind(ChessController.Action.Coup, "u");
 
         App app = new App();
         if (args.length > 0) {

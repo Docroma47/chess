@@ -7,6 +7,7 @@ public class Chess {
     public ChessPiece selectedPiece;
     public Point cursor = new Point(0, 0);
     public int selectedPath;
+    public PieceColour side = PieceColour.WHITE;
 
     public Chess() {
         chessPieces = createChessPieces();
