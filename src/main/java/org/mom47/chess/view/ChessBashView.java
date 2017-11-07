@@ -48,7 +48,7 @@ public class ChessBashView {
             if (chess.side != PieceColour.WHITE) {
                 print(38 - x, 19 - y, chessPiece.getSymbol());
             } else {
-                print(x, y, chessPiece.getSymbol());
+                print(x, 1 + y, chessPiece.getSymbol());
             }
         }
     }
@@ -58,43 +58,44 @@ public class ChessBashView {
         int y = 1;
         if (chess.side != PieceColour.WHITE) {
             print(x, y,          "    H   G   F   E   D   C   B   A");
-            print(x, y + 1,      "  ╔═══╤═══╤═══╤═══╤═══╤═══╤═══╤═══╗");
-            print(x, y + 2,      "1 ║   │   │   │   │   │   │   │   ║");
-            print(x, y + 3,      "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
-            print(x, y + 4,      "2 ║   │   │   │   │   │   │   │   ║");
-            print(x, y + 5,      "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
-            print(x, y + 6,      "3 ║   │   │   │   │   │   │   │   ║");
-            print(x, y + 7,      "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
-            print(x, y + 8,      "4 ║   │   │   │   │   │   │   │   ║");
-            print(x, y + 9,      "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
-            print(x, y + 10,     "5 ║   │   │   │   │   │   │   │   ║");
-            print(x, y + 11,     "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
-            print(x, y + 12,     "6 ║   │   │   │   │   │   │   │   ║");
-            print(x, y + 13,     "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
-            print(x, y + 14,     "7 ║   │   │   │   │   │   │   │   ║");
-            print(x, y + 15,     "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
-            print(x, y + 16,     "8 ║   │   │   │   │   │   │   │   ║");
-            print(x, y + 17,     "  ╚═══╧═══╧═══╧═══╧═══╧═══╧═══╧═══╝");
+            print(x, y + 1,      "  ╔═══╤═══╤═══╤═══╤═══╤═══╤═══╤═══╗  ");
+            print(x, y + 2,      "  ║   │   │   │   │   │   │   │   ║ 1");
+            print(x, y + 3,      "  ╟───┼───┼───┼───┼───┼───┼───┼───╢  ");
+            print(x, y + 4,      "  ║   │   │   │   │   │   │   │   ║ 2");
+            print(x, y + 5,      "  ╟───┼───┼───┼───┼───┼───┼───┼───╢  ");
+            print(x, y + 6,      "  ║   │   │   │   │   │   │   │   ║ 3");
+            print(x, y + 7,      "  ╟───┼───┼───┼───┼───┼───┼───┼───╢  ");
+            print(x, y + 8,      "  ║   │   │   │   │   │   │   │   ║ 4");
+            print(x, y + 9,      "  ╟───┼───┼───┼───┼───┼───┼───┼───╢  ");
+            print(x, y + 10,     "  ║   │   │   │   │   │   │   │   ║ 5");
+            print(x, y + 11,     "  ╟───┼───┼───┼───┼───┼───┼───┼───╢  ");
+            print(x, y + 12,     "  ║   │   │   │   │   │   │   │   ║ 6");
+            print(x, y + 13,     "  ╟───┼───┼───┼───┼───┼───┼───┼───╢  ");
+            print(x, y + 14,     "  ║   │   │   │   │   │   │   │   ║ 7");
+            print(x, y + 15,     "  ╟───┼───┼───┼───┼───┼───┼───┼───╢  ");
+            print(x, y + 16,     "  ║   │   │   │   │   │   │   │   ║ 8");
+            print(x, y + 17,     "  ╚═══╧═══╧═══╧═══╧═══╧═══╧═══╧═══╝  ");
 
         } else {
-            print(x, y,          "  ╔═══╤═══╤═══╤═══╤═══╤═══╤═══╤═══╗");
-            print(x, y + 1,      "8 ║   │   │   │   │   │   │   │   ║");
-            print(x, y + 2,      "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
-            print(x, y + 3,      "7 ║   │   │   │   │   │   │   │   ║");
-            print(x, y + 4,      "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
-            print(x, y + 5,      "6 ║   │   │   │   │   │   │   │   ║");
-            print(x, y + 6,      "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
-            print(x, y + 7,      "5 ║   │   │   │   │   │   │   │   ║");
-            print(x, y + 8,      "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
-            print(x, y + 9,      "4 ║   │   │   │   │   │   │   │   ║");
-            print(x, y + 10,     "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
-            print(x, y + 11,     "3 ║   │   │   │   │   │   │   │   ║");
-            print(x, y + 12,     "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
-            print(x, y + 13,     "2 ║   │   │   │   │   │   │   │   ║");
-            print(x, y + 14,     "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
-            print(x, y + 15,     "1 ║   │   │   │   │   │   │   │   ║");
-            print(x, y + 16,     "  ╚═══╧═══╧═══╧═══╧═══╧═══╧═══╧═══╝");
-            print(x, y + 17,     "    A   B   C   D   E   F   G   H");
+            print(x, y,          "                                 ");
+            print(x, y + 1,      "  ╔═══╤═══╤═══╤═══╤═══╤═══╤═══╤═══╗");
+            print(x, y + 2,      "8 ║   │   │   │   │   │   │   │   ║");
+            print(x, y + 3,      "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
+            print(x, y + 4,      "7 ║   │   │   │   │   │   │   │   ║");
+            print(x, y + 5,      "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
+            print(x, y + 6,      "6 ║   │   │   │   │   │   │   │   ║");
+            print(x, y + 7,      "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
+            print(x, y + 8,      "5 ║   │   │   │   │   │   │   │   ║");
+            print(x, y + 9,      "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
+            print(x, y + 10,     "4 ║   │   │   │   │   │   │   │   ║");
+            print(x, y + 11,     "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
+            print(x, y + 12,     "3 ║   │   │   │   │   │   │   │   ║");
+            print(x, y + 13,     "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
+            print(x, y + 14,     "2 ║   │   │   │   │   │   │   │   ║");
+            print(x, y + 15,     "  ╟───┼───┼───┼───┼───┼───┼───┼───╢");
+            print(x, y + 16,     "1 ║   │   │   │   │   │   │   │   ║");
+            print(x, y + 17,     "  ╚═══╧═══╧═══╧═══╧═══╧═══╧═══╧═══╝");
+            print(x, y + 18,     "    A   B   C   D   E   F   G   H");
 
         }
     }
@@ -130,15 +131,15 @@ public class ChessBashView {
                             ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(file1, rank1));
                             if (chessPiece != null && selectedPiece.getColor() != chessPiece.getColor()) {
                                 String symbolAvailablePaths = chessPiece.getSymbol();
-                                System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color. RED).a(symbolAvailablePaths));
+                                System.out.println(Ansi.ansi().cursor(1 + rank, file).fg(Ansi.Color. RED).a(symbolAvailablePaths));
                             } else if(chessPiece == null) {
-                                System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.BLUE).a("▒"));
+                                System.out.println(Ansi.ansi().cursor(1 + rank, file).fg(Ansi.Color.BLUE).a("▒"));
                             }
                             int rankSelectPiece = selectedPiece.getPosition().getRank();
                             int fileSelectPiece = selectedPiece.getPosition().getFile();
                             rankSelectPiece = 16 - (rankSelectPiece * 2);
                             fileSelectPiece = 5 + (fileSelectPiece * 4);
-                            System.out.println(Ansi.ansi().cursor(rankSelectPiece, fileSelectPiece).fg(Ansi.Color.YELLOW).a(selectedPiece.getSymbol()));
+                            System.out.println(Ansi.ansi().cursor(1 + rankSelectPiece, fileSelectPiece).fg(Ansi.Color.YELLOW).a(selectedPiece.getSymbol()));
                             System.out.println(Ansi.ansi().cursor(21, 0).fg(Ansi.Color.WHITE).a(colour + " ").a(pieceType + " ").a(symbol + " "));
                         }
                         System.out.println(Ansi.ansi().cursor(21, 0).fg(Ansi.Color.WHITE).a(colour + " ").a(pieceType + " ").a(symbol + " "));
@@ -169,9 +170,9 @@ public class ChessBashView {
             ChessPiece chessPiece = chess.getChessBoard().getPiece(new Point(cursor.getFile(), cursor.getRank()));
             if (chessPiece != null) {
                 String symbolAvailablePaths = chessPiece.getSymbol();
-                System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.YELLOW).a(symbolAvailablePaths));
+                System.out.println(Ansi.ansi().cursor(1 + rank, file).fg(Ansi.Color.YELLOW).a(symbolAvailablePaths));
             } else if (chessPiece == null) {
-                System.out.println(Ansi.ansi().cursor(rank, file).fg(Ansi.Color.YELLOW).a("▒"));
+                System.out.println(Ansi.ansi().cursor(1 + rank, file).fg(Ansi.Color.YELLOW).a("▒"));
             }
         }
     }
