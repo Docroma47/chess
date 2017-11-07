@@ -153,9 +153,7 @@ public class ChessBashView {
     private void print(int x, int y, String text, Ansi.Color colour) {
         if (chess.side != PieceColour.WHITE) {
             System.out.println(Ansi.ansi().cursor(19 - y, 38 - x).fg(colour).a(text));
-            System.out.println(Ansi.ansi().cursor(19 - y, 38 - x).fg(colour).a(text));
         } else {
-            System.out.println(Ansi.ansi().cursor(1 + y, x).fg(colour).a(text));
             System.out.println(Ansi.ansi().cursor(1 + y, x).fg(colour).a(text));
         }
     }
