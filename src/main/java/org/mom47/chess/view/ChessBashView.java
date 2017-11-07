@@ -130,14 +130,14 @@ public class ChessBashView {
                         } else if (chessPiece == null) {
                             print(file, rank, "▒", Ansi.Color.BLUE);
                         }
-                        int rankSelectPiece = selectedPiece.getPosition().getRank();
-                        int fileSelectPiece = selectedPiece.getPosition().getFile();
-                        rankSelectPiece = 16 - (rankSelectPiece * 2);
-                        fileSelectPiece = 5 + (fileSelectPiece * 4);
-                        print(fileSelectPiece, rankSelectPiece, selectedPiece.getSymbol(), Ansi.Color.YELLOW);
-                        System.out.println(Ansi.ansi().cursor(21, 0).fg(Ansi.Color.WHITE).a(colour + " ").a(pieceType + " ").a(symbol + " "));
                     }
                 }
+                int rankSelectPiece = selectedPiece.getPosition().getRank();
+                int fileSelectPiece = selectedPiece.getPosition().getFile();
+                rankSelectPiece = 16 - (rankSelectPiece * 2);
+                fileSelectPiece = 5 + (fileSelectPiece * 4);
+                print(fileSelectPiece, rankSelectPiece, selectedPiece.getSymbol(), Ansi.Color.YELLOW);
+                System.out.println(Ansi.ansi().cursor(21, 0).fg(Ansi.Color.WHITE).a(colour + " ").a(pieceType + " ").a(symbol + " "));
             }
         }
     }
