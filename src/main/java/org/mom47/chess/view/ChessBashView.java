@@ -10,8 +10,8 @@ public class ChessBashView {
     private Chess chess;
 
     public ChessBashView(Chess chess) {
-        this.chess = chess;
         AnsiConsole.systemUninstall();
+        this.chess = chess;
     }
 
     public void print() {
@@ -121,7 +121,8 @@ public class ChessBashView {
                 rankSelectPiece = 16 - (rankSelectPiece * 2);
                 fileSelectPiece = 5 + (fileSelectPiece * 4);
                 print(fileSelectPiece, rankSelectPiece, selectedPiece.getSymbol(), Ansi.Color.YELLOW);
-                System.out.println(Ansi.ansi().cursor(21, 0).fg(Ansi.Color.WHITE).a(colour + " ").a(pieceType + " ").a(symbol + " "));
+                System.out.println(Ansi.ansi().cursor(21, 0).fg(Ansi.Color.WHITE).a(colour + " ")
+                        .a(pieceType + " ").a(symbol + " "));
             }
         }
     }

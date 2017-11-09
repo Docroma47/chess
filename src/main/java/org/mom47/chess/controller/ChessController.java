@@ -31,29 +31,8 @@ public class ChessController {
 
     public void handleKey(Action action) {
         if (chess.selectedPiece == null) {
-            int rank = chess.cursor.getRank();
-            int file = chess.cursor.getFile();
-            if (chess.side != PieceColour.WHITE) {
-                if (action == Up) {
-                    action = Down;
-                } else if (action == Left) {
-                    action = Right;
-                } else if (action == Right) {
-                    action = Left;
-                } else if (action == Down) {
-                    action = Up;
-                }
-            }
-
-            if (action == Up && rank < 7) {
-                handleKeyUp();
-            } else if (action == Left && file > 0) {
-                handleKeyLeft();
-            } else if (action == Right && file < 7) {
-                handleKeyRight();
-            } else if (action == Down && rank > 0) {
-                handleKeyDown();
-            }
+            action = translateAction(action);
+            handleArrowKeys(action);
 
             if (action == ChessController.Action.Enter) {
                 handleKeyEnter();
@@ -84,7 +63,38 @@ public class ChessController {
             }
         }
     }
-     private void handleKeyEnter() {
+
+    private void handleArrowKeys(Action action) {
+        int rank = chess.cursor.getRank();
+        int file = chess.cursor.getFile();
+
+        if (action == Up && rank < 7) {
+            handleKeyUp();
+        } else if (action == Left && file > 0) {
+            handleKeyLeft();
+        } else if (action == Right && file < 7) {
+            handleKeyRight();
+        } else if (action == Down && rank > 0) {
+            handleKeyDown();
+        }
+    }
+
+    private Action translateAction(Action action) {
+        if (chess.side != PieceColour.WHITE) {
+            if (action == Up) {
+                action = Down;
+            } else if (action == Left) {
+                action = Right;
+            } else if (action == Right) {
+                action = Left;
+            } else if (action == Down) {
+                action = Up;
+            }
+        }
+        return action;
+    }
+
+    private void handleKeyEnter() {
          ChessBoard chessBoard = chess.getChessBoard();
          if (chess.selectedPiece == null) {
              chess.selectedPiece = chess.getChessBoard().getPiece(chess.cursor);
