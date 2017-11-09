@@ -68,8 +68,6 @@ public class ChessController {
                 
             }
         } else {
-            ChessBoard chessBoard = chess.getChessBoard();
-            Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
             if (action == Up) {
                 handleKeyUp();
             } else if (action == Left) {
