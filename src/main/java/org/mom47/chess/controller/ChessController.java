@@ -32,49 +32,39 @@ public class ChessController {
     public void handleKey(Action action) {
         action = translateAction(action);
         handleArrowKeys(action);
+        handleKeyEnter(action);
+        handleKeyCoup(action);
+        handleKeyEscape(action);
+
     }
 
     private void handleArrowKeys(Action action) {
         int rank = chess.cursor.getRank();
         int file = chess.cursor.getFile();
 
-        if (chess.selectedPiece == null) {
-            if (action == Up && rank < 7) {
-                handleKeyUp();
-            } else if (action == Left && file > 0) {
-                handleKeyLeft();
-            } else if (action == Right && file < 7) {
-                handleKeyRight();
-            } else if (action == Down && rank > 0) {
-                handleKeyDown();
-            }
+        if (action == Up && rank < 7) {
+            handleKeyUp();
+        } else if (action == Left && file > 0) {
+            handleKeyLeft();
+        } else if (action == Right && file < 7) {
+            handleKeyRight();
+        } else if (action == Down && rank > 0) {
+            handleKeyDown();
+        }
+    }
 
-            if (action == ChessController.Action.Enter) {
-                handleKeyEnter();
-            }
+    private void handleKeyEscape(Action action) {
+        if (action == Action.Escape && chess.selectedPiece != null) {
+            chess.cursor = chess.selectedPiece.getPosition();
+            chess.selectedPiece = null;
+        }
+    }
 
-            if (action == Action.Coup) {
-                if (chess.side == PieceColour.WHITE) {
-                    chess.side = PieceColour.BLACK;
-                } else {
-                    chess.side = PieceColour.WHITE;
-                }
-            }
+    private void handleKeyCoup(Action action) {
+        if (action == Action.Coup && chess.side == PieceColour.WHITE && chess.selectedPiece == null) {
+            chess.side = PieceColour.BLACK;
         } else {
-            if (action == Up) {
-                handleKeyUp();
-            } else if (action == Left) {
-                handleKeyLeft();
-            } else if (action == Right) {
-                handleKeyRight();
-            } else if (action == Down) {
-                handleKeyDown();
-            } else if (action == ChessController.Action.Enter) {
-                handleKeyEnter();
-            } else if (action == Action.Escape) {
-                chess.cursor = chess.selectedPiece.getPosition();
-                chess.selectedPiece = null;
-            }
+            chess.side = PieceColour.WHITE;
         }
     }
 
@@ -93,35 +83,37 @@ public class ChessController {
         return action;
     }
 
-    private void handleKeyEnter() {
-         ChessBoard chessBoard = chess.getChessBoard();
-         if (chess.selectedPiece == null) {
-             chess.selectedPiece = chess.getChessBoard().getPiece(chess.cursor);
-             if (chess.selectedPiece != null) {
-                 Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
-                 int length = chess.selectedPiece.getAvailablePaths(chess.getChessBoard()).length;
-                 for (int i = 0; i <= length - 1; i++) {
-                     if (availablePaths[i].length != 0) {
-                         chess.selectedPath = i;
-                         chess.cursor = availablePaths[i][0];
-                         break;
-                     }
-                 }
-             }
-         } else {
-             if (chessBoard.getPiece(chess.cursor) != null) {
-                 if (chess.selectedPiece.getColor() != chessBoard.getPiece(chess.cursor).getColor()) {
-                     chessBoard.getPiece(chess.cursor).setIsCaptured(false);
-                     chessBoard.remove(chess.cursor);
-                     chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
-                     chess.selectedPiece = null;
-                 }
-             } else {
-                 chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
-                 chess.selectedPiece = null;
-             }
-         }
-     }
+    private void handleKeyEnter(Action action) {
+        if (action == ChessController.Action.Enter) {
+            ChessBoard chessBoard = chess.getChessBoard();
+            if (chess.selectedPiece == null) {
+                chess.selectedPiece = chess.getChessBoard().getPiece(chess.cursor);
+                if (chess.selectedPiece != null) {
+                    Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
+                    int length = chess.selectedPiece.getAvailablePaths(chess.getChessBoard()).length;
+                    for (int i = 0; i <= length - 1; i++) {
+                        if (availablePaths[i].length != 0) {
+                            chess.selectedPath = i;
+                            chess.cursor = availablePaths[i][0];
+                            break;
+                        }
+                    }
+                }
+            } else {
+                if (chessBoard.getPiece(chess.cursor) != null) {
+                    if (chess.selectedPiece.getColor() != chessBoard.getPiece(chess.cursor).getColor()) {
+                        chessBoard.getPiece(chess.cursor).setIsCaptured(false);
+                        chessBoard.remove(chess.cursor);
+                        chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
+                        chess.selectedPiece = null;
+                    }
+                } else {
+                    chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
+                    chess.selectedPiece = null;
+                }
+            }
+        }
+    }
 
     private void handleKeyUp() {
         if (chess.selectedPiece == null) {
