@@ -30,9 +30,24 @@ public class ChessController {
     }
 
     public void handleKey(Action action) {
+        action = translateAction(action);
+        handleArrowKeys(action);
+    }
+
+    private void handleArrowKeys(Action action) {
+        int rank = chess.cursor.getRank();
+        int file = chess.cursor.getFile();
+
         if (chess.selectedPiece == null) {
-            action = translateAction(action);
-            handleArrowKeys(action);
+            if (action == Up && rank < 7) {
+                handleKeyUp();
+            } else if (action == Left && file > 0) {
+                handleKeyLeft();
+            } else if (action == Right && file < 7) {
+                handleKeyRight();
+            } else if (action == Down && rank > 0) {
+                handleKeyDown();
+            }
 
             if (action == ChessController.Action.Enter) {
                 handleKeyEnter();
@@ -44,7 +59,6 @@ public class ChessController {
                 } else {
                     chess.side = PieceColour.WHITE;
                 }
-                
             }
         } else {
             if (action == Up) {
@@ -61,21 +75,6 @@ public class ChessController {
                 chess.cursor = chess.selectedPiece.getPosition();
                 chess.selectedPiece = null;
             }
-        }
-    }
-
-    private void handleArrowKeys(Action action) {
-        int rank = chess.cursor.getRank();
-        int file = chess.cursor.getFile();
-
-        if (action == Up && rank < 7) {
-            handleKeyUp();
-        } else if (action == Left && file > 0) {
-            handleKeyLeft();
-        } else if (action == Right && file < 7) {
-            handleKeyRight();
-        } else if (action == Down && rank > 0) {
-            handleKeyDown();
         }
     }
 
