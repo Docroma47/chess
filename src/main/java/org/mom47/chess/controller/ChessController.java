@@ -46,29 +46,19 @@ public class ChessController {
             }
 
             if (action == Up && rank < 7) {
-                chess.cursor = chess.cursor.getUp();
+                handleKeyUp();
             } else if (action == Left && file > 0) {
-                chess.cursor = chess.cursor.getLeft();
+                handleKeyLeft();
             } else if (action == Right && file < 7) {
-                chess.cursor = chess.cursor.getRight();
+                handleKeyRight();
             } else if (action == Down && rank > 0) {
-                chess.cursor = chess.cursor.getDown();
+                handleKeyDown();
             }
+
             if (action == ChessController.Action.Enter) {
-                chess.selectedPiece = chess.getChessBoard().getPiece(chess.cursor);
-                if (chess.selectedPiece != null) {
-                    int length = chess.selectedPiece.getAvailablePaths(chess.getChessBoard()).length;
-                    ChessBoard chessBoard = chess.getChessBoard();
-                    Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
-                    for (int i = 0; i <= length - 1; i++) {
-                        if (availablePaths[i].length != 0) {
-                            chess.selectedPath = i;
-                            chess.cursor = availablePaths[i][0];
-                            break;
-                        }
-                    }
-                }
+                handleKeyEnter();
             }
+
             if (action == Action.Coup) {
                 if (chess.side == PieceColour.WHITE) {
                     chess.side = PieceColour.BLACK;
@@ -81,139 +71,182 @@ public class ChessController {
             ChessBoard chessBoard = chess.getChessBoard();
             Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
             if (action == Up) {
-                if (availablePaths.length > chess.selectedPath) {
-                    for (int i = 0; i <= availablePaths[chess.selectedPath].length - 1; i++) {
-                        if (availablePaths[chess.selectedPath][i].equals(chess.cursor)) {
-                            if (i + 1 <= availablePaths[chess.selectedPath].length - 1) {
-                                chess.cursor = availablePaths[chess.selectedPath][i + 1];
-                                break;
-                            }
-                        }
-                    }
-                }
+                handleKeyUp();
             } else if (action == Left) {
-                if (chess.selectedPath >= 0) {
-                    if (availablePaths.length > chess.selectedPath) {
-                        int y = 0;
-                        for (int j = 0; j <= availablePaths.length - 1; j++) {
-                            int x = 0;
-                            if (availablePaths[j].length != 0) {
-                                x = x + 1;
-                            }
-                            if (x > 0) {
-                                y = 1;
-                                break;
-                            }
-                        }
-                        if (y == 1) {
-                            if (chess.selectedPath == 0) {
-                                chess.selectedPath = availablePaths.length - 1;
-                                if (availablePaths[chess.selectedPath].length == 0) {
-                                    for (int i = chess.selectedPath; i >= 0; i--) {
-                                        if (availablePaths[i].length != 0) {
-                                            chess.selectedPath = i;
-                                            chess.cursor = availablePaths[i][0];
-                                            break;
-                                        }
-                                    }
-                                } else {
-                                    chess.cursor = availablePaths[chess.selectedPath][0];
-                                }
-                            } else {
-                                chess.selectedPath = chess.selectedPath - 1;
-                                if (availablePaths[chess.selectedPath].length == 0) {
-                                    for (int i = chess.selectedPath; i >= 0; i--) {
-                                        if (availablePaths[i].length != 0) {
-                                            chess.selectedPath = i;
-                                            chess.cursor = availablePaths[i][0];
-                                            break;
-                                        } else if (i == 0) {
-                                            chess.selectedPath = availablePaths.length;
-                                            i = availablePaths.length;
-                                        }
-                                    }
-                                } else {
-                                    chess.cursor = availablePaths[chess.selectedPath][0];
-                                }
-
-                            }
-                        }
-                    }
-                }
+                handleKeyLeft();
             } else if (action == Right) {
-                if (chess.selectedPath <= availablePaths.length - 1) {
-                    if (availablePaths.length > chess.selectedPath) {
-                        int y = 0;
-                        for (int j = 0; j <= availablePaths.length - 1; j++) {
-                            int x = 0;
-                            if (availablePaths[j].length != 0) {
-                                x = x + 1;
-                            }
-                            if (x > 0) {
-                                y = 1;
-                                break;
-                            }
-                        }
-                        if (y == 1) {
-                            if (chess.selectedPath == availablePaths.length - 1) {
-                                chess.selectedPath = 0;
-                                if (availablePaths[chess.selectedPath].length == 0) {
-                                    for (int i = chess.selectedPath; i <= availablePaths.length - 1; i++) {
-                                        if (availablePaths[i].length != 0) {
-                                            chess.selectedPath = i;
-                                            chess.cursor = availablePaths[i][0];
-                                            break;
-                                        }
-                                    }
-                                } else {
-                                    chess.cursor = availablePaths[chess.selectedPath][0];
-                                }
-                            } else {
-                                chess.selectedPath = chess.selectedPath + 1;
-                                if (availablePaths[chess.selectedPath].length == 0) {
-                                    for (int i = chess.selectedPath; i <= availablePaths.length - 1; i++) {
-                                        if (availablePaths[i].length != 0) {
-                                            chess.selectedPath = i;
-                                            chess.cursor = availablePaths[i][0];
-                                            break;
-                                        } else if (i == availablePaths.length - 1) {
-                                            chess.selectedPath = -1;
-                                            i = -1;
-                                        }
-                                    }
-                                } else {
-                                    chess.cursor = availablePaths[chess.selectedPath][0];
-                                }
-                            }
-                        }
-                    }
-                }
+                handleKeyRight();
             } else if (action == Down) {
-                if (availablePaths.length > chess.selectedPath) {
-                    for (int i = 0; i <= availablePaths[chess.selectedPath].length - 1; i++) {
-                        if (availablePaths[chess.selectedPath][i].equals(chess.cursor)) {
-                            if (i - 1 >= 0) {
-                                chess.cursor = availablePaths[chess.selectedPath][i - 1];
-                                break;
-                            }
-                        }
-                    }
-                }
+                handleKeyDown();
             } else if (action == ChessController.Action.Enter) {
-                if (chessBoard.getPiece(chess.cursor) != null) {
-                    if (chess.selectedPiece.getColor() != chessBoard.getPiece(chess.cursor).getColor()) {
-                        chessBoard.getPiece(chess.cursor).setIsCaptured(false);
-                        chessBoard.remove(chess.cursor);
-                        chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
-                        chess.selectedPiece = null;
-                    }
-                } else {
-                    chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
-                    chess.selectedPiece = null;
-                }
+                handleKeyEnter();
             } else if (action == Action.Escape) {
                 chess.cursor = chess.selectedPiece.getPosition();
                 chess.selectedPiece = null;
+            }
+        }
+    }
+     private void handleKeyEnter() {
+         ChessBoard chessBoard = chess.getChessBoard();
+         if (chess.selectedPiece == null) {
+             chess.selectedPiece = chess.getChessBoard().getPiece(chess.cursor);
+             if (chess.selectedPiece != null) {
+                 Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
+                 int length = chess.selectedPiece.getAvailablePaths(chess.getChessBoard()).length;
+                 for (int i = 0; i <= length - 1; i++) {
+                     if (availablePaths[i].length != 0) {
+                         chess.selectedPath = i;
+                         chess.cursor = availablePaths[i][0];
+                         break;
+                     }
+                 }
+             }
+         } else {
+             if (chessBoard.getPiece(chess.cursor) != null) {
+                 if (chess.selectedPiece.getColor() != chessBoard.getPiece(chess.cursor).getColor()) {
+                     chessBoard.getPiece(chess.cursor).setIsCaptured(false);
+                     chessBoard.remove(chess.cursor);
+                     chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
+                     chess.selectedPiece = null;
+                 }
+             } else {
+                 chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
+                 chess.selectedPiece = null;
+             }
+         }
+     }
+
+    private void handleKeyUp() {
+        if (chess.selectedPiece == null) {
+            chess.cursor = chess.cursor.getUp();
+        } else {
+            ChessBoard chessBoard = chess.getChessBoard();
+            Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
+            if (availablePaths.length > chess.selectedPath) {
+                for (int i = 0; i <= availablePaths[chess.selectedPath].length - 1; i++) {
+                    if (availablePaths[chess.selectedPath][i].equals(chess.cursor)) {
+                        if (i + 1 <= availablePaths[chess.selectedPath].length - 1) {
+                            chess.cursor = availablePaths[chess.selectedPath][i + 1];
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void handleKeyLeft() {
+        if (chess.selectedPiece == null) {
+            chess.cursor = chess.cursor.getLeft();
+        } else {
+            ChessBoard chessBoard = chess.getChessBoard();
+            Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
+            int y = 0;
+            for (int j = 0; j <= availablePaths.length - 1; j++) {
+                if (availablePaths[j].length != 0) {
+                    y = y + 1;
+                    break;
+                }
+            }
+            if (y == 1) {
+                if (chess.selectedPath == 0) {
+                    chess.selectedPath = availablePaths.length - 1;
+                    if (availablePaths[chess.selectedPath].length == 0) {
+                        for (int i = chess.selectedPath; i >= 0; i--) {
+                            if (availablePaths[i].length != 0) {
+                                chess.selectedPath = i;
+                                chess.cursor = availablePaths[i][0];
+                                break;
+                            }
+                        }
+                    } else {
+                        chess.cursor = availablePaths[chess.selectedPath][0];
+                    }
+                } else {
+                    chess.selectedPath = chess.selectedPath - 1;
+                    if (availablePaths[chess.selectedPath].length == 0) {
+                        for (int i = chess.selectedPath; i >= 0; i--) {
+                            if (availablePaths[i].length != 0) {
+                                chess.selectedPath = i;
+                                chess.cursor = availablePaths[i][0];
+                                break;
+                            } else if (i == 0) {
+                                chess.selectedPath = availablePaths.length;
+                                i = availablePaths.length;
+                            }
+                        }
+                    } else {
+                        chess.cursor = availablePaths[chess.selectedPath][0];
+                    }
+
+                }
+            }
+        }
+    }
+
+    private void handleKeyRight() {
+        if (chess.selectedPiece == null) {
+            chess.cursor = chess.cursor.getRight();
+        } else {
+            ChessBoard chessBoard = chess.getChessBoard();
+            Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
+            int y = 0;
+            for (int j = 0; j <= availablePaths.length - 1; j++) {
+                if (availablePaths[j].length != 0) {
+                    y = y + 1;
+                    break;
+                }
+            }
+            if (y == 1) {
+                if (chess.selectedPath == availablePaths.length - 1) {
+                    chess.selectedPath = 0;
+                    if (availablePaths[chess.selectedPath].length == 0) {
+                        for (int i = chess.selectedPath; i <= availablePaths.length - 1; i++) {
+                            if (availablePaths[i].length != 0) {
+                                chess.selectedPath = i;
+                                chess.cursor = availablePaths[i][0];
+                                break;
+                            }
+                        }
+                    } else {
+                        chess.cursor = availablePaths[chess.selectedPath][0];
+                    }
+                } else {
+                    chess.selectedPath = chess.selectedPath + 1;
+                    if (availablePaths[chess.selectedPath].length == 0) {
+                        for (int i = chess.selectedPath; i <= availablePaths.length - 1; i++) {
+                            if (availablePaths[i].length != 0) {
+                                chess.selectedPath = i;
+                                chess.cursor = availablePaths[i][0];
+                                break;
+                            } else if (i == availablePaths.length - 1) {
+                                chess.selectedPath = -1;
+                                i = -1;
+                            }
+                        }
+                    } else {
+                        chess.cursor = availablePaths[chess.selectedPath][0];
+                    }
+                }
+            }
+        }
+    }
+
+    private void handleKeyDown() {
+        if (chess.selectedPiece == null) {
+            chess.cursor = chess.cursor.getDown();
+        } else {
+            ChessBoard chessBoard = chess.getChessBoard();
+            Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
+            if (availablePaths.length > chess.selectedPath) {
+                for (int i = 0; i <= availablePaths[chess.selectedPath].length - 1; i++) {
+                    if (availablePaths[chess.selectedPath][i].equals(chess.cursor)) {
+                        if (i - 1 >= 0) {
+                            chess.cursor = availablePaths[chess.selectedPath][i - 1];
+                            break;
+                        }
+                    }
+                }
             }
         }
     }
