@@ -34,26 +34,23 @@ public class ChessController {
         handleArrowKeys(action);
         handleKeyEnter(action);
         handleKeyCoup(action);
-        handleKeyEscape(action);
+        handleEscapeKey(action);
 
     }
 
     private void handleArrowKeys(Action action) {
-        int rank = chess.cursor.getRank();
-        int file = chess.cursor.getFile();
-
-        if (action == Up && rank < 7) {
+        if (action == Up) {
             handleKeyUp();
-        } else if (action == Left && file > 0) {
+        } else if (action == Left) {
             handleKeyLeft();
-        } else if (action == Right && file < 7) {
+        } else if (action == Right) {
             handleKeyRight();
-        } else if (action == Down && rank > 0) {
+        } else if (action == Down) {
             handleKeyDown();
         }
     }
 
-    private void handleKeyEscape(Action action) {
+    private void handleEscapeKey(Action action) {
         if (action == Action.Escape && chess.selectedPiece != null) {
             chess.cursor = chess.selectedPiece.getPosition();
             chess.selectedPiece = null;
@@ -117,7 +114,10 @@ public class ChessController {
 
     private void handleKeyUp() {
         if (chess.selectedPiece == null) {
-            chess.cursor = chess.cursor.getUp();
+            int rank = chess.cursor.getRank();
+            if (rank < 7) {
+                chess.cursor = chess.cursor.getUp();
+            }
         } else {
             ChessBoard chessBoard = chess.getChessBoard();
             Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
@@ -136,104 +136,66 @@ public class ChessController {
 
     private void handleKeyLeft() {
         if (chess.selectedPiece == null) {
-            chess.cursor = chess.cursor.getLeft();
+            int file = chess.cursor.getFile();
+            if (file > 0) {
+            chess.cursor = chess.cursor.getLeft();}
+
         } else {
             ChessBoard chessBoard = chess.getChessBoard();
             Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
-            int y = 0;
-            for (int j = 0; j <= availablePaths.length - 1; j++) {
-                if (availablePaths[j].length != 0) {
-                    y = y + 1;
-                    break;
-                }
+            if (checkForDeadEnd()) {
+                chess.selectedPath = getPreviousPathIndex(availablePaths);
+                chess.cursor = availablePaths[chess.selectedPath][0];
             }
-            if (y == 1) {
-                if (chess.selectedPath == 0) {
-                    chess.selectedPath = availablePaths.length - 1;
-                    if (availablePaths[chess.selectedPath].length == 0) {
-                        for (int i = chess.selectedPath; i >= 0; i--) {
-                            if (availablePaths[i].length != 0) {
-                                chess.selectedPath = i;
-                                chess.cursor = availablePaths[i][0];
-                                break;
-                            }
-                        }
-                    } else {
-                        chess.cursor = availablePaths[chess.selectedPath][0];
-                    }
-                } else {
-                    chess.selectedPath = chess.selectedPath - 1;
-                    if (availablePaths[chess.selectedPath].length == 0) {
-                        for (int i = chess.selectedPath; i >= 0; i--) {
-                            if (availablePaths[i].length != 0) {
-                                chess.selectedPath = i;
-                                chess.cursor = availablePaths[i][0];
-                                break;
-                            } else if (i == 0) {
-                                chess.selectedPath = availablePaths.length;
-                                i = availablePaths.length;
-                            }
-                        }
-                    } else {
-                        chess.cursor = availablePaths[chess.selectedPath][0];
-                    }
+        }
+    }
 
-                }
+    private int getNextPathIndex(Point[][] availablePaths) {
+        int nextIndex = chess.selectedPath;
+        while (true) {
+            nextIndex++;
+            if (nextIndex >= availablePaths.length) {
+                nextIndex = -1;
+            } else if (availablePaths[nextIndex].length > 0) {
+                return nextIndex;
+            }
+        }
+    }
+
+    private int getPreviousPathIndex(Point[][] availablePaths) {
+        int nextIndex = chess.selectedPath;
+        while (true) {
+            nextIndex--;
+            if (nextIndex <= -1) {
+                nextIndex = availablePaths.length;
+            } else if (availablePaths[nextIndex].length > 0) {
+                return nextIndex;
             }
         }
     }
 
     private void handleKeyRight() {
         if (chess.selectedPiece == null) {
-            chess.cursor = chess.cursor.getRight();
+            int file = chess.cursor.getFile();
+            if (file < 7) {
+                chess.cursor = chess.cursor.getRight();
+            }
         } else {
             ChessBoard chessBoard = chess.getChessBoard();
             Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
-            int y = 0;
-            for (int j = 0; j <= availablePaths.length - 1; j++) {
-                if (availablePaths[j].length != 0) {
-                    y = y + 1;
-                    break;
-                }
-            }
-            if (y == 1) {
-                if (chess.selectedPath == availablePaths.length - 1) {
-                    chess.selectedPath = 0;
-                    if (availablePaths[chess.selectedPath].length == 0) {
-                        for (int i = chess.selectedPath; i <= availablePaths.length - 1; i++) {
-                            if (availablePaths[i].length != 0) {
-                                chess.selectedPath = i;
-                                chess.cursor = availablePaths[i][0];
-                                break;
-                            }
-                        }
-                    } else {
-                        chess.cursor = availablePaths[chess.selectedPath][0];
-                    }
-                } else {
-                    chess.selectedPath = chess.selectedPath + 1;
-                    if (availablePaths[chess.selectedPath].length == 0) {
-                        for (int i = chess.selectedPath; i <= availablePaths.length - 1; i++) {
-                            if (availablePaths[i].length != 0) {
-                                chess.selectedPath = i;
-                                chess.cursor = availablePaths[i][0];
-                                break;
-                            } else if (i == availablePaths.length - 1) {
-                                chess.selectedPath = -1;
-                                i = -1;
-                            }
-                        }
-                    } else {
-                        chess.cursor = availablePaths[chess.selectedPath][0];
-                    }
-                }
+            if (checkForDeadEnd()) {
+                chess.selectedPath = getNextPathIndex(availablePaths);
+                chess.cursor = availablePaths[chess.selectedPath][0];
             }
         }
     }
 
     private void handleKeyDown() {
         if (chess.selectedPiece == null) {
-            chess.cursor = chess.cursor.getDown();
+            int rank = chess.cursor.getRank();
+            if (rank > 0) {
+                chess.cursor = chess.cursor.getDown();
+            }
         } else {
             ChessBoard chessBoard = chess.getChessBoard();
             Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
@@ -248,5 +210,19 @@ public class ChessController {
                 }
             }
         }
+    }
+
+    private boolean checkForDeadEnd() {
+        Boolean aBoolean = false;
+        ChessBoard chessBoard = chess.getChessBoard();
+        Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
+
+        for (int j = 0; j <= availablePaths.length - 1; j++) {
+            if (availablePaths[j].length != 0) {
+                aBoolean = true;
+            }
+        }
+
+        return aBoolean;
     }
 }
