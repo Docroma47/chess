@@ -1,14 +1,14 @@
 package org.mom47.chess.controller;
 
-import org.fusesource.jansi.Ansi;
 import org.mom47.chess.model.*;
 import org.mom47.chess.view.ChessBashView;
 
-import java.util.Random;
 
 import static org.mom47.chess.controller.ChessController.Action.*;
 
 public class ChessController {
+    private Chess chess;
+    private ChessBashView chessBashView;
 
     public enum Action {
         Up,
@@ -21,9 +21,6 @@ public class ChessController {
         Coup
     }
 
-    private Chess chess;
-    private ChessBashView chessBashView;
-
     public ChessController(Chess chess, ChessBashView chessBashView) {
         this.chess = chess;
         this.chessBashView = chessBashView;
@@ -35,7 +32,6 @@ public class ChessController {
         handleKeyEnter(action);
         handleKeyCoup(action);
         handleEscapeKey(action);
-
     }
 
     private void handleArrowKeys(Action action) {
@@ -60,13 +56,13 @@ public class ChessController {
     private void handleKeyCoup(Action action) {
         if (action == Action.Coup && chess.side == PieceColour.WHITE && chess.selectedPiece == null) {
             chess.side = PieceColour.BLACK;
-        } else {
+        } else if (action == Action.Coup && chess.side == PieceColour.BLACK && chess.selectedPiece == null) {
             chess.side = PieceColour.WHITE;
         }
     }
 
     private Action translateAction(Action action) {
-        if (chess.side != PieceColour.WHITE) {
+        if (chess.side != PieceColour.WHITE && chess.selectedPiece == null) {
             if (action == Up) {
                 action = Down;
             } else if (action == Left) {
@@ -85,7 +81,7 @@ public class ChessController {
             ChessBoard chessBoard = chess.getChessBoard();
             if (chess.selectedPiece == null) {
                 chess.selectedPiece = chess.getChessBoard().getPiece(chess.cursor);
-                if (chess.selectedPiece != null) {
+                if (chess.selectedPiece != null && chess.selectedPiece.getColor() == chess.side) {
                     Point[][] availablePaths = chess.selectedPiece.getAvailablePaths(chessBoard);
                     int length = chess.selectedPiece.getAvailablePaths(chess.getChessBoard()).length;
                     for (int i = 0; i <= length - 1; i++) {
@@ -95,6 +91,8 @@ public class ChessController {
                             break;
                         }
                     }
+                } else {
+                    chess.selectedPiece = null;
                 }
             } else {
                 if (chessBoard.getPiece(chess.cursor) != null) {
@@ -103,10 +101,14 @@ public class ChessController {
                         chessBoard.remove(chess.cursor);
                         chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
                         chess.selectedPiece = null;
+                        changeSidePieceColour();
+                        chessBashView.print();
                     }
                 } else {
                     chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
                     chess.selectedPiece = null;
+                    changeSidePieceColour();
+                    chessBashView.print();
                 }
             }
         }
@@ -224,5 +226,29 @@ public class ChessController {
         }
 
         return aBoolean;
+    }
+
+    private void changeSidePieceColour() {
+        if (chess.side == PieceColour.WHITE) {
+            chess.side = PieceColour.BLACK;
+        } else if (chess.side == PieceColour.BLACK) {
+            chess.side = PieceColour.WHITE;
+        }
+    }
+
+    public Action gameEnd(Action action) {
+        ChessPiece whiteKing = chess.getChessPieces()[16];
+        ChessPiece blackKing = chess.getChessPieces()[24];
+        if (whiteKing.getIsCaptured()) {
+            chessBashView.printPlayerWin();
+            action = Exit;
+            return action;
+        } else if (blackKing.getIsCaptured()) {
+            chessBashView.printPlayerWin();
+            action = Exit;
+            return action;
+        }
+
+        return action;
     }
 }

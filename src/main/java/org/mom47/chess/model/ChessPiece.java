@@ -86,28 +86,28 @@ public class ChessPiece {
     public String toString() {
         switch(getPosition().getFile()) {
             case 0:
-                state = " - A" + getPosition().getRank();
+                state = " - A" + (getPosition().getRank() + 1);
                 break;
             case 1:
-                state = " - B" + getPosition().getRank();
+                state = " - B" + (getPosition().getRank() + 1);
                 break;
             case 2:
-                state = " - C" + getPosition().getRank();
+                state = " - C" + (getPosition().getRank() + 1);
                 break;
             case 3:
-                state = " - D" + getPosition().getRank();
+                state = " - D" + (getPosition().getRank() + 1);
                 break;
             case 4:
-                state = " - E" + getPosition().getRank();
+                state = " - E" + (getPosition().getRank() + 1);
                 break;
             case 5:
-                state = " - F" + getPosition().getRank();
+                state = " - F" + (getPosition().getRank() + 1);
                 break;
             case 6:
-                state = " - G" + getPosition().getRank();
+                state = " - G" + (getPosition().getRank() + 1);
                 break;
             case 7:
-                state = " - H" + getPosition().getRank();
+                state = " - H" + (getPosition().getRank() + 1);
                 break;
         }
 

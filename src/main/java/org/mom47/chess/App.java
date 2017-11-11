@@ -78,6 +78,7 @@ public class App {
                 action = (ChessController.Action) reader.readBinding(map);
                 app.chessController.handleKey(action);
                 app.chessBashView.print();
+                action = app.chessController.gameEnd(action);
                 System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
             } while (action != ChessController.Action.Exit);
         }

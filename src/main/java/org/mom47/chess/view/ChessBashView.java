@@ -24,7 +24,6 @@ public class ChessBashView {
         printSelectedChessPiece();
         printSelectedChessPieceAvailablePaths();
         printСursor();
-
     }
 
     private void printChessPieces() {
@@ -166,6 +165,7 @@ public class ChessBashView {
             print(file, rank, "▒",Ansi.Color.YELLOW);
         }
     }
+
     private void print(int x, int y, String text, Ansi.Color colour) {
         if (chess.side != PieceColour.WHITE) {
             System.out.println(Ansi.ansi().cursor(19 - y, 38 - x).fg(colour).a(text));
@@ -178,5 +178,15 @@ public class ChessBashView {
         Ansi ansi = Ansi.ansi();
         ansi.cursor(y, x).fg(Ansi.Color.WHITE).a(text);
         System.out.println(ansi);
+    }
+
+    public void printPlayerWin() {
+        ChessPiece whiteKing = chess.getChessPieces()[16];
+        ChessPiece blackKing = chess.getChessPieces()[24];
+        if (whiteKing.getIsCaptured()) {
+            System.out.println(Ansi.ansi().cursor(12, 12).fg(Ansi.Color.RED).a("Black player won"));
+        } else if (blackKing.getIsCaptured()) {
+            System.out.println(Ansi.ansi().cursor(12, 12).fg(Ansi.Color.RED).a("White player won"));
+        }
     }
 }
