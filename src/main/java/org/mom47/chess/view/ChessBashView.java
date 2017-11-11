@@ -183,9 +183,9 @@ public class ChessBashView {
     public void printPlayerWin() {
         ChessPiece whiteKing = chess.getChessPieces()[16];
         ChessPiece blackKing = chess.getChessPieces()[24];
-        if (whiteKing.getIsCaptured()) {
+        if (blackKing.getIsCaptured()) {
             System.out.println(Ansi.ansi().cursor(12, 12).fg(Ansi.Color.RED).a("Black player won"));
-        } else if (blackKing.getIsCaptured()) {
+        } else if (whiteKing.getIsCaptured()) {
             System.out.println(Ansi.ansi().cursor(12, 12).fg(Ansi.Color.RED).a("White player won"));
         }
     }
