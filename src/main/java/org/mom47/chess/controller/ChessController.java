@@ -102,13 +102,11 @@ public class ChessController {
                         chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
                         chess.selectedPiece = null;
                         changeSidePieceColour();
-                        chessBashView.print();
                     }
                 } else {
                     chess.getChessBoard().move(chess.selectedPiece.getPosition(), chess.cursor);
                     chess.selectedPiece = null;
                     changeSidePieceColour();
-                    chessBashView.print();
                 }
             }
         }
@@ -229,9 +227,9 @@ public class ChessController {
     }
 
     private void changeSidePieceColour() {
-        if (chess.side == PieceColour.WHITE) {
+        if (chess.side == PieceColour.WHITE && !(chess.isSinglePlayerMode())) {
             chess.side = PieceColour.BLACK;
-        } else if (chess.side == PieceColour.BLACK) {
+        } else if (chess.side == PieceColour.BLACK && !(chess.isSinglePlayerMode())) {
             chess.side = PieceColour.WHITE;
         }
     }

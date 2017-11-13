@@ -8,10 +8,19 @@ public class Chess {
     public Point cursor = new Point(0, 0);
     public int selectedPath;
     public PieceColour side = PieceColour.WHITE;
+    private boolean singlePlayerMode;
 
     public Chess() {
         chessPieces = createChessPieces();
         setChessPiecesToChessBoard();
+    }
+
+    public void setSinglePlayerMode(Boolean singlePlayerMode) {
+        this.singlePlayerMode = singlePlayerMode;
+    }
+
+    public boolean isSinglePlayerMode() {
+        return singlePlayerMode;
     }
 
     private ChessPiece[] createChessPieces() {
