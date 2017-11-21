@@ -18,7 +18,9 @@ public class ChessController {
         Enter,
         Escape,
         Exit,
-        Coup
+        Coup,
+        Save,
+        Downloading
     }
 
     public ChessController(Chess chess, ChessBashView chessBashView) {
