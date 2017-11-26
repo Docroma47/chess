@@ -11,11 +11,7 @@ import org.mom47.chess.controller.ChessController;
 import org.mom47.chess.model.*;
 import org.mom47.chess.view.ChessBashView;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
+import java.io.*;
 
 
 public class App {
@@ -31,7 +27,10 @@ public class App {
 
     public static void main(String[] args) throws IOException {
         App app = new App();
+        CheeJSON cheeJSON = new CheeJSON();
         KeyMap map = new KeyMap();
+
+
 
         map.bind(ChessController.Action.Up, "\033[A");
         map.bind(ChessController.Action.Left, "\033[D");
@@ -44,47 +43,28 @@ public class App {
         map.bind(ChessController.Action.Save, "s");
         map.bind(ChessController.Action.Downloading, "d");
         if (args.length > 0) {
+            File file = new File(args[0]);
             if (args[0].equals("single-player-mode")) {
                 app.chess.setSinglePlayerMode(true);
-            }
-
-        }
-
-        File file = new File(args[0]);
-        if(file.createNewFile()){
-            System.out.println(args[0] + "File create");
-            Terminal terminal = TerminalBuilder.terminal();
-            terminal.enterRawMode();
-            BindingReader reader = new BindingReader(terminal.reader());
-            ChessController.Action action;
-            app.chessBashView.print();
-            do {
-                app.chess.setSinglePlayerMode(true);
-                action = (ChessController.Action) reader.readBinding(map);
-                app.chessController.handleKey(action);
-                app.chessBashView.print();
-                action = app.chessController.gameEnd(action);
-                System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
-                if (action == ChessController.Action.Save) {
-                    toJSON(app, file);
-                    break;
+            } else if (args[0].equals(file.getAbsolutePath())) {
+                Terminal terminal = TerminalBuilder.terminal();
+                terminal.enterRawMode();
+                BindingReader reader = new BindingReader(terminal.reader());
+                ChessController.Action action;
+                if(file.createNewFile()){
+                    do {
+                        app.chessBashView.print();
+                        action = (ChessController.Action) reader.readBinding(map);
+                        app.chessController.handleKey(action, file);
+                        app.chessBashView.print();
+                        action = app.chessController.gameEnd(action);
+                        System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
+                    } while (action != ChessController.Action.Exit);
+                } else {
+                    System.out.println(app.chessController.toJavaObject(file));
                 }
-            } while (action != ChessController.Action.Exit);
-        } else {
-            System.out.println(args[0] + "file not created");
-            FileReader reader = new FileReader(file);
-            Scanner scan = new Scanner(reader);
-
-            while (scan.hasNextLine()) {
-                System.out.println(scan.nextLine());
             }
-            reader.close();
         }
     }
 
-    private static void toJSON(Object object, File file) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(file, object);
-        System.out.println(Ansi.ansi().cursor(22, 0).fg(Ansi.Color.WHITE).a("JSON Save"));
-    }
 }

@@ -1,8 +1,14 @@
 package org.mom47.chess.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.fusesource.jansi.Ansi;
+import org.mom47.chess.CheeJSON;
 import org.mom47.chess.model.*;
 import org.mom47.chess.view.ChessBashView;
 
+
+import java.io.File;
+import java.io.IOException;
 
 import static org.mom47.chess.controller.ChessController.Action.*;
 
@@ -28,13 +34,23 @@ public class ChessController {
         this.chessBashView = chessBashView;
     }
 
-    public void handleKey(Action action) {
+    public void handleKey(Action action, File file) throws IOException {
         action = translateAction(action);
         handleArrowKeys(action);
         handleKeyEnter(action);
         handleKeyCoup(action);
         handleEscapeKey(action);
+        handleKeySave(action, chess, file);
     }
+
+    private void handleKeySave(Action action, Chess chess, File file) throws IOException {
+        if (action == Save) {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(file, chess);
+            System.out.println(Ansi.ansi().cursor(22, 0).fg(Ansi.Color.WHITE).a("JSON Save"));
+        }
+    }
+
 
     private void handleArrowKeys(Action action) {
         if (action == Up) {
@@ -250,5 +266,18 @@ public class ChessController {
         }
 
         return action;
+    }
+
+    public void toJSON(CheeJSON cheeJSON, File file, Action action) throws IOException {
+        if (action == Save ) {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(file.getParentFile().getParentFile(), cheeJSON);
+            System.out.println(Ansi.ansi().cursor(22, 0).fg(Ansi.Color.WHITE).a("JSON Save"));
+        }
+    }
+
+    public CheeJSON toJavaObject(File file) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(file, CheeJSON.class);
     }
 }
