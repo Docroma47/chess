@@ -60,9 +60,19 @@ public class App {
                         System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
                     } while (action != ChessController.Action.Exit);
                 } else {
-                    action = ChessController.Action.Load;
-                    app.chessController.handleKey(action, file);
-                    System.out.println(app.chess);
+                    do {
+                        if (i == 0) {
+                            action = ChessController.Action.Load;
+                            app.chessController.handleKey(action, file);
+                            app.chessBashView.print();
+                            ++i;
+                        }
+                        action = (ChessController.Action) reader.readBinding(map);
+                        app.chessController.handleKey(action, file);
+                        app.chessBashView.print();
+                        action = app.chessController.gameEnd(action);
+                        System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
+                    } while (action != ChessController.Action.Exit);
                 }
             }
         }

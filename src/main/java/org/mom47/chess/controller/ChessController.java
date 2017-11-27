@@ -40,14 +40,16 @@ public class ChessController {
         handleKeyCoup(action);
         handleEscapeKey(action);
         handleKeySave(action, chess, file);
-        if (action == Load) {
-            chess = handleKeyLoad(file);
-        }
+        chessBashView.chess = handleKeyLoad(file, action, chess);
+        chess = handleKeyLoad(file, action, chess);
     }
 
-    private static Chess handleKeyLoad(File file) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(file, Chess.class);
+    private static Chess handleKeyLoad(File file, Action action, Chess chess) throws IOException {
+        if (action == Load) {
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(file, Chess.class);
+        }
+        return chess;
     }
 
     private void handleKeySave(Action action, Chess chess, File file) throws IOException {

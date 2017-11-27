@@ -7,7 +7,7 @@ import org.mom47.chess.model.*;
 
 
 public class ChessBashView {
-    private Chess chess;
+    public Chess chess;
 
     public ChessBashView(Chess chess) {
         AnsiConsole.systemUninstall();
