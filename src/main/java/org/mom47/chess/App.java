@@ -1,7 +1,6 @@
 package org.mom47.chess;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fusesource.jansi.Ansi;
 import org.jline.keymap.BindingReader;
 import org.jline.keymap.KeyMap;
@@ -27,7 +26,6 @@ public class App {
 
     public static void main(String[] args) throws IOException {
         App app = new App();
-        CheeJSON cheeJSON = new CheeJSON();
         KeyMap map = new KeyMap();
 
 
@@ -41,7 +39,7 @@ public class App {
         map.bind(ChessController.Action.Exit, "q");
         map.bind(ChessController.Action.Coup, "u");
         map.bind(ChessController.Action.Save, "s");
-        map.bind(ChessController.Action.Downloading, "d");
+        map.bind(ChessController.Action.Load, "d");
         if (args.length > 0) {
             File file = new File(args[0]);
             if (args[0].equals("single-player-mode")) {
@@ -51,6 +49,7 @@ public class App {
                 terminal.enterRawMode();
                 BindingReader reader = new BindingReader(terminal.reader());
                 ChessController.Action action;
+                int i = 0;
                 if(file.createNewFile()){
                     do {
                         app.chessBashView.print();
@@ -61,10 +60,11 @@ public class App {
                         System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
                     } while (action != ChessController.Action.Exit);
                 } else {
-                    System.out.println(app.chessController.toJavaObject(file));
+                    action = ChessController.Action.Load;
+                    app.chessController.handleKey(action, file);
+                    System.out.println(app.chess);
                 }
             }
         }
     }
-
 }

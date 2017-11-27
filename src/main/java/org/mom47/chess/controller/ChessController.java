@@ -2,7 +2,6 @@ package org.mom47.chess.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fusesource.jansi.Ansi;
-import org.mom47.chess.CheeJSON;
 import org.mom47.chess.model.*;
 import org.mom47.chess.view.ChessBashView;
 
@@ -26,7 +25,7 @@ public class ChessController {
         Exit,
         Coup,
         Save,
-        Downloading
+        Load
     }
 
     public ChessController(Chess chess, ChessBashView chessBashView) {
@@ -41,6 +40,14 @@ public class ChessController {
         handleKeyCoup(action);
         handleEscapeKey(action);
         handleKeySave(action, chess, file);
+        if (action == Load) {
+            chess = handleKeyLoad(file);
+        }
+    }
+
+    private static Chess handleKeyLoad(File file) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(file, Chess.class);
     }
 
     private void handleKeySave(Action action, Chess chess, File file) throws IOException {
@@ -266,18 +273,5 @@ public class ChessController {
         }
 
         return action;
-    }
-
-    public void toJSON(CheeJSON cheeJSON, File file, Action action) throws IOException {
-        if (action == Save ) {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.writeValue(file.getParentFile().getParentFile(), cheeJSON);
-            System.out.println(Ansi.ansi().cursor(22, 0).fg(Ansi.Color.WHITE).a("JSON Save"));
-        }
-    }
-
-    public Chess toJavaObject(File file) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(file, Chess.class);
     }
 }
