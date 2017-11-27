@@ -1,8 +1,20 @@
 package org.mom47.chess.model;
 
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.util.Arrays;
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "pieceType", visible = true)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Bishop.class, name = "BISHOP"),
+        @JsonSubTypes.Type(value = Knight.class, name = "KNIGHT"),
+        @JsonSubTypes.Type(value = King.class, name = "KING"),
+        @JsonSubTypes.Type(value = Pawn.class, name = "PAWN"),
+        @JsonSubTypes.Type(value = Queen.class, name = "QUEEN"),
+        @JsonSubTypes.Type(value = Rook.class, name = "ROOK")
+})
 public class ChessPiece {
     private PieceType pieceType;
     private PieceColour color;
@@ -42,6 +54,8 @@ public class ChessPiece {
     public PieceColour getColor() {
         return color;
     }
+
+    public ChessPiece() { }
 
     public ChessPiece(PieceColour color) {
         setColor(color);

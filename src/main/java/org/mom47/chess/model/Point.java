@@ -1,11 +1,17 @@
 package org.mom47.chess.model;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
 public class Point {
     private int rank;
     private int file;
 
-    public Point(int file, int rank) {
+    @JsonCreator
+    public Point(@JsonProperty("file") int file, @JsonProperty("rank") int rank) {
         this.file = file;
         this.rank = rank;
     }
@@ -18,66 +24,82 @@ public class Point {
         return file;
     }
 
+    @JsonIgnore
     public Point getUp() {
         return new Point(file, rank + 1);
     }
 
+    @JsonIgnore
     public Point getUpRight() {
         return new Point(file + 1, rank + 1);
     }
 
+    @JsonIgnore
     public Point getRight() {
         return new Point(file + 1, rank);
     }
 
+    @JsonIgnore
     public Point getDownRight() {
         return new Point(file + 1, rank - 1);
     }
 
+    @JsonIgnore
     public Point getDown() {
         return new Point(file, rank - 1);
     }
 
+    @JsonIgnore
     public Point getDownLeft() {
         return new Point(file - 1, rank - 1);
     }
 
+    @JsonIgnore
     public Point getLeft() {
         return new Point(file - 1, rank);
     }
 
+    @JsonIgnore
     public Point getUpLeft() {
         return new Point(file - 1, rank + 1);
     }
 
+    @JsonIgnore
     public Point getUpLeftHorse() {
         return new Point(file - 1, rank + 2);
     }
 
+    @JsonIgnore
     public Point getUpRightHorse() {
         return new Point(file + 1, rank + 2);
     }
 
+    @JsonIgnore
     public Point getRightUpHorse() {
         return new Point(file + 2, rank + 1);
     }
 
+    @JsonIgnore
     public Point getRightDownHorse() {
         return new Point(file + 2, rank - 1);
     }
 
+    @JsonIgnore
     public Point getDownRightHorse() {
         return new Point(file + 1, rank - 2);
     }
 
+    @JsonIgnore
     public Point getDownLeftHorse() {
         return new Point(file - 1, rank - 2);
     }
 
+    @JsonIgnore
     public Point getLeftUpHorse() {
         return new Point(file - 2, rank + 1);
     }
 
+    @JsonIgnore
     public Point getLeftDownHorse() {
         return new Point(file - 2, rank - 1);
     }

@@ -1,11 +1,12 @@
 package org.mom47.chess.model;
 
 
-import java.util.Arrays;
-
 public class Rook extends ChessPiece {
     private static final String WHITE_ROOK = "♜";
     private static final String BLACK_ROOK = "♖";
+
+    public Rook() { }
+
     @Override
     public Point[][] getAvailablePaths(ChessBoard chessBoard) {
         Point[][] free = new Point[4][8];

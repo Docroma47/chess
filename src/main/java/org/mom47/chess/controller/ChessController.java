@@ -276,8 +276,8 @@ public class ChessController {
         }
     }
 
-    public CheeJSON toJavaObject(File file) throws IOException {
+    public Chess toJavaObject(File file) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(file, CheeJSON.class);
+        return mapper.readValue(file, Chess.class);
     }
 }

@@ -5,6 +5,9 @@ package org.mom47.chess.model;
 public class Bishop extends ChessPiece {
     private static final String WHITE_BISHOP = "♝";
     private static final String BLACK_BISHOP = "♗";
+
+    public Bishop() { }
+
     @Override
     public Point[][] getAvailablePaths(ChessBoard chessBoard) {
         Point[][] free = new Point[4][1];

@@ -6,6 +6,9 @@ import java.util.Arrays;
 public class Pawn extends ChessPiece {
     private static final String WHITE_PAWN = "♟";
     private static final String BLACK_PAWN = "♙";
+
+    public Pawn() { }
+
     @Override
     public Point[][] getAvailablePaths(ChessBoard chessBoard) {
         Point[][] free = new Point[1][1];

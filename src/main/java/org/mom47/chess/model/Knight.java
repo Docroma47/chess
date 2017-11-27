@@ -4,6 +4,9 @@ package org.mom47.chess.model;
 public class Knight extends ChessPiece {
     private static final String WHITE_KNIGHT = "♞";
     private static final String BLACK_KNIGHT = "♘";
+
+    public Knight() { }
+
     @Override
     public Point[][] getAvailablePaths(ChessBoard chessBoard) {
         Point[][] free = new Point[8][1];

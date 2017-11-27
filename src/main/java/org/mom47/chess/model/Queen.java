@@ -1,11 +1,12 @@
 package org.mom47.chess.model;
 
 
-import java.util.Arrays;
-
 public class Queen extends ChessPiece {
     private static final String WHITE_QUEEN = "♛";
     private static final String BLACK_QUEEN = "♕";
+
+    public Queen() { }
+
     @Override
     public Point[][] getAvailablePaths(ChessBoard chessBoard) {
         Point[][] free = new Point[8][1];
