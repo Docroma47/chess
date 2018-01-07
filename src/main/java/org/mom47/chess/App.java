@@ -14,21 +14,12 @@ import java.io.*;
 
 
 public class App {
-    private Chess chess;
     private ChessBashView chessBashView;
     private ChessController chessController;
-
-    public App() {
-        chess = new Chess();
-        chessBashView = new ChessBashView(chess);
-        chessController = new ChessController(chess, chessBashView);
-    }
 
     public static void main(String[] args) throws IOException {
         App app = new App();
         KeyMap map = new KeyMap();
-
-
 
         map.bind(ChessController.Action.Up, "\033[A");
         map.bind(ChessController.Action.Left, "\033[D");
@@ -40,16 +31,15 @@ public class App {
         map.bind(ChessController.Action.Coup, "u");
         map.bind(ChessController.Action.Save, "s");
         map.bind(ChessController.Action.Load, "d");
+
+        app.init(args);
         if (args.length > 0) {
             File file = new File(args[0]);
-            if (args[0].equals("single-player-mode")) {
-                app.chess.setSinglePlayerMode(true);
-            } else if (args[0].equals(file.getAbsolutePath())) {
+            if (args[0].equals(file.getAbsolutePath())) {
                 Terminal terminal = TerminalBuilder.terminal();
                 terminal.enterRawMode();
                 BindingReader reader = new BindingReader(terminal.reader());
                 ChessController.Action action;
-                int i = 0;
                 if(file.createNewFile()){
                     do {
                         app.chessBashView.print();
@@ -60,15 +50,13 @@ public class App {
                         System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
                     } while (action != ChessController.Action.Exit);
                 } else {
+                    action = ChessController.Action.Load;
+                    app.chessController.handleKey(action, file);
+                    app.chessBashView.print();
                     do {
-                        if (i == 0) {
-                            action = ChessController.Action.Load;
-                            app.chessController.handleKey(action, file);
-                            app.chessBashView.print();
-                            ++i;
-                        }
                         action = (ChessController.Action) reader.readBinding(map);
                         app.chessController.handleKey(action, file);
+                        app.chessBashView.chess = app.chessController.chessBashView.chess;
                         app.chessBashView.print();
                         action = app.chessController.gameEnd(action);
                         System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
@@ -77,4 +65,11 @@ public class App {
             }
         }
     }
+
+    private void init(String[] args) throws IOException {
+        Chess chess = ChessController.loadModel(args[0]);
+        chessBashView = new ChessBashView(chess);
+        chessController = new ChessController(chess, chessBashView);
+    }
+
 }

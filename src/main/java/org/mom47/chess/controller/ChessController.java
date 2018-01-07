@@ -13,7 +13,7 @@ import static org.mom47.chess.controller.ChessController.Action.*;
 
 public class ChessController {
     private Chess chess;
-    private ChessBashView chessBashView;
+    public ChessBashView chessBashView;
 
     public enum Action {
         Up,
@@ -40,16 +40,33 @@ public class ChessController {
         handleKeyCoup(action);
         handleEscapeKey(action);
         handleKeySave(action, chess, file);
-        chessBashView.chess = handleKeyLoad(file, action, chess);
-        chess = handleKeyLoad(file, action, chess);
+        if (action == Load) {
+            chessBashView.chess = handleKeyLoad(file, action);
+        } else {
+            chessBashView.chess = chess;
+        }
     }
 
-    private static Chess handleKeyLoad(File file, Action action, Chess chess) throws IOException {
+    private Chess handleKeyLoad(File file, Action action) throws IOException {
         if (action == Load) {
             ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(file, Chess.class);
+            chess = mapper.readValue(file, Chess.class);
         }
         return chess;
+    }
+
+    public static Chess loadModel(String path) throws IOException {
+        File file = new File(path);
+        Chess chess;
+        if (!(file.exists())) {
+            chess = new Chess();
+            return chess;
+        } else {
+            ObjectMapper mapper = new ObjectMapper();
+            chess = mapper.readValue(file, Chess.class);
+            return chess;
+        }
+
     }
 
     private void handleKeySave(Action action, Chess chess, File file) throws IOException {
