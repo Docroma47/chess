@@ -47,9 +47,9 @@ public class App {
                     app.chessController.handleKey(action, file);
                     app.chessBashView.print();
                     action = app.chessController.gameEnd(action);
-                    if (action == ChessController.Action.Exit) {// Это условие нужно для того что не было ошибки. file.createNewFile()
-                        action = ChessController.Action.Save; // file.createNewFile() - создает ворд файл пустой. И естевственно след запуск без(Save) будет провальный
-                        app.chessController.handleKey(action, file); // так как выгрузить из пустого файла тем более ворд(формат) незя)
+                    if (action == ChessController.Action.Exit) {
+                        action = ChessController.Action.Save;
+                        app.chessController.handleKey(action, file);
                         action = ChessController.Action.Exit;
                     }
                     System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
