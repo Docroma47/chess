@@ -33,35 +33,38 @@ public class App {
         map.bind(ChessController.Action.Load, "d");
 
         app.init(args);
+
         if (args.length > 0) {
             File file = new File(args[0]);
-            if (args[0].equals(file.getAbsolutePath())) {
-                Terminal terminal = TerminalBuilder.terminal();
-                terminal.enterRawMode();
-                BindingReader reader = new BindingReader(terminal.reader());
-                ChessController.Action action;
-                if(file.createNewFile()){
-                    do {
-                        app.chessBashView.print();
-                        action = (ChessController.Action) reader.readBinding(map);
-                        app.chessController.handleKey(action, file);
-                        app.chessBashView.print();
-                        action = app.chessController.gameEnd(action);
-                        System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
-                    } while (action != ChessController.Action.Exit);
-                } else {
-                    action = ChessController.Action.Load;
+            Terminal terminal = TerminalBuilder.terminal();
+            terminal.enterRawMode();
+            BindingReader reader = new BindingReader(terminal.reader());
+            ChessController.Action action;
+            if(file.createNewFile()){
+                do {
+                    app.chessBashView.print();
+                    action = (ChessController.Action) reader.readBinding(map);
                     app.chessController.handleKey(action, file);
                     app.chessBashView.print();
-                    do {
-                        action = (ChessController.Action) reader.readBinding(map);
-                        app.chessController.handleKey(action, file);
-                        app.chessBashView.chess = app.chessController.chessBashView.chess;
-                        app.chessBashView.print();
-                        action = app.chessController.gameEnd(action);
-                        System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
-                    } while (action != ChessController.Action.Exit);
-                }
+                    action = app.chessController.gameEnd(action);
+                    if (action == ChessController.Action.Exit) {// Это условие нужно для того что не было ошибки. file.createNewFile()
+                        action = ChessController.Action.Save; // file.createNewFile() - создает ворд файл пустой. И естевственно след запуск без(Save) будет провальный
+                        app.chessController.handleKey(action, file); // так как выгрузить из пустого файла тем более ворд(формат) незя)
+                        action = ChessController.Action.Exit;
+                    }
+                    System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
+                } while (action != ChessController.Action.Exit);
+            } else {
+                action = ChessController.Action.Load;
+                app.chessController.handleKey(action, file);
+                app.chessBashView.print();
+                do {
+                    action = (ChessController.Action) reader.readBinding(map);
+                    app.chessController.handleKey(action, file);
+                    app.chessBashView.print();
+                    action = app.chessController.gameEnd(action);
+                    System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
+                } while (action != ChessController.Action.Exit);
             }
         }
     }
