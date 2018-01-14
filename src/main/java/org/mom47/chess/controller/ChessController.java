@@ -13,7 +13,7 @@ import static org.mom47.chess.controller.ChessController.Action.*;
 
 public class ChessController {
     private Chess chess;
-    public ChessBashView chessBashView;
+    private ChessBashView chessBashView;
 
     public enum Action {
         Up,
@@ -70,11 +70,26 @@ public class ChessController {
     }
 
     private void handleKeySave(Action action, Chess chess, File file) throws IOException {
-        if (action == Save) {
+        if (action == Save || action == Exit) {
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(file, chess);
             System.out.println(Ansi.ansi().cursor(22, 0).fg(Ansi.Color.WHITE).a("JSON Save"));
         }
+    }
+
+    public void saveTest(Chess chess, String file1) throws IOException {
+        File file = new File(file1);
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(file, chess);
+        System.out.println(Ansi.ansi().cursor(22, 0).fg(Ansi.Color.WHITE).a("JSON Save"));
+    }
+
+
+    public Chess loadTest(String file1)  throws IOException {
+        File file = new File(file1);
+        ObjectMapper mapper = new ObjectMapper();
+        chess = mapper.readValue(file, Chess.class);
+        return chess;
     }
 
 
