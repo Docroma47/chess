@@ -30,6 +30,13 @@ public class ChessJsonTest {
             Assert.assertEquals(original.getChessPieces()[i].getColor(), loaded.getChessPieces()[i].getColor());
             Assert.assertEquals(original.getChessPieces()[i].getPieceType(), loaded.getChessPieces()[i].getPieceType());
             Assert.assertEquals(original.getChessPieces()[i].getSymbol(), loaded.getChessPieces()[i].getSymbol());
+            Assert.assertEquals(original.getChessPieces()[i].toString(), loaded.getChessPieces()[i].toString());
+            Assert.assertEquals(original.cursor, loaded.cursor);
+            Assert.assertEquals(original.getChessBoard().getChessPieces()[i], loaded.getChessBoard().getChessPieces()[i]);
+            Assert.assertEquals(original.getChessBoard(), loaded.getChessBoard());
+            Assert.assertEquals(original.selectedPiece, loaded.selectedPiece);
+            Assert.assertEquals(original.getChessPieces()[i], loaded.getChessPieces()[i]);
+            Assert.assertEquals(original.side, loaded.side);
         }
     }
 }
