@@ -19,4 +19,12 @@ public class ChessPieceTest {
 
         Assert.assertEquals(length, 3);
     }
+
+    @Test
+    public void testEquals() {
+        Pawn pawn1 = new Pawn(PieceColour.BLACK, 4);
+        Pawn pawn2 = new Pawn(PieceColour.BLACK, 4);
+
+        Assert.assertEquals(pawn1, pawn2);
+    }
 }
