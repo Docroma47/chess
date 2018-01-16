@@ -10,7 +10,7 @@ public class PointTest {
         Point first = new Point(1, 1);
         Point second = new Point(1, 1);
         
-        Assert.assertEquals(first, second);
+        Assert.assertTrue(first.equals(second));
     }
 
     @Test

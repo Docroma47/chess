@@ -25,6 +25,6 @@ public class ChessPieceTest {
         Pawn pawn1 = new Pawn(PieceColour.BLACK, 4);
         Pawn pawn2 = new Pawn(PieceColour.BLACK, 4);
 
-        Assert.assertEquals(pawn1, pawn2);
+        Assert.assertTrue(pawn1.equals(pawn2));
     }
 }
