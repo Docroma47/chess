@@ -4,6 +4,8 @@ package org.mom47.chess.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Arrays;
+
 public class ChessBoard {
     @JsonProperty
     private ChessPiece[][] squires = new ChessPiece[8][8];
@@ -101,4 +103,25 @@ public class ChessBoard {
         return squires[point.getFile()][point.getRank()];
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChessBoard that = (ChessBoard) o;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (squires[i][j] != that.squires[i][j]) {
+                    if (!squires[i][j].equals(that.squires[i][j])) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(squires);
+    }
 }
