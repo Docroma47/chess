@@ -52,7 +52,7 @@ public class App {
                 action = (ChessController.Action) reader.readBinding(map);
                 app.chessController.handleKey(action, file);
                 if (action == ChessController.Action.Load || action == ChessController.Action.Reset) {
-                    app.replacementModel(file);
+                    app.replaceCurrentModel(file);
                 }
                 app.chessBashView.print();
                 action = app.chessController.gameEnd(action);
@@ -61,13 +61,13 @@ public class App {
         } else {
             action = ChessController.Action.Load;
             app.chessController.handleKey(action, file);
-            app.replacementModel(file);
+            app.replaceCurrentModel(file);
             app.chessBashView.print();
             do {
                 action = (ChessController.Action) reader.readBinding(map);
                 app.chessController.handleKey(action, file);
                 if (action == ChessController.Action.Load || action == ChessController.Action.Reset) {
-                    app.replacementModel(file);
+                    app.replaceCurrentModel(file);
                 }
                 app.chessBashView.print();
                 action = app.chessController.gameEnd(action);
@@ -88,7 +88,7 @@ public class App {
         chessController = new ChessController(chess, chessBashView);
     }
 
-    public void replacementModel(File file) throws IOException {
+    public void replaceCurrentModel(File file) throws IOException {
         Chess chess = ChessController.loadModel(file);
         chessBashView = new ChessBashView(chess);
         for (int i = 0; i < chess.getChessPieces().length; i++) {

@@ -8,38 +8,38 @@ import java.util.Arrays;
 
 public class ChessBoard {
     @JsonProperty
-    private ChessPiece[][] squires = new ChessPiece[8][8];
+    private ChessPiece[][] square = new ChessPiece[8][8];
 
     @JsonIgnore
     public void setPiece(ChessPiece chessPiece) {
         int rank = chessPiece.getPosition().getRank();
         int file = chessPiece.getPosition().getFile();
-        if (squires[file][rank] != null) {
+        if (square[file][rank] != null) {
             throw new IllegalArgumentException("Could not set piece because the squire is already " +
                     "occupied by another piece");
         }
-        squires[file][rank] = chessPiece;
+        square[file][rank] = chessPiece;
     }
 
     public void move(Point initial, Point destination) {
-        if (this.squires[destination.getFile()][destination.getRank()] != null) {
+        if (this.square[destination.getFile()][destination.getRank()] != null) {
             throw new IllegalArgumentException("Could not set piece because the squire is already " +
                     "occupied by another piece");
         }
 
-        ChessPiece chessPiece = squires[initial.getFile()][initial.getRank()];
+        ChessPiece chessPiece = square[initial.getFile()][initial.getRank()];
 
-        this.squires[initial.getFile()][initial.getRank()] = null;
-        this.squires[destination.getFile()][destination.getRank()] = chessPiece;
+        this.square[initial.getFile()][initial.getRank()] = null;
+        this.square[destination.getFile()][destination.getRank()] = chessPiece;
 
         chessPiece.setPosition(destination);
     }
 
     @JsonIgnore
     public void remove(Point position) {
-        ChessPiece chessPiece = squires[position.getFile()][position.getRank()];
+        ChessPiece chessPiece = square[position.getFile()][position.getRank()];
         chessPiece.setIsCaptured(true);
-        squires[position.getFile()][position.getRank()] = null;
+        square[position.getFile()][position.getRank()] = null;
     }
 
     @JsonIgnore
@@ -47,7 +47,7 @@ public class ChessBoard {
         int x = 64;
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {
-                if (squires[j][i] != null) {
+                if (square[j][i] != null) {
                     x--;
                 }
             }
@@ -61,7 +61,7 @@ public class ChessBoard {
         int x = 0;
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {
-                if (squires[j][i] == null) {
+                if (square[j][i] == null) {
                     free[x] = new Point(j, i);
                     x++;
                 }
@@ -75,7 +75,7 @@ public class ChessBoard {
         int x = 64;
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {
-                if (squires[j][i] == null) {
+                if (square[j][i] == null) {
                     x--;
                 }
             }
@@ -89,7 +89,7 @@ public class ChessBoard {
         int x = 0;
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {
-                if (squires[j][i] != null) {
+                if (square[j][i] != null) {
                     figuresBoard[x] = getPiece(new Point(j, i));
                     x++;
                 }
@@ -100,7 +100,7 @@ public class ChessBoard {
 
     @JsonIgnore
     public ChessPiece getPiece(Point point) {
-        return squires[point.getFile()][point.getRank()];
+        return square[point.getFile()][point.getRank()];
     }
 
     @Override
@@ -110,8 +110,8 @@ public class ChessBoard {
         ChessBoard that = (ChessBoard) o;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (squires[i][j] != that.squires[i][j]) {
-                    if (!squires[i][j].equals(that.squires[i][j])) {
+                if (square[i][j] != that.square[i][j]) {
+                    if (!square[i][j].equals(that.square[i][j])) {
                         return false;
                     }
                 }
@@ -122,6 +122,6 @@ public class ChessBoard {
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(squires);
+        return Arrays.hashCode(square);
     }
 }
