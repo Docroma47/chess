@@ -15,7 +15,7 @@ public class ChessBoard {
         int rank = chessPiece.getPosition().getRank();
         int file = chessPiece.getPosition().getFile();
         if (square[file][rank] != null) {
-            throw new IllegalArgumentException("Could not set piece because the squire is already " +
+            throw new IllegalArgumentException("Could not set piece because the square is already " +
                     "occupied by another piece");
         }
         square[file][rank] = chessPiece;
@@ -23,7 +23,7 @@ public class ChessBoard {
 
     public void move(Point initial, Point destination) {
         if (this.square[destination.getFile()][destination.getRank()] != null) {
-            throw new IllegalArgumentException("Could not set piece because the squire is already " +
+            throw new IllegalArgumentException("Could not set piece because the square is already " +
                     "occupied by another piece");
         }
 
@@ -43,7 +43,7 @@ public class ChessBoard {
     }
 
     @JsonIgnore
-    public int getFreeSquiresNumber() {
+    public int getFreeSquaresNumber() {
         int x = 64;
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {
@@ -56,8 +56,8 @@ public class ChessBoard {
     }
 
     @JsonIgnore
-    public Point[] getFreeSquires() {
-        Point[] free = new Point[getFreeSquiresNumber()];
+    public Point[] getFreeSquares() {
+        Point[] free = new Point[getFreeSquaresNumber()];
         int x = 0;
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {

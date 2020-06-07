@@ -11,15 +11,15 @@ public class ChessBoardTest {
     public void testGetFreeSquiresNumber() throws Exception {
         ChessBoard chessBoard = new ChessBoard();
 
-        Assert.assertEquals(64, chessBoard.getFreeSquiresNumber());
+        Assert.assertEquals(64, chessBoard.getFreeSquaresNumber());
 
         King king = new King(PieceColour.BLACK, 0);
         chessBoard.setPiece(king);
-        Assert.assertEquals(63, chessBoard.getFreeSquiresNumber());
+        Assert.assertEquals(63, chessBoard.getFreeSquaresNumber());
 
         Queen queen = new Queen(PieceColour.WHITE, 7);
         chessBoard.setPiece(queen);
-        Assert.assertEquals(62, chessBoard.getFreeSquiresNumber());
+        Assert.assertEquals(62, chessBoard.getFreeSquaresNumber());
     }
 
     @Test
@@ -31,7 +31,7 @@ public class ChessBoardTest {
         // empty chess board
 
         // execution
-        Point[] squires = chessBoard.getFreeSquires();
+        Point[] squires = chessBoard.getFreeSquares();
 
         // expectations:
         // not null array of 64 length
@@ -71,7 +71,7 @@ public class ChessBoardTest {
         }
 
         // execution
-        Point[] squires = chessBoard.getFreeSquires();
+        Point[] squires = chessBoard.getFreeSquares();
 
         // expectations:
         // not null array of zero length
@@ -94,7 +94,7 @@ public class ChessBoardTest {
         chessBoard.setPiece(chessPiece);
 
         // execution
-        Point[] squires = chessBoard.getFreeSquires();
+        Point[] squires = chessBoard.getFreeSquares();
 
         // expectations:
         // not null array, length is 63
