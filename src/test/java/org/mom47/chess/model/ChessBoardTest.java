@@ -8,7 +8,7 @@ import static org.junit.Assert.assertTrue;
 
 public class ChessBoardTest {
     @Test
-    public void testGetFreeSquiresNumber() throws Exception {
+    public void testGetFreeSquaresNumber() throws Exception {
         ChessBoard chessBoard = new ChessBoard();
 
         Assert.assertEquals(64, chessBoard.getFreeSquaresNumber());
@@ -23,7 +23,7 @@ public class ChessBoardTest {
     }
 
     @Test
-    public void testGetFreeSquiresEmptyBoard() {
+    public void testGetFreeSquaresEmptyBoard() {
         ChessBoard chessBoard = new ChessBoard();
 
         // first test case
@@ -31,29 +31,29 @@ public class ChessBoardTest {
         // empty chess board
 
         // execution
-        Point[] squires = chessBoard.getFreeSquares();
+        Point[] squares = chessBoard.getFreeSquares();
 
         // expectations:
         // not null array of 64 length
-        Assert.assertNotNull(squires);
-        Assert.assertEquals(64, squires.length);
-        // each of array element must have an instance of Point object which represents an empty squire on the board
-        // we need to make sure that all squires of the board exist in the result of execution getFreeSquires method
-        // we will create two loops to run though all squires of the chess board and we will try to find all of them
-        // in the resulting array returned by getFreeSquires
+        Assert.assertNotNull(squares);
+        Assert.assertEquals(64, squares.length);
+        // each of array element must have an instance of Point object which represents an empty square on the board
+        // we need to make sure that all squares of the board exist in the result of execution getFreeSquares method
+        // we will create two loops to run though all squares of the chess board and we will try to find all of them
+        // in the resulting array returned by getFreeSquares
 
         // running through files (horizontally)
         for (int file = 0; file < 8; file++) {
             // running through ranks (vertically)
             for (int rank = 0; rank < 8; rank++) {
-                // making sure that we can find all squires
-                Assert.assertNotNull(findPointByFileAndRank(squires, file, rank));
+                // making sure that we can find all squares
+                Assert.assertNotNull(findPointByFileAndRank(squares, file, rank));
             }
         }
     }
 
     @Test
-    public void testGetFreeSquiresWithAllChessPiecesOnTheBoard() {
+    public void testGetFreeSquaresWithAllChessPiecesOnTheBoard() {
         ChessBoard chessBoard = new ChessBoard();
 
         // second test case
@@ -71,16 +71,16 @@ public class ChessBoardTest {
         }
 
         // execution
-        Point[] squires = chessBoard.getFreeSquares();
+        Point[] squares = chessBoard.getFreeSquares();
 
         // expectations:
         // not null array of zero length
-        Assert.assertNotNull(squires);
-        Assert.assertEquals(0, squires.length);
+        Assert.assertNotNull(squares);
+        Assert.assertEquals(0, squares.length);
     }
 
     @Test
-    public void testGetFreeSquiresWithSinglePieceOnTheBoard() {
+    public void testGetFreeSquaresWithSinglePieceOnTheBoard() {
         ChessBoard chessBoard = new ChessBoard();
 
         // third test case
@@ -94,16 +94,16 @@ public class ChessBoardTest {
         chessBoard.setPiece(chessPiece);
 
         // execution
-        Point[] squires = chessBoard.getFreeSquares();
+        Point[] squares = chessBoard.getFreeSquares();
 
         // expectations:
         // not null array, length is 63
-        Assert.assertNotNull(squires);
-        Assert.assertEquals(63, squires.length);
+        Assert.assertNotNull(squares);
+        Assert.assertEquals(63, squares.length);
         // array contains 63 Points, there should NOT be the pouint by 4,4 coordinate
         Point first = new Point(4, 4);
-        for (int i = 0; i < squires.length; i++) {
-            Assert.assertNotEquals(point, squires[i]);
+        for (int i = 0; i < squares.length; i++) {
+            Assert.assertNotEquals(point, squares[i]);
         }
     }
 
@@ -166,7 +166,7 @@ public class ChessBoardTest {
     }
 
     @Test
-    public void testMoveAlreadyOccupiedSquire() {
+    public void testMoveAlreadyOccupiedSquares() {
         int file = 2;
         int rank = 6;
         ChessBoard chessBoard = new ChessBoard();
@@ -202,23 +202,23 @@ public class ChessBoardTest {
         piece.setPosition(new Point(figureTwofile, figureTwoRank));
         chessBoard.setPiece(piece);
 
-        ChessPiece[] squires = chessBoard.getChessPieces();
+        ChessPiece[] squares = chessBoard.getChessPieces();
 
 
         Assert.assertEquals(2, chessBoard.getChessPiecesNumber());
-        Assert.assertEquals(PieceColour.BLACK, squires[1].getColor());
-        Assert.assertEquals(PieceColour.WHITE, squires[0].getColor());
-        Assert.assertEquals(chessPiece.getPosition().getRank(), squires[1].getPosition().getRank());
-        Assert.assertEquals(chessPiece.getPosition().getFile(), squires[1].getPosition().getFile());
-        Assert.assertEquals(piece.getPosition().getRank(), squires[0].getPosition().getRank());
-        Assert.assertEquals(piece.getPosition().getFile(), squires[0].getPosition().getFile());
+        Assert.assertEquals(PieceColour.BLACK, squares[1].getColor());
+        Assert.assertEquals(PieceColour.WHITE, squares[0].getColor());
+        Assert.assertEquals(chessPiece.getPosition().getRank(), squares[1].getPosition().getRank());
+        Assert.assertEquals(chessPiece.getPosition().getFile(), squares[1].getPosition().getFile());
+        Assert.assertEquals(piece.getPosition().getRank(), squares[0].getPosition().getRank());
+        Assert.assertEquals(piece.getPosition().getFile(), squares[0].getPosition().getFile());
 
         chessBoard.remove(chessPiece.getPosition());
 
         Assert.assertEquals(1, chessBoard.getChessPiecesNumber());
-        Assert.assertEquals(PieceColour.WHITE, squires[0].getColor());
-        Assert.assertEquals(piece.getPosition().getRank(), squires[0].getPosition().getRank());
-        Assert.assertEquals(piece.getPosition().getFile(), squires[0].getPosition().getFile());
+        Assert.assertEquals(PieceColour.WHITE, squares[0].getColor());
+        Assert.assertEquals(piece.getPosition().getRank(), squares[0].getPosition().getRank());
+        Assert.assertEquals(piece.getPosition().getFile(), squares[0].getPosition().getFile());
 
     }
 
