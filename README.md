@@ -9,7 +9,7 @@ To start, you must:
 - Open a terminal
 - Go to the project folder
 - Enter in the terminal: java -cp [path to jar file] [main class]
-     * Exemple: java -cp target / chess-1.0-SNAPSHOT-jar-with-dependencies.jar org.mom47.chess.App
+     * Example: java -cp target / chess-1.0-SNAPSHOT-jar-with-dependencies.jar org.mom47.chess.App
 - If you enter in the terminal "java -cp [path to jar file] [main class]" and "Create.json" you create yours json file
 - If you are not enter two argument, then chess is load or create json file "chess.json"
 
