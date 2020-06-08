@@ -1,32 +1,21 @@
-# Terminal Chess
-
-This project is a demonstration of terminal chess, written in Java
+# Chess game in terminal
 
 ![Chess](https://user-images.githubusercontent.com/29877995/83978068-92c0cf80-a90d-11ea-9a01-76655bb58a65.png)
 
-To start, you must:
-
-- Open a terminal
-- Go to the project folder
-- Enter in the terminal: java -cp [path to jar file] [main class]
-     * Example: java -cp target / chess-1.0-SNAPSHOT-jar-with-dependencies.jar org.mom47.chess.App
-- If you enter in the terminal "java -cp [path to jar file] [main class]" and "Create.json" you create yours json file
-- If you are not enter two argument, then chess is load or create json file "chess.json"
-
-In the project is implemented the recording of data in the 'JSON' file for transferring it to another player.
-Please using hotkeys:
-
-- Exit: "Q" button
-    * Exit in the chess and save your chess session
-- Save: "S" button
-    * Save chess session
-- Reset: "R" button
-    * Reset session
-- Load: "L" button
-    * Load session from file
-
-You can move on a board using button:
-
-- Arrow: Up, Down, Right, Left
-- Select piece: Button Enter
-- Drop select piece: Escape
+##User manual
+###To launch the game
+# checkout the game
+git clone git@github.com:Docroma47/chess.git
+# build
+mvn clean install
+# run
+java -cp target/chess-1.0-SNAPSHOT-jar-with-dependencies.jar org.mom47.chess.App
+###Game navigation
+Move cursor - up, right, down, left arrows
+Select/drop chess piece - enter
+Quit - q
+Save (game is saved into 'chess.json' file) - s
+Reset - r
+### Loading saved game
+By default game is saved in chess.json file, however a different file can be specified as an argument to the game (see below - game1.json):
+java -cp target/chess-1.0-SNAPSHOT-jar-with-dependencies.jar org.mom47.chess.App game1.json
