@@ -15,7 +15,7 @@ mvn clean install
 # run
 java -cp target/chess-1.0-SNAPSHOT-jar-with-dependencies.jar org.mom47.chess.App
 
-###Game navigation
+### Game navigation
 Move cursor - up, right, down, left arrows
 Select/drop chess piece - enter
 Quit - q
