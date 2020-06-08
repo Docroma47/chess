@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "pieceType", visible = true)
 @JsonSubTypes({
@@ -130,5 +131,21 @@ public class ChessPiece {
         }
 
         return this.getSymbol() + state;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChessPiece that = (ChessPiece) o;
+        return pieceType == that.pieceType &&
+                color == that.color &&
+                Objects.equals(symbol, that.symbol);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pieceType, color, symbol, position);
     }
 }

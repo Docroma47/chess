@@ -31,42 +31,70 @@ public class App {
         map.bind(ChessController.Action.Coup, "u");
         map.bind(ChessController.Action.Save, "s");
         map.bind(ChessController.Action.Load, "d");
+        map.bind(ChessController.Action.Reset, "r");
 
         app.init(args);
 
+        File file;
         if (args.length > 0) {
-            File file = new File(args[0]);
-            Terminal terminal = TerminalBuilder.terminal();
-            terminal.enterRawMode();
-            BindingReader reader = new BindingReader(terminal.reader());
-            ChessController.Action action;
-            if(file.createNewFile()){
-                do {
-                    app.chessBashView.print();
-                    action = (ChessController.Action) reader.readBinding(map);
-                    app.chessController.handleKey(action, file);
-                    app.chessBashView.print();
-                    action = app.chessController.gameEnd(action);
-                    System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
-                } while (action != ChessController.Action.Exit);
-            } else {
-                action = ChessController.Action.Load;
-                app.chessController.handleKey(action, file);
+             file = new File(args[0]);
+        } else {
+            file = new File("chess.json");
+        }
+
+        Terminal terminal = TerminalBuilder.terminal();
+        terminal.enterRawMode();
+        BindingReader reader = new BindingReader(terminal.reader());
+        ChessController.Action action;
+        if(file.createNewFile()){
+            do {
                 app.chessBashView.print();
-                do {
-                    action = (ChessController.Action) reader.readBinding(map);
-                    app.chessController.handleKey(action, file);
-                    app.chessBashView.print();
-                    action = app.chessController.gameEnd(action);
-                    System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
-                } while (action != ChessController.Action.Exit);
-            }
+                action = (ChessController.Action) reader.readBinding(map);
+                app.chessController.handleKey(action, file);
+                if (action == ChessController.Action.Load || action == ChessController.Action.Reset) {
+                    app.replaceCurrentModel(file);
+                }
+                app.chessBashView.print();
+                action = app.chessController.gameEnd(action);
+                System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
+            } while (action != ChessController.Action.Exit);
+        } else {
+            action = ChessController.Action.Load;
+            app.chessController.handleKey(action, file);
+            app.replaceCurrentModel(file);
+            app.chessBashView.print();
+            do {
+                action = (ChessController.Action) reader.readBinding(map);
+                app.chessController.handleKey(action, file);
+                if (action == ChessController.Action.Load || action == ChessController.Action.Reset) {
+                    app.replaceCurrentModel(file);
+                }
+                app.chessBashView.print();
+                action = app.chessController.gameEnd(action);
+                System.out.println(Ansi.ansi().cursor(20, 0).fg(Ansi.Color.WHITE).a(action));
+            } while (action != ChessController.Action.Exit);
         }
     }
 
     private void init(String[] args) throws IOException {
-        Chess chess = ChessController.loadModel(args[0]);
+        File fileName;
+        if (args.length == 0) {
+            fileName = new File("chess.json");
+        } else {
+            fileName = new File(args[0]);
+        }
+        Chess chess = ChessController.loadModel(fileName);
         chessBashView = new ChessBashView(chess);
+        chessController = new ChessController(chess, chessBashView);
+    }
+
+    public void replaceCurrentModel(File file) throws IOException {
+        Chess chess = ChessController.loadModel(file);
+        chessBashView = new ChessBashView(chess);
+        for (int i = 0; i < chess.getChessPieces().length; i++) {
+            chessBashView.chess.getChessPieces()[i] = chess.getChessBoard().getChessPieces()[i];
+            chessBashView.chess.getChessBoard().getChessPieces()[i] = chess.getChessBoard().getChessPieces()[i];
+        }
         chessController = new ChessController(chess, chessBashView);
     }
 

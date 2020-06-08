@@ -123,8 +123,8 @@ public class FunController {
         ChessPiece[] piece = chess.getChessBoard().getChessPieces();
         for (int i = 1; i <= x - 1; i++) {
             ChessPiece pieces = piece[i];
-            Point randomSquire = getRandomFreeSquire();
-            chess.getChessBoard().move(pieces.getPosition(), new Point(randomSquire.getFile(), randomSquire.getRank()));
+            Point randomSquare = getRandomFreeSquare();
+            chess.getChessBoard().move(pieces.getPosition(), new Point(randomSquare.getFile(), randomSquare.getRank()));
         }
     }
 
@@ -154,19 +154,19 @@ public class FunController {
         }
     }
 
-    private Point getRandomFreeSquire() {
+    private Point getRandomFreeSquare() {
         Random random = new Random();
-        Point[] freeSquires = chess.getChessBoard().getFreeSquires();
-        int x = random.nextInt(freeSquires.length);
-        return chess.getChessBoard().getFreeSquires()[x];
+        Point[] freeSquares = chess.getChessBoard().getFreeSquares();
+        int x = random.nextInt(freeSquares.length);
+        return chess.getChessBoard().getFreeSquares()[x];
     }
 
     public void massacre(int mix) {
         Random random = new Random();
         for (int j = 0; j <= mix; j++) {
             ChessPiece piece = chess.getChessPieces()[random.nextInt(31)];
-            Point randomSquire = getRandomFreeSquire();
-            chess.getChessBoard().move(piece.getPosition(), new Point(randomSquire.getFile(), randomSquire.getRank()));
+            Point randomSquare = getRandomFreeSquare();
+            chess.getChessBoard().move(piece.getPosition(), new Point(randomSquare.getFile(), randomSquare.getRank()));
         }
 
         for (int i = mix; i <= 31; i++) {
@@ -208,8 +208,8 @@ public class FunController {
         Random random = new Random();
         for (int j = 0; j <= mix; j++) {
             ChessPiece piece = chess.getChessPieces()[random.nextInt(31)];
-            Point randomSquire = getRandomFreeSquire();
-            chess.getChessBoard().move(piece.getPosition(), new Point(randomSquire.getFile(), randomSquire.getRank()));
+            Point randomSquare = getRandomFreeSquare();
+            chess.getChessBoard().move(piece.getPosition(), new Point(randomSquare.getFile(), randomSquare.getRank()));
         }
 
         for (int i = mix; i <= 31; i++) {
@@ -251,8 +251,8 @@ public class FunController {
 
         for (int j = 0; j <= mix; j++) {
             ChessPiece piece = chess.getChessPieces()[j];
-            Point randomSquire = getRandomFreeSquire();
-            chess.getChessBoard().move(piece.getPosition(), new Point(randomSquire.getFile(), randomSquire.getRank()));
+            Point randomSquare = getRandomFreeSquare();
+            chess.getChessBoard().move(piece.getPosition(), new Point(randomSquare.getFile(), randomSquare.getRank()));
         }
 
         for (int i = mix; i <= 31; i++) {

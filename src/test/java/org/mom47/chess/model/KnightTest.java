@@ -18,7 +18,7 @@ public class KnightTest {
         Point[][] availablePaths = knight.getAvailablePaths(chessBoard);
         Assert.assertEquals(8, availablePaths.length);
 
-        // check that every paths is 1 squire long
+        // check that every paths is 1 square long
         Assert.assertEquals(1, availablePaths[0].length);
         Assert.assertEquals(1, availablePaths[1].length);
         Assert.assertEquals(1, availablePaths[2].length);
@@ -52,7 +52,7 @@ public class KnightTest {
         // check the path LEFT-Down
         Assert.assertEquals(new Point(3, 6), availablePaths[7][0]);
 
-        // moving the king by one squire to he right ==================
+        // moving the king by one square to he right ==================
 
         chessBoard.move(knight.getPosition(), new Point(5, 4));
         position = knight.getPosition();
@@ -61,7 +61,7 @@ public class KnightTest {
         availablePaths = knight.getAvailablePaths(chessBoard);
         Assert.assertEquals(8, availablePaths.length);
 
-        // check that every paths is 1 squire long
+        // check that every paths is 1 square long
         Assert.assertEquals(1, availablePaths[0].length);
         Assert.assertEquals(1, availablePaths[1].length);
         Assert.assertEquals(1, availablePaths[2].length);
@@ -104,7 +104,7 @@ public class KnightTest {
         availablePaths = knight.getAvailablePaths(chessBoard);
         Assert.assertEquals(8, availablePaths.length);
 
-        // check that every paths is 1 squire long
+        // check that every paths is 1 square long
         Assert.assertEquals(1, availablePaths[0].length);
         Assert.assertEquals(1, availablePaths[1].length);
         Assert.assertEquals(1, availablePaths[2].length);

@@ -25,7 +25,8 @@ public class ChessController {
         Exit,
         Coup,
         Save,
-        Load
+        Load,
+        Reset
     }
 
     public ChessController(Chess chess, ChessBashView chessBashView) {
@@ -39,7 +40,12 @@ public class ChessController {
         handleKeyEnter(action);
         handleKeyCoup(action);
         handleEscapeKey(action);
+        if (action == Reset) {
+            chessBashView.chess = handleKeyReset(action);
+        }
+
         handleKeySave(action, chess, file);
+
         if (action == Load) {
             chessBashView.chess = handleKeyLoad(file, action);
         } else {
@@ -55,10 +61,17 @@ public class ChessController {
         return chess;
     }
 
-    public static Chess loadModel(String path) throws IOException {
-        File file = new File(path);
+    private Chess handleKeyReset(Action action) {
+        if (action == Reset) {
+            chess = new Chess();
+            return chess;
+        }
+        return chess;
+    }
+
+    public static Chess loadModel(File file) throws IOException {
         Chess chess;
-        if (!(file.exists())) {
+        if (!file.exists()) {
             chess = new Chess();
             return chess;
         } else {
@@ -66,11 +79,10 @@ public class ChessController {
             chess = mapper.readValue(file, Chess.class);
             return chess;
         }
-
     }
 
     private void handleKeySave(Action action, Chess chess, File file) throws IOException {
-        if (action == Save || action == Exit) {
+        if (action == Save || action == Exit || action == Reset) {
             ObjectMapper mapper = new ObjectMapper();
             mapper.writeValue(file, chess);
             System.out.println(Ansi.ansi().cursor(22, 0).fg(Ansi.Color.WHITE).a("JSON Save"));
